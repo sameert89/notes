@@ -1,0 +1,227 @@
+{
+  "main": {
+    "id": "ddeb1e3333dffba8",
+    "type": "split",
+    "children": [
+      {
+        "id": "75e89eb9c755c7ce",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "26f4d939436cf266",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Functions.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Functions"
+            }
+          },
+          {
+            "id": "a043cadd65e8b297",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Names.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Names"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "fc0576fd5714283c",
+    "type": "split",
+    "children": [
+      {
+        "id": "cfdb6bdfba4ab565",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "52a1a52ea7f8a6e0",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "383a3922919c3a33",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "#cl",
+                "matchingCase": true,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "c20eeea24be68cf6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "0ced89b97d9f126f",
+    "type": "split",
+    "children": [
+      {
+        "id": "9a00f39968102274",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3fe9c9e31d994ba7",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Cohesion & Coupling.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Cohesion & Coupling"
+            }
+          },
+          {
+            "id": "717298e9a03e996e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Cohesion & Coupling.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Cohesion & Coupling"
+            }
+          },
+          {
+            "id": "1f01cb92b59af0aa",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "6dd32d3ad3adb314",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Cohesion & Coupling.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Cohesion & Coupling"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "darlal-switcher-plus:Open in Headings Mode": false,
+      "darlal-switcher-plus:Open Symbols for the active editor": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false
+    }
+  },
+  "active": "a043cadd65e8b297",
+  "lastOpenFiles": [
+    "Functions.md",
+    "Names.md",
+    "HATEOAS.md",
+    "Assets/ChatGPT Image Apr 2, 2025, 10_35_41 AM.png",
+    "Assets/Pasted image 20250402103521.png",
+    "Types of Systems.md",
+    "CAP Theorem.md",
+    "Testing.md",
+    "Resiliency.md",
+    "Security.md",
+    "Scaling.md",
+    "Commands VS Requests.md",
+    "Communication Between Microservices.md",
+    "Continuous Integration.md",
+    "Kafka.md",
+    "Container Orchestration.md",
+    "GraphQL.md",
+    "Monitoring & Observability.md",
+    "ACID.md",
+    "Deployment.md",
+    "Assets/Pasted image 20241217111503.png",
+    "Advantages & Disadvantages of Microservices.md",
+    "BFF.md",
+    "Bounded Contexts.md",
+    "Excalidraw/Drawing 2024-11-13 17.09.18.excalidraw.md",
+    "CDN.md",
+    "Cohesion & Coupling.md",
+    "Communication Protocols.md",
+    "Containers and Kubernetes.md",
+    "Assets/Pasted image 20241213120745.png",
+    "Assets/Pasted image 20241213165447.png",
+    "Assets/Pasted image 20241213151749.png",
+    "Assets/Pasted image 20241213141722.png",
+    "Assets/Pasted image 20241213141342.png",
+    "Assets/Pasted image 20241213120814.png",
+    "Assets/Pasted image 20241204172032.png",
+    "Assets",
+    "Excalidraw"
+  ]
+}

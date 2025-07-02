@@ -1,0 +1,8 @@
+{
+  "cssTheme": "Encore",
+  "theme": "obsidian",
+  "accentColor": "#05738f",
+  "enabledCssSnippets": [
+    "AdaptiveImageInversion"
+  ]
+}

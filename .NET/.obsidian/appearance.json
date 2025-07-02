@@ -1,0 +1,13 @@
+{
+  "accentColor": "#42a1fa",
+  "cssTheme": "Border",
+  "baseFontSize": 16,
+  "enabledCssSnippets": [
+    "custom"
+  ],
+  "monospaceFontFamily": "JetBrainsMono Nerd Font",
+  "interfaceFontFamily": "Poppins",
+  "textFontFamily": "Poppins",
+  "translucency": true,
+  "theme": "moonstone"
+}

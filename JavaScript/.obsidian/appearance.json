@@ -1,0 +1,12 @@
+{
+  "accentColor": "#42a1fa",
+  "cssTheme": "Blue Topaz",
+  "baseFontSize": 14,
+  "enabledCssSnippets": [
+    "custom"
+  ],
+  "monospaceFontFamily": "JetBrainsMono Nerd Font",
+  "interfaceFontFamily": "Poppins",
+  "textFontFamily": "Poppins",
+  "translucency": true
+}

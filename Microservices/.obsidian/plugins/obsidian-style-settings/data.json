@@ -1,0 +1,13 @@
+{
+  "obsidian-prism-theme@@color-schemes-dt": "pt-color-scheme-indigo-dt",
+  "obsidian-prism-theme@@color-scheme-style-dt": "pt-color-scheme-style-border-dt",
+  "obsidian-prism-theme@@pt-titlebar-hide-text": false,
+  "encore-settings@@theme-dark": "encore-theme-dark-blackout",
+  "encore-settings@@encore-translucency": false,
+  "encore-settings@@colors": "encore-colors-colorful",
+  "encore-settings@@encore-translucency-background": "encore-bg-frosty",
+  "encore-settings@@encore-fancy-headers": true,
+  "encore-settings@@encore-coloured-tooltip": true,
+  "encore-settings@@encore-highlight-border": true,
+  "encore-settings@@encore-bright-accent": false
+}

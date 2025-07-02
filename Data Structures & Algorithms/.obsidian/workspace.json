@@ -1,0 +1,275 @@
+{
+  "main": {
+    "id": "9a3c33ef94bb6b92",
+    "type": "split",
+    "children": [
+      {
+        "id": "585ef064e079b262",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0733f0a760e4194a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Arrays/Bubble Sort.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Bubble Sort"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "b4e1977b15e35c8a",
+    "type": "split",
+    "children": [
+      {
+        "id": "c2d2bef06fa12c78",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "46e4e43708bf7b66",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "byCreatedTime",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "fe24c0842b55a33f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#prime-factors",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "a060dd905d294c9f",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 236.50635528564453
+  },
+  "right": {
+    "id": "325bd71670ee6e7a",
+    "type": "split",
+    "children": [
+      {
+        "id": "3217380cb9c40c63",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7cdfcf95407b0c42",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Arrays/Bubble Sort.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Bubble Sort"
+            }
+          },
+          {
+            "id": "c1b3b8c8c18e0e5b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Arrays/Bubble Sort.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Bubble Sort"
+            }
+          },
+          {
+            "id": "4dc5cc4c8abd703a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "51686637c188657a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Arrays/Bubble Sort.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Bubble Sort"
+            }
+          },
+          {
+            "id": "e58e825976625d58",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "1faccd836e7653db",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "42eb42e140ad1cdb",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "892f13ffef36c3b8",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "56a62bbcf68e7a53",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
+          }
+        ],
+        "currentTab": 8
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": true,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false,
+      "obsidian-spaced-repetition:Review flashcards": false,
+      "darlal-switcher-plus:Open in Headings Mode": false,
+      "darlal-switcher-plus:Open Symbols for the active editor": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
+    }
+  },
+  "active": "56a62bbcf68e7a53",
+  "lastOpenFiles": [
+    "Arrays/Selection Sort.md",
+    "Arrays/Bubble Sort.md",
+    "Strings/KMP algorithm.md",
+    "Arrays",
+    "Problems/GFG/Alien Dictionary.md",
+    "_excalidraw/Drawing 2024-09-24 15.02.55.excalidraw.md",
+    "Miscellaneous/Galen's guide to being a successful competitive programmer.md",
+    "Problems/Leetcode/440 Kth lexicographically smallest number.md",
+    "_excalidraw/Drawing 2024-09-24 12.07.37.excalidraw.md",
+    "Problems/Leetcode/Nth Digit.md",
+    "Graphs/Topological Sort.md",
+    "_excalidraw/Drawing 2023-10-14 17.22.00.excalidraw.md",
+    "_excalidraw/Drawing 2024-09-22 17.45.10.excalidraw.md",
+    "Graphs/Shortest Path Problem.md",
+    "Problems/GFG/Flood fill algorithm.md",
+    "Problems/GFG",
+    "Problems",
+    "Stacks/Stacks.md",
+    "Stacks",
+    "Miscellaneous/Resources/Roadmap Resources.pdf",
+    "Miscellaneous/Resources/Roadmap Resources.pdf.53b48f43.partial",
+    "Miscellaneous/Resources/04-greedy.pdf",
+    "Miscellaneous/Resources/04-greedy.pdf.c5e4b44.partial",
+    "Miscellaneous/Resources",
+    "Queues/Queues.md",
+    "Queues",
+    "Miscellaneous/Policy Based Data Structures.md",
+    "Miscellaneous/Mathematical Induction.md",
+    "Miscellaneous/Complexity Theory (P, NP, NP hard and NP complete).md",
+    "Trees/Range Queries.md",
+    "Trees/AVL Trees.md",
+    "_excalidraw/Drawing 2023-10-01 23.12.08.excalidraw.md",
+    "_excalidraw/Drawing 2023-10-01 22.28.13.excalidraw.md",
+    "_excalidraw/Drawing 2023-10-01 22.21.21.excalidraw.md",
+    "Trees/Red and Black Trees.md",
+    "_excalidraw/Drawing 2023-10-01 22.04.16.excalidraw.md",
+    "_assets/Pasted image 20230924234109.png",
+    "_assets/Pasted image 20230917195830.png",
+    "_assets/example2-1.webp",
+    "_assets/example1-1.webp",
+    "_assets/Pasted Image 20230825140844_141.png",
+    "_assets/Pasted image 20230821102417.png",
+    "_assets/Pasted image 20230821102028.png",
+    "_assets/Pasted image 20230821101105.png",
+    "_assets/Pasted image 20230821095820.png",
+    "_assets/Pasted image 20230821095302.png"
+  ]
+}
