@@ -1,0 +1,21 @@
+{
+  "pluginList": [
+    "KosmosisDire/obsidian-webpage-export"
+  ],
+  "pluginSubListFrozenVersion": [
+    {
+      "repo": "KosmosisDire/obsidian-webpage-export",
+      "version": "1.9.0-3b"
+    }
+  ],
+  "themesList": [],
+  "updateAtStartup": true,
+  "updateThemesAtStartup": true,
+  "enableAfterInstall": true,
+  "loggingEnabled": false,
+  "loggingPath": "BRAT-log",
+  "loggingVerboseEnabled": false,
+  "debuggingMode": false,
+  "notificationsEnabled": true,
+  "personalAccessToken": ""
+}
