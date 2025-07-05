@@ -332,6 +332,10 @@ scenes
 someOtherValue
 somethingElse
 separators
+standardized
+scripting
+specification
+syntax
 form
 for
 framework
@@ -546,6 +550,7 @@ Syntax
 Sets
 Selecting
 Styles
+SpiderMonkey
 Interconnection
 It
 ISO
@@ -801,6 +806,7 @@ isNaN
 isFinite
 isInteger
 internationalization
+interoperability
 conceptual
 consists
 called
@@ -1083,6 +1089,7 @@ confusing
 clicked
 conveniently
 constructor
+consistency
 used
 university
 unstructured
@@ -1321,6 +1328,8 @@ truthy
 throughout
 travel
 travels
+typing
+typed
 describe
 data
 device
@@ -1498,6 +1507,8 @@ dictionaries
 deletions
 documents
 descendants
+dynamically
+defines
 of
 organization
 or
@@ -1883,6 +1894,8 @@ adding
 accepts
 arrow
 auto
+abbreviated
+attention
 btw
 by
 be
@@ -2005,6 +2018,7 @@ boundary
 boy
 button
 bigINTs
+biggest
 made
 model
 moderate
@@ -2264,6 +2278,7 @@ literals
 listeners
 listen
 listener
+late
 The
 There
 Transmission
@@ -2618,6 +2633,7 @@ Manual
 Methods
 Method
 Modifying
+Modern
 WAN
 Wide
 Wired
@@ -2847,6 +2863,7 @@ Child
 Classes
 Click
 Capturing
+Chrome
 Global
 GKXa
 GA
@@ -3098,6 +3115,8 @@ events
 existing
 event
 expects
+explicitly
+engines
 Entire
 Examples
 Easier
@@ -3170,6 +3189,7 @@ Expressions
 Environment
 Element
 Event
+ECMAScript
 region
 robust
 raw
@@ -3580,6 +3600,7 @@ Precedence
 Prompt
 Partial
 Property
+Pay
 privately
 publicly
 private
@@ -3943,6 +3964,7 @@ Represents
 Reference
 Removing
 Refer
+Release
 voltages
 vWA
 vA
@@ -4020,6 +4042,7 @@ vWzhh
 var
 variables
 variable
+vendors
 DLL
 DFf
 Dy
@@ -4701,6 +4724,7 @@ Functions
 Formatting
 Functional
 Fragments
+Firefox
 Xk
 Xh
 XO

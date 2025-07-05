@@ -16,7 +16,9 @@
                 "file": "Lists.md",
                 "mode": "preview",
                 "source": false
-              }
+              },
+              "icon": "lucide-file",
+              "title": "Lists"
             }
           },
           {
@@ -28,7 +30,9 @@
                 "file": "Dictionaries.md",
                 "mode": "source",
                 "source": false
-              }
+              },
+              "icon": "lucide-file",
+              "title": "Dictionaries"
             }
           },
           {
@@ -40,7 +44,9 @@
                 "file": "Loops.md",
                 "mode": "source",
                 "source": false
-              }
+              },
+              "icon": "lucide-file",
+              "title": "Loops"
             }
           },
           {
@@ -50,7 +56,9 @@
               "type": "release-notes",
               "state": {
                 "currentVersion": "1.5.11"
-              }
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.5.11"
             }
           },
           {
@@ -60,17 +68,23 @@
               "type": "release-notes",
               "state": {
                 "currentVersion": "1.5.12"
-              }
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.5.12"
             }
           },
           {
             "id": "4f8666eeb98efea1",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.5.12"
-              }
+                "file": "Work Items.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Work Items"
             }
           }
         ],
@@ -93,8 +107,11 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "byCreatedTimeReverse"
-              }
+                "sortOrder": "byCreatedTimeReverse",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -109,7 +126,9 @@
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -117,11 +136,12 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -141,7 +161,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Lists.md",
+                "file": "Work Items.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -149,7 +169,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Work Items"
             }
           },
           {
@@ -158,10 +180,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Lists.md",
+                "file": "Work Items.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Work Items"
             }
           },
           {
@@ -171,8 +195,12 @@
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true
-              }
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
             }
           },
           {
@@ -181,8 +209,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Lists.md"
-              }
+                "file": "Work Items.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Work Items"
             }
           },
           {
@@ -194,7 +227,9 @@
                 "sortOrder": "frequency",
                 "showSearch": false,
                 "searchQuery": ""
-              }
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
             }
           },
           {
@@ -202,11 +237,23 @@
             "type": "leaf",
             "state": {
               "type": "review-queue-list-view",
-              "state": {}
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "41545f7d8686a3b8",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "horizontal",
@@ -221,25 +268,28 @@
       "daily-notes:Open today's daily note": true,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "templater-obsidian:Templater": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false,
+      "obsidian-spaced-repetition:Review flashcards": false,
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
-      "obsidian-spaced-repetition:Review flashcards": false,
-      "obsidian-excalidraw-plugin:Create new drawing": false
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "templater-obsidian:Templater": false
     }
   },
-  "active": "fe24c0842b55a33f",
+  "active": "4f8666eeb98efea1",
   "lastOpenFiles": [
-    "What is .NET framework.md",
     "․NET CLI.md",
     "․NET Core Platform.md",
-    "C＃Code Execution.md",
+    "TimeOnly Datatype.md",
     "Threads - Why You Should Know About Them.md",
+    "The Console.md",
+    "Switch Statements.md",
+    "Lists.md",
+    "What is .NET framework.md",
+    "C＃Code Execution.md",
     "Dashboard.md",
     "Namespaces & Using Statements.md",
     "Top Level Statements.md",
-    "The Console.md",
     "Variables.md",
     "String Datatype.md",
     "StringBuilder.md",
@@ -250,13 +300,10 @@
     "Bool Datatype.md",
     "DateTime Datatype.md",
     "DateOnly Datatype.md",
-    "TimeOnly Datatype.md",
     "Type Conversions.md",
     "Conditionals.md",
-    "Switch Statements.md",
     "Arrays.md",
     "Loops.md",
-    "Lists.md",
     "templates",
     "assets/Pasted image 20240303203641.png",
     "assets/Pasted image 20240303203533.png",
