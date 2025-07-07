@@ -184,7 +184,7 @@
     },
     "rssOptions": {
       "featureId": "obsidian-document",
-      "enabled": true,
+      "enabled": false,
       "unavailable": false,
       "alwaysEnabled": false,
       "siteUrl": "",
@@ -200,7 +200,7 @@
     "inlineFonts": false,
     "inlineOther": false,
     "combineAsSingleFile": false,
-    "offlineResources": false,
+    "offlineResources": true,
     "themeName": "",
     "slugifyPaths": true,
     "flattenExportPaths": false,
@@ -209,9 +209,19 @@
     "iconEmojiStyle": "Native",
     "exportRoot": "",
     "includePluginCss": [
-      "highlightr-plugin"
+      "highlightr-plugin",
+      "excalidraw-embedded-light",
+      "excalidraw-embedded-dark",
+      "highlightr-styles",
+      "obsidian-folder-index"
     ],
-    "includeStyleCssIds": [],
+    "includeStyleCssIds": [
+      "highlightr-plugin",
+      "excalidraw-embedded-light",
+      "excalidraw-embedded-dark",
+      "highlightr-styles",
+      "obsidian-folder-index"
+    ],
     "autoDisposeWebpages": true
   },
   "logLevel": "warning",
