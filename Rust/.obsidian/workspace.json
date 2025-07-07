@@ -1,0 +1,273 @@
+{
+  "main": {
+    "id": "9da89a836be5cd00",
+    "type": "split",
+    "children": [
+      {
+        "id": "92d9672f5dee97c7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "618fffd1a7c43cfd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Basics/Creating a Rust Project.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Creating a Rust Project"
+            }
+          },
+          {
+            "id": "1ad1790e58c8c2e1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documentation.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Documentation"
+            }
+          },
+          {
+            "id": "67a431f4ab1149d2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Variables and Mutability.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Variables and Mutability"
+            }
+          },
+          {
+            "id": "b119fe06b8a27113",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Variables and Mutability.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Variables and Mutability"
+            }
+          },
+          {
+            "id": "19edf24be20f821a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Basics/IO.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "IO"
+            }
+          },
+          {
+            "id": "8fa1608cb6c7865f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Basics/Modules in Rust.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Modules in Rust"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "31f6ceac2dadfe77",
+    "type": "split",
+    "children": [
+      {
+        "id": "580a161b8d7aad90",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "80266c8ff3ce2841",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "310753336896b4ea",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "4c917ec548317917",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 246
+  },
+  "right": {
+    "id": "0f04c858660cdf18",
+    "type": "split",
+    "children": [
+      {
+        "id": "490e967ca0de8a5f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9010a0b7b86363c4",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Basics/IO.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for IO"
+            }
+          },
+          {
+            "id": "562d25a593eeb05d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Basics/IO.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from IO"
+            }
+          },
+          {
+            "id": "d4bb8409af198803",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "ea76b3442d2dc616",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Basics/IO.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of IO"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "19edf24be20f821a",
+  "lastOpenFiles": [
+    "Interpolation.md",
+    "Basics/IO.md",
+    "Variables and Mutability.md",
+    "index.md",
+    "Naming Conventions.md",
+    "Basics/Modules in Rust.md",
+    "Documentation.md",
+    "Basics/Creating a Rust Project.md",
+    "Basics/Crates in Rust.md",
+    "Basics/Formatting.md",
+    "Basics/IO.md",
+    "Untitled",
+    "Creating a Rust Project",
+    "Basics",
+    "bg.jpg",
+    "Unconfirmed 788509.crdownload",
+    "bg.mp4",
+    "rustup-init.exe",
+    "Unconfirmed 824302.crdownload",
+    "output.mp4",
+    "input.mp4",
+    "Unconfirmed 539915.crdownload",
+    "Resume.md",
+    "Basics/Variables and Constants.md",
+    "Basics/Compiler & Linker.md",
+    "Basics/C++.md",
+    "Basics/Anatomy of a C++ Program.md",
+    "Welcome.md"
+  ]
+}

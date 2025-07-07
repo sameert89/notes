@@ -10,8 +10,21 @@
     "postProcess": true,
     "displayProgress": true,
     "inlineHTML": false,
-    "exportPath": "",
-    "filesToExport": [],
+    "exportPath": "C:\\Users\\samee\\Documents\\Projects\\notes\\server\\public\\Data Structures & Algorithms",
+    "filesToExport": [
+      "Arrays",
+      "Graphs",
+      "Heaps",
+      "Leetcode Contests",
+      "Miscellaneous",
+      "Problems",
+      "Queues",
+      "Stacks",
+      "Strings",
+      "Trees",
+      "Tries",
+      "index.md"
+    ],
     "addBodyClasses": true,
     "addMathjaxStyles": true,
     "addHeadTag": true,
@@ -157,7 +170,7 @@
         "selector": "head",
         "type": "end"
       },
-      "sourcePath": "",
+      "sourcePath": "..\\common_obsidian_scripts\\WebpageHtmlExportFixes.html",
       "includePath": "site-lib/html/custom-head.html"
     },
     "documentOptions": {
@@ -195,7 +208,9 @@
     "faviconPath": "",
     "iconEmojiStyle": "Native",
     "exportRoot": "",
-    "includePluginCss": [],
+    "includePluginCss": [
+      "highlightr-plugin"
+    ],
     "includeStyleCssIds": [],
     "autoDisposeWebpages": true
   },
@@ -204,7 +219,7 @@
   "rssDateProperty": "date",
   "onlyExportModified": true,
   "deleteOldFiles": true,
-  "exportPreset": "website",
+  "exportPreset": "online",
   "openAfterExport": false,
   "filePickerBlacklist": [
     "(^|\\/)node_modules\\/",

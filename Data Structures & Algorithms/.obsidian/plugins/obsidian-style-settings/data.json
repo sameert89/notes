@@ -29,5 +29,13 @@
   "blue-topaz-theme@@background-settings-workplace-theme-light": "background-settings-workplace-waves2-light",
   "blue-topaz-theme@@graph-text-color@@light": "#000000",
   "blue-topaz-theme@@graph-line@@light": "#040000",
-  "blue-topaz-theme@@graph-canvas-bg@@light": "#FF000000"
+  "blue-topaz-theme@@graph-canvas-bg@@light": "#FF000000",
+  "blue-topaz-theme@@bg-panel-page-opacity-cp": 1,
+  "blue-topaz-theme@@bg-panel-page-option": "panel-page-bg-theme-light-random",
+  "blue-topaz-theme@@background-primary-alt-bg-4-bt@@dark": "#0D0000",
+  "blue-topaz-theme@@background-primary-alt-bg-4-bt@@light": "#FFFFFF",
+  "blue-topaz-theme@@background-secondary-bg-4-bt@@light": "#FFFFFF",
+  "blue-topaz-theme@@background-secondary-bg-4-bt@@dark": "#000000",
+  "blue-topaz-theme@@background-secondary-alt-bg-4-bt@@light": "#FFFFFF",
+  "blue-topaz-theme@@background-secondary-alt-bg-4-bt@@dark": "#000000"
 }

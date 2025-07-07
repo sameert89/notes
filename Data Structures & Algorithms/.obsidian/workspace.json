@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "dd0b67d9d2312ac9",
+        "id": "15e6695d4bbdd3c7",
         "type": "tabs",
         "children": [
           {
-            "id": "25b886ca15e5f986",
+            "id": "1266b3bb70edc0cb",
             "type": "leaf",
             "state": {
-              "type": "graph",
+              "type": "empty",
               "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ]
@@ -171,8 +171,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -191,34 +190,34 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "16a81d884afa0f20",
+  "active": "1266b3bb70edc0cb",
   "lastOpenFiles": [
-    "index.md",
-    "Tries/Tries.md",
-    "Trees/AVL Trees.md",
-    "Trees/Range Queries.md",
+    "Graphs/Strongly Connected Components.md",
+    "Tries/Problems.md",
     "Trees/Red and Black Trees.md",
-    "Strings/KMP algorithm.md",
-    "Strings/Strings.md",
-    "Queues/Queues.md",
     "Problems/GFG/Alien Dictionary.md",
-    "Problems/GFG/Flood fill algorithm.md",
-    "Problems/Leetcode/440 Kth lexicographically smallest number.md",
-    "Problems/Leetcode/Is Graph Bipartite.md",
-    "Problems/Leetcode/Miscellaneous.md",
-    "Problems/Leetcode/Path Sum 3.md",
-    "Problems/Leetcode/Leetcode.md",
-    "Miscellaneous/Complexity Theory (P, NP, NP hard and NP complete).md",
-    "Miscellaneous/Mathematical Induction.md",
-    "Miscellaneous/Policy Based Data Structures.md",
-    "Miscellaneous/Miscellaneous.md",
-    "Leetcode Contests/Weekly/359/Find the longest equal subarray.md",
-    "Leetcode Contests/Weekly/359/Maximize Profit as a Salesman.md",
-    "Heaps/Heaps.md",
-    "Graphs/Cycle Detection.md",
+    "Strings/KMP algorithm.md",
+    "Arrays/Selection Sort.md",
+    "Arrays/Bubble Sort.md",
     "Graphs/Breadth First Search (BFS).md",
+    "Graphs/Cycle Detection.md",
     "Graphs/Depth First Search (DFS).md",
     "Graphs/Disjoint Set Union(DSU).md",
+    "Graphs/Graphs.md",
+    "Graphs/Minimum Spanning Trees (MST).md",
+    "Graphs/Problems.md",
+    "Graphs/Representation of Graphs.md",
+    "Graphs/Shortest Path Problem.md",
+    "Graphs/Topological Sort.md",
+    "Heaps/Heaps.md",
+    "Leetcode Contests/Weekly/359/Find the longest equal subarray.md",
+    "Leetcode Contests/Weekly/359/Maximize Profit as a Salesman.md",
+    "Miscellaneous/Complexity Theory (P, NP, NP hard and NP complete).md",
+    "Miscellaneous/Galen's guide to being a successful competitive programmer.md",
+    "Miscellaneous/Mathematical Induction.md",
+    "Miscellaneous/Policy Based Data Structures.md",
+    "Problems/GFG/Flood fill algorithm.md",
+    "Problems/Leetcode/440 Kth lexicographically smallest number.md",
     "_static/lib/search-index.json",
     "_static/lib/metadata.json",
     "_static/lib/styles/theme.css",

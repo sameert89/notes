@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "Kafka.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "Kafka"
             }
           }
         ],
@@ -170,6 +170,8 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "webpage-html-export:Export Vault to HTML": false,
+      "obsidian42-brat:BRAT": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -178,14 +180,11 @@
       "command-palette:Open command palette": false,
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
-      "obsidian-excalidraw-plugin:Create new drawing": false,
-      "obsidian-excalidraw-plugin:New drawing": false,
-      "webpage-html-export:Export Vault to HTML": false
+      "obsidian-excalidraw-plugin:New drawing": false
     }
   },
   "active": "a043cadd65e8b297",
   "lastOpenFiles": [
-    "index.md",
     "Virtualization.md",
     "Testing.md",
     "Service Oriented Architecture.md",
@@ -194,12 +193,15 @@
     "Resiliency.md",
     "Proxies and Reverse Proxies.md",
     "Problems around Data Decomposition.md",
+    "Names.md",
     "Monoliths Are Not BAD.md",
     "Monitoring & Observability.md",
     "Message Brokers.md",
     "Log Aggregation and Distributed Tracing.md",
     "Key Concepts of Microservices.md",
+    "Kafka.md",
     "How to decompose Monoliths.md",
+    "HATEOAS.md",
     "Functions.md",
     "Domain Driven Design.md",
     "Database Transactions.md",
@@ -208,9 +210,7 @@
     "Communication Between Microservices.md",
     "Commands VS Requests.md",
     "Cohesion & Coupling.md",
-    "Bounded Contexts.md",
-    "Types of Systems.md",
-    "Security.md",
+    "CDN.md",
     "Assets/ChatGPT Image Apr 2, 2025, 10_35_41 AM.png",
     "Assets/Pasted image 20250402103521.png",
     "Assets/Pasted image 20241217111503.png",
