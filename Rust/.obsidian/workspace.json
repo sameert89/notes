@@ -69,12 +69,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Basics/IO.md",
+                "file": "Variables and Mutability.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "IO"
+              "title": "Variables and Mutability"
+            }
+          },
+          {
+            "id": "8a30fc4ab2ffed2f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Constants in Rust.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Constants in Rust"
             }
           },
           {
@@ -92,7 +106,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -236,14 +250,17 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "webpage-html-export:Export Vault to HTML": false
     }
   },
-  "active": "19edf24be20f821a",
+  "active": "8a30fc4ab2ffed2f",
   "lastOpenFiles": [
-    "Interpolation.md",
-    "Basics/IO.md",
     "Variables and Mutability.md",
+    "Constants in Rust.md",
+    "Basics/IO.md",
+    "Interpolation.md",
     "index.md",
     "Naming Conventions.md",
     "Basics/Modules in Rust.md",
@@ -251,7 +268,6 @@
     "Basics/Creating a Rust Project.md",
     "Basics/Crates in Rust.md",
     "Basics/Formatting.md",
-    "Basics/IO.md",
     "Untitled",
     "Creating a Rust Project",
     "Basics",

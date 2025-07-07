@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "15e6695d4bbdd3c7",
+        "id": "9be82b551244ef27",
         "type": "tabs",
         "children": [
           {
-            "id": "1266b3bb70edc0cb",
+            "id": "6d312c1ed9ae5783",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -155,19 +155,9 @@
               "icon": "lucide-archive",
               "title": "All properties"
             }
-          },
-          {
-            "id": "16a81d884afa0f20",
-            "type": "leaf",
-            "state": {
-              "type": "review-queue-list-view",
-              "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
-            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -190,7 +180,7 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "1266b3bb70edc0cb",
+  "active": "6d312c1ed9ae5783",
   "lastOpenFiles": [
     "Graphs/Strongly Connected Components.md",
     "Tries/Problems.md",
