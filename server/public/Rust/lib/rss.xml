@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Work]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>Work</title><link></link></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Fri, 11 Jul 2025 19:24:30 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Fri, 11 Jul 2025 19:24:12 GMT</pubDate><ttl>60</ttl><dc:creator></dc:creator><item><title><![CDATA[Traits]]></title><description><![CDATA[ 
+ <br>A trait is a contract that requires the types that implement the trait to have certain functionality according to the contract. Imagine them like an interface in C# and Java and abstract classes in C++. They enable polymorphism in Rust.<br><br>Following are some useful built in traits.<br><br>Mandates a format method on the type which can output string representation, used while printing the data using  println!.<br>println!("This is my integer {}", 32);
+<br><br>Debug should format the data to a programmer facing string which is useful for debugging.<br>#[derive(Debug)] // easy shortcut to auto add debug trait to types
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+fn main() {
+    let p = Point { x: 3, y: 7 };
+    println!("{:?}", p);         // Output: Point { x: 3, y: 7 }
+    println!("{:#?}", p);        // Pretty-printed
+}
+]]></description><link>advanced\traits.html</link><guid isPermaLink="false">Advanced/Traits.md</guid><pubDate>Fri, 11 Jul 2025 17:43:40 GMT</pubDate></item><item><title><![CDATA[Crates in Rust]]></title><description><![CDATA[ 
+ <br>A crate is a unit of compilation in rust, simply put it can be called as a package of rust code.<br>There are two types of crates in rust:<br>
+<br>Binary Crates: Crates that contain executable code. They contain a single main.rs with a main() method.
+<br>Library Crates: Crates that don't contain executable code and are used to ship reusable code by linking them to other crates. Does not have a main method.
+<br>Dual Crates?
+A crate can ship as both a binary and a library crate. In such cases the add command links the library portion of the crate, whereas the install command installs the executable.
+<br><br>Like nuget &amp; npm there is a central repository for rust crates. Below are some useful commands -<br>cargo add crate_name # adds the dependency of the crate_name in current package, ONLY works with library crates
+cargo install crate_name # installs the executable globally on your machine 
+<br>crates.io: A Cautionary Tale
+Cargo install, installs rust crates globally on your machine, although the rust crates are audited but there has been multiple incidents of <a data-tooltip-position="top" aria-label="https://www.reddit.com/r/rust/comments/1605fqj/rust_malware_staged_on_cratesio/" rel="noopener nofollow" class="external-link" href="https://www.reddit.com/r/rust/comments/1605fqj/rust_malware_staged_on_cratesio/" target="_blank">fake crates</a>. Better be safe with this command. Also there was some <a data-tooltip-position="top" aria-label="https://news.ycombinator.com/item?id=42972525" rel="noopener nofollow" class="external-link" href="https://news.ycombinator.com/item?id=42972525" target="_blank">Rust Drama</a> where some popular package maintainers self deprecated their packages over a fight.
+<br>See Also: <a data-href="Modules in Rust" href="basics\modules-in-rust.html" class="internal-link" target="_self" rel="noopener nofollow">Modules in Rust</a>]]></description><link>basics\crates-in-rust.html</link><guid isPermaLink="false">Basics/Crates in Rust.md</guid><pubDate>Sun, 06 Jul 2025 20:07:25 GMT</pubDate></item><item><title><![CDATA[Creating a Rust Project]]></title><description><![CDATA[ 
+ <br>The standard way to do this is using cargo.<br>cargo new project_name
+<br>This command:<br>
+<br>Creates a folder named hello_world
+<br>Auto initializes a git repository inside that folder
+<br>Creates an src subfolder with a main.rs file.
+<br>Creates a Cargo.toml file for library and version info.
+<br>The content of main.rs looks like:<br>fn main() {
+    println!("Hello, world!");
+}
+<br>This command actually creates a so-called binary crate. See <a data-href="Crates in Rust" href="basics\crates-in-rust.html" class="internal-link" target="_self" rel="noopener nofollow">Crates in Rust</a><br><br>There are a couple of ways of doing this:<br><br>rustc main.rs
+<br>This produces an executable that then can be run normally.<br><br>The standard way to go for projects<br>cargo build # builds and produces a binary which needs to be separately executed
+cargo run # build and run in single step
+cargo check # checks the program whether it can be compiled, usually faster but IDEs do this job most of the time
+cargo clean # removes all old compiled objects and binaries
+<br>Build Flags
+By default the cargo commands do a debug build of the program, which is bulky non optimized version useful for debugging and sifting through instructions. The build and run command accept a build flag which can be used to change the target executable cargo build --release. There are several other build flags in rust, can be found <a data-tooltip-position="top" aria-label="https://doc.rust-lang.org/cargo/commands/cargo-build.html" rel="noopener nofollow" class="external-link" href="https://doc.rust-lang.org/cargo/commands/cargo-build.html" target="_blank">here</a>
+<br>Built in Autoformatting
+rustfmt file_name can be used to auto format a rust file, cargo fmt does the same thing for the whole project.
+]]></description><link>basics\creating-a-rust-project.html</link><guid isPermaLink="false">Basics/Creating a Rust Project.md</guid><pubDate>Mon, 07 Jul 2025 07:47:03 GMT</pubDate></item><item><title><![CDATA[Data Types in Rust]]></title><description><![CDATA[ 
+ <br>Data types in Rust are divided into 2 broad categories:<br><br>These data types only hold 1 value. There are 4 scalar types- integers, Booleans, floating point numbers &amp; characters. These scalar types are subdivided into further types.<br><br>
+isize &amp; usize are platform dependent for example  for 32 bit architecture.<br>
+There is no concept of truthy and falsy values in rust, there is only boolean which is either true or false
+<br>int my_variable: u8 = 15;
+int my_float = 15.0f32
+<br>Numerical Representation
+Like other languages, Rust provides syntax to make numeric values more readable, for example- you can have underscores _ between numbers anywhere and rust will ignore those, 100_000. There is also a scientific notation- let c = 6.02e23;    // Avogadro's number-ish (f64)
+<br><br>These types store more than 1 value. There are 2 primitive compound types Tuples &amp; Arrays. <br><br>Fixed size collection of homogenous data.<br>let myArray: [f32, 3] = [14.023,15f32,16.2342]; // Array of type f32 and length 3
+<br>Important information about arrays:<br>
+<br>Like all other variables, they must be initialized while defining.
+<br>There are syntactic sugars for initializing such as [0;5] initializes a 5 element array with all elements having value zero.
+<br>Access is done by index operator like other languages my_array[0]
+<br>len() method is used to get the length.
+<br>All data is by default immutable until the array itself is made mutable.
+<br><br>Simple, Fixed-Size &amp; Heterogenous collections. <br>let person = ("Alice", 30, true); // &amp;str, i32, bool
+let employee: (&amp;str, i32, f64) = ("Bob", 45, 3.14);
+let single = (5u32,); // Tuple with one element requires a comma to distinguish from plain parenthesis
+<br>Accessing elements:<br>let t = ("hi", 5, 'c');
+println!("{}", t.0); // By index
+let (greeting, number, ch) = t; // By destructuring
+<br><br>These are non-primitive compound types. There are basically three main strings you need to know about.<br>
+<br>String: From the standard library, mutable objects which store collection of characters, created as String::from("Hello") or "Hello".to_string() 
+<br>String Literals: Immutable objects stored in the binary, rust uses interning on them. The above examples to create a String use literals as base. They have internal type of &amp;static str
+<br>&amp;str: Immutable reference to a UTF-8 string  which is either a literal or a part of String.
+<br>Up Next: <a data-href="Type Casting" href="type-casting.html" class="internal-link" target="_self" rel="noopener nofollow">Type Casting</a>]]></description><link>basics\data-types-in-rust.html</link><guid isPermaLink="false">Basics/Data Types in Rust.md</guid><pubDate>Fri, 11 Jul 2025 19:07:43 GMT</pubDate></item><item><title><![CDATA[IO]]></title><description><![CDATA[ 
+ <br><br>The println! macro supports interpolation using curly braces,<br>var my_age = 24;
+var my_name = "Sameer";
+println!("My age is {}", my_age); // outputs My age is 24
+println!("My age is {my_age}"); // works the same way how cool is that
+println!("My age is {0} &amp; My Name is {1}, My Name was always {1}, I turned {my_age} last year", my_age, myname); // positional arguments start from 0 and can be reused in the target string
+<br><br>println! macro provides an option of format specifiers which control how certain data will be printed. Works with all interpolations, just follow with the specifier.<br>Examples<br>let name = "Alice";
+let age = 30;
+println!("{} is {} years old.", name, age);
+
+println!("{:&gt;5}", 42);       // right-align
+println!("{:&lt;5}", 42);       // left-align
+println!("{:^7}", 42);       // center-align
+
+println!("{:08.2}", 3.1415); // total 8 chars incl decimal = pad + float precision → 00003.14
+
+println!("{name} likes {lang}", name = "Bob", lang = "Rust");
+
+let arr = [1, 2, 3];
+println!("{:?}", arr);       // Debug print
+
+<br>There are a lot of these specifiers <br>]]></description><link>basics\io.html</link><guid isPermaLink="false">Basics/IO.md</guid><pubDate>Wed, 09 Jul 2025 17:58:22 GMT</pubDate></item><item><title><![CDATA[Modules in Rust]]></title><description><![CDATA[ 
+ <br>Modules are subdivisions inside crates which are used to organize code. Below is an example folder structure<br>my_dual_crate
+ ├── src
+ │   ├── main.rs     ← crate root (binary)
+ │   ├── lib.rs     ← crate root (library)
+ │   └── math.rs    ← module
+]]></description><link>basics\modules-in-rust.html</link><guid isPermaLink="false">Basics/Modules in Rust.md</guid><pubDate>Sun, 06 Jul 2025 20:09:21 GMT</pubDate></item><item><title><![CDATA[Compiler Directives]]></title><description><![CDATA[ 
+ ]]></description><link>compiler-directives.html</link><guid isPermaLink="false">Compiler Directives.md</guid><pubDate>Mon, 07 Jul 2025 09:27:15 GMT</pubDate></item><item><title><![CDATA[Constants in Rust]]></title><description><![CDATA[ 
+ <br>For a constant in rust the following hold true: <br>
+<br>Its value never changes.
+<br>It must be declared and initialized at the same time means the value must be known at compile time.
+<br>Cannot be shadowed
+<br>Can live in a global scope unlike Variables.
+<br><br>const MY_CONSTANT = 24.5;
+]]></description><link>constants-in-rust.html</link><guid isPermaLink="false">Constants in Rust.md</guid><pubDate>Mon, 07 Jul 2025 09:22:12 GMT</pubDate></item><item><title><![CDATA[Documentation]]></title><description><![CDATA[ 
+ <br><br>// line comments
+/* block
+	commment
+*/
+<br><br><br>These describe the item they’re inside, typically at the top of a crate or module.<br>
+Example: Documenting the entire crate:<br>//! This crate provides utilities for working with geometrical shapes.
+<br>Or at the start of a module:<br>mod math {
+//! Math utilities 
+}
+<br><br>These document the item that follows, such as functions, structs, enums. Example:<br>/// Adds two numbers together.
+///
+/// # Examples
+///
+/// ```
+/// let sum = add(2, 3);
+/// assert_eq!(sum, 5);
+/// ```
+fn add(a: i32, b: i32) -&gt; i32 {
+    a + b
+}
+]]></description><link>documentation.html</link><guid isPermaLink="false">Documentation.md</guid><pubDate>Mon, 07 Jul 2025 07:45:15 GMT</pubDate></item><item><title><![CDATA[Generics in Rust]]></title><description><![CDATA[ 
+ <br>Generics are abstract stand-ins for concrete types. You define them using angle brackets &lt;&gt;<br>struct Point&lt;T&gt; {
+    x: T,
+    y: T,
+}
+
+let integer = Point { x: 1, y: 2 };
+let float = Point { x: 1.1, y: 2.2 };
+]]></description><link>generics-in-rust.html</link><guid isPermaLink="false">Generics in Rust.md</guid><pubDate>Fri, 11 Jul 2025 19:06:06 GMT</pubDate></item><item><title><![CDATA[Rust]]></title><description><![CDATA[ 
+ <br><br>Rust is a systems programming language, meaning it is generally deployed in places where system resource (such as CPU, Memory, Bandwidth) usage is critical. <br>Rust is advertised to be safe, fast &amp; efficient programs.<br>Up Next: <a data-href="Creating a Rust Project" href="basics\creating-a-rust-project.html" class="internal-link" target="_self" rel="noopener nofollow">Creating a Rust Project</a>]]></description><link>index.html</link><guid isPermaLink="false">index.md</guid><pubDate>Sun, 06 Jul 2025 20:05:19 GMT</pubDate></item><item><title><![CDATA[Macros]]></title><description><![CDATA[ 
+ <br>In Rust, macros are a powerful metaprogramming feature that let you write code that writes code. They allow you to define patterns and generate code at compile time, which can reduce boilerplate, improve readability, or enable complex functionality.<br>Metaprogramming
+Concept in computer programming where, a program can treat other programs as input data
+<br>There are 3 kinds of macros in rust:<br><br>The most straight forward macros<br>macro_rules! say_hello { // Macros are created using macro_rules! macro
+    () =&gt; {
+        println!("Hello!");
+    };
+}
+
+fn main() {
+    say_hello!(); // Prints "Hello!"
+}
+<br><br>These are more powerful and flexible, and work on Rust code as input (AST manipulation). They're like compiler plugins which generate code from macros.<br>use proc_macro;
+
+#[some_attribute]
+pub fn some_name(input: TokenStream) -&gt; TokenStream {
+}
+<br><br><br>It prints the value of an expression along with the file name and line number where it’s used.<br>fn main() {
+    let a = 2;
+    let b = dbg!(a * 3) + 1;
+
+    dbg!(b);
+}
+
+/* Output
+[src/main.rs:4] a * 3 = 6
+[src/main.rs:6] b = 7
+*/
+]]></description><link>macros.html</link><guid isPermaLink="false">Macros.md</guid><pubDate>Fri, 11 Jul 2025 18:01:54 GMT</pubDate></item><item><title><![CDATA[Methods]]></title><description><![CDATA[ 
+ <br>
+Methods are functions that are defined on types
+<br>Below is an example on an integer and an &amp;str.<br>let my_var: i32 = -15;
+println!("The absolute value is: {}", my_var.abs()); // built-in method that returns the modulus of the integer.
+let s = "hello";
+println!("{}", s.len());  // method on &amp;str
+<br>Methods can't be called on inferred type variables.
+You must explicitly mention the type of the variable using : to be able to call methods, otherwise rust throws an ambiguous type error and program fails to compile.
+<br>We can define custom methods on types, but only the types we create. It does not work on built in types.<br>struct Circle {
+    radius: f64,
+}
+
+impl Circle {
+    // Method: takes self by reference
+    fn area(&amp;self) -&gt; f64 {
+        3.1415 * self.radius * self.radius // don't use magic numbers kids 🔫
+    }
+
+    // Associated function: doesn't take self like Static
+    fn new(radius: f64) -&gt; Self {
+        Circle { radius }
+    }
+}
+
+fn main() {
+    let c = Circle::new(5.0);    // associated function (like a constructor)
+    println!("Area: {}", c.area());  // method call on instance
+}
+]]></description><link>methods.html</link><guid isPermaLink="false">Methods.md</guid><pubDate>Wed, 09 Jul 2025 17:51:35 GMT</pubDate></item><item><title><![CDATA[Naming Conventions]]></title><description><![CDATA[ 
+ <br>Below table neatly summarizes the naming conventions used in Rust.<br>]]></description><link>naming-conventions.html</link><guid isPermaLink="false">Naming Conventions.md</guid><pubDate>Mon, 07 Jul 2025 07:51:04 GMT</pubDate></item><item><title><![CDATA[Operators]]></title><description><![CDATA[ 
+ <br>Rust supports all common operators, and they are not batshit crazy to floor towards negative infinity for negative divisions. And there is no crazy things like == &amp; ===.  There is no ++ and -- cause who needs that but all compoud assignment operators are there +=, |= and all that.]]></description><link>operators.html</link><guid isPermaLink="false">Operators.md</guid><pubDate>Wed, 09 Jul 2025 18:12:30 GMT</pubDate></item><item><title><![CDATA[Ranges]]></title><description><![CDATA[ 
+ <br>A range is a sequence of consecutive values.<br>similar to python range<br>let my_range = 1..5;
+<br>
+<br>Below table summarizes range types in rust-
+<br><br>
+<br>Ranges implement Iterator, so anything which implements that can have be the type in Range&lt;T&gt;
+<br>let my_char_range = 'b'..'q';
+<br>
+<br>Ranges can be used for Array Slicing
+<br>let arr = [0, 1, 2, 3];
+assert_eq!(arr[1..3], [1,2]);
+<br><br>Below is an example with a for loop<br>for i in 1..=6 {
+	println!(i);
+}
+for i in (1..=6).rev() {
+ // Methods are present on Range type
+ // Others include .step_by(val)
+}
+]]></description><link>ranges.html</link><guid isPermaLink="false">Ranges.md</guid><pubDate>Fri, 11 Jul 2025 19:03:20 GMT</pubDate></item><item><title><![CDATA[Type Aliases]]></title><description><![CDATA[ 
+ <br>You can nickname types in rust to increase readability in code, For example:<br>type Meters = i32; // Convention is PascalCase
+
+fn main(){
+	var track_length: Meters = 400;
+}
+]]></description><link>type-aliases.html</link><guid isPermaLink="false">Type Aliases.md</guid><pubDate>Mon, 07 Jul 2025 09:26:08 GMT</pubDate></item><item><title><![CDATA[Type Casting]]></title><description><![CDATA[ 
+ <br>Rust supports type casting with the as keyword. As long as its a plausible conversion.]]></description><link>type-casting.html</link><guid isPermaLink="false">Type Casting.md</guid><pubDate>Wed, 09 Jul 2025 17:59:57 GMT</pubDate></item><item><title><![CDATA[Variables and Mutability]]></title><description><![CDATA[ 
+ <br><br>Below is how you declare a variable in rust<br>let my_var = 50; // compiler auto deduces type 'i32' in this case
+<br>Rust variables are immutable by default, meaning once assigned they cannot be re-assigned.<br>my_var = 90; // will throw and error during compilation
+let mut myMutableVar = 50; // This defines a mutable variable which CAN be re-assigned
+<br><br>Rust supports shadowing (surprise, surprise!), meaning a variable can be redeclared in the same scope and the earlier declaration is invalidated (only occurs when done in the same scope).<br>let my_var = 50; // i32 as of now
+let my_var = "text"; // &amp;str now
+// mut or non mut does not matter
+<br>The Crab Hates Global Variables
+So much so that variable declarations can only be done inside a local scope.
+<br>Related: <a data-href="Naming Conventions" href="naming-conventions.html" class="internal-link" target="_self" rel="noopener nofollow">Naming Conventions</a>, <a data-href="Data Types in Rust" href="basics\data-types-in-rust.html" class="internal-link" target="_self" rel="noopener nofollow">Data Types in Rust</a>]]></description><link>variables-and-mutability.html</link><guid isPermaLink="false">Variables and Mutability.md</guid><pubDate>Wed, 09 Jul 2025 16:58:29 GMT</pubDate></item></channel></rss>
