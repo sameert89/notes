@@ -22,45 +22,421 @@
             }
           },
           {
-            "id": "1ad1790e58c8c2e1",
+            "id": "0c1f0b5dc9067ca8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documentation.md",
+                "file": "Constants in Rust.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Documentation"
+              "title": "Constants in Rust"
             }
           },
           {
-            "id": "67a431f4ab1149d2",
+            "id": "c176f47191249402",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Variables and Mutability.md",
+                "file": "Type Aliases.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Variables and Mutability"
+              "title": "Type Aliases"
             }
           },
           {
-            "id": "b119fe06b8a27113",
+            "id": "1cbe5f096070e073",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Variables and Mutability.md",
+                "file": "Control Flow.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Variables and Mutability"
+              "title": "Control Flow"
+            }
+          },
+          {
+            "id": "41f5975fbff944b8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Control Flow.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Control Flow"
+            }
+          },
+          {
+            "id": "e449998f3526c066",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Control Flow.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Control Flow"
+            }
+          },
+          {
+            "id": "47271720c328a05e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Control Flow.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Control Flow"
+            }
+          },
+          {
+            "id": "4f1a0441cf953adb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Control Flow.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Control Flow"
+            }
+          },
+          {
+            "id": "8ab3be31179ca13d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Control Flow.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Control Flow"
+            }
+          },
+          {
+            "id": "af7e9ea7d964fdc2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Loops.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Loops"
+            }
+          },
+          {
+            "id": "7f5758fa46fdca43",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Ownership.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Ownership"
+            }
+          },
+          {
+            "id": "f71e47ea4199e591",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Stack and Heap.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Stack and Heap"
+            }
+          },
+          {
+            "id": "2d2bed4aec016f7f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Stack and Heap.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Stack and Heap"
+            }
+          },
+          {
+            "id": "ed1e4aa4702154a3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Ownership.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Ownership"
+            }
+          },
+          {
+            "id": "2ab34706c662e69d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Ownership.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Ownership"
+            }
+          },
+          {
+            "id": "3cc9242c0a4e4659",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Ownership.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Ownership"
+            }
+          },
+          {
+            "id": "6aff5ede61195267",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Ownership.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Ownership"
+            }
+          },
+          {
+            "id": "08e4acb456a82848",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Ownership.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Ownership"
+            }
+          },
+          {
+            "id": "bc7c0d2e8f44e1b4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Basics/Data Types in Rust.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Data Types in Rust"
+            }
+          },
+          {
+            "id": "abd7f23732420ee3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Structs.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Structs"
+            }
+          },
+          {
+            "id": "6105c409e5b59d5b",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.9.10"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.9.10"
+            }
+          },
+          {
+            "id": "8fe691eaf2f13403",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Structs.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Structs"
+            }
+          },
+          {
+            "id": "a35216bf548d28e4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Ranges.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Ranges"
+            }
+          },
+          {
+            "id": "a8a84f236999de97",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Generics in Rust.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Generics in Rust"
+            }
+          },
+          {
+            "id": "34f84282a974df14",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Control Flow.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Control Flow"
+            }
+          },
+          {
+            "id": "9e524a26cb58f1bd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Type Casting.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Type Casting"
+            }
+          },
+          {
+            "id": "79b530a6907d6b45",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Control Flow.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Control Flow"
+            }
+          },
+          {
+            "id": "8985d0a5e5f733b7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Control Flow.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Control Flow"
+            }
+          },
+          {
+            "id": "8fb1bc24444c6221",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Functions.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Functions"
+            }
+          },
+          {
+            "id": "5d3d6424f8cdfef7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Stack and Heap.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Stack and Heap"
+            }
+          },
+          {
+            "id": "fd933161f3faa46a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Macros.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Macros"
             }
           },
           {
@@ -83,12 +459,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Constants in Rust.md",
+                "file": "Basics/Creating a Rust Project.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Constants in Rust"
+              "title": "Creating a Rust Project"
             }
           },
           {
@@ -104,9 +480,107 @@
               "icon": "lucide-file",
               "title": "Modules in Rust"
             }
+          },
+          {
+            "id": "a8d250c212292634",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Ownership.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Ownership"
+            }
+          },
+          {
+            "id": "128353b1e7ac20fb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Stack and Heap.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Stack and Heap"
+            }
+          },
+          {
+            "id": "76f67b28c3d5a932",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Ownership.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Ownership"
+            }
+          },
+          {
+            "id": "7a651767c54e030c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Ownership.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Ownership"
+            }
+          },
+          {
+            "id": "6e59602e36efdd39",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Reference & Borrowing.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Reference & Borrowing"
+            }
+          },
+          {
+            "id": "50abd0173eed1d9e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Ownership.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Ownership"
+            }
+          },
+          {
+            "id": "6be93aa94d13052a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Control Flow.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Control Flow"
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 40
       }
     ],
     "direction": "vertical"
@@ -125,7 +599,7 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical",
+                "sortOrder": "byCreatedTimeReverse",
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
@@ -163,7 +637,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 246
+    "width": 251
   },
   "right": {
     "id": "0f04c858660cdf18",
@@ -179,7 +653,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Basics/IO.md",
+                "file": "Structs.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -189,7 +663,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for IO"
+              "title": "Backlinks for Structs"
             }
           },
           {
@@ -198,12 +672,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Basics/IO.md",
+                "file": "Structs.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from IO"
+              "title": "Outgoing links from Structs"
             }
           },
           {
@@ -227,24 +701,36 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Basics/IO.md",
+                "file": "Structs.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of IO"
+              "title": "Outline of Structs"
+            }
+          },
+          {
+            "id": "eff6fa2c02813a80",
+            "type": "leaf",
+            "state": {
+              "type": "copilot-chat-view",
+              "state": {},
+              "icon": "message-square",
+              "title": "Copilot"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 200,
     "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -252,38 +738,49 @@
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
       "obsidian-excalidraw-plugin:New drawing": false,
-      "webpage-html-export:Export Vault to HTML": false
+      "webpage-html-export:Export Vault to HTML": false,
+      "darlal-switcher-plus:Open in Headings Mode": false,
+      "darlal-switcher-plus:Open Symbols for the active editor": false,
+      "copilot:Open Copilot Chat": false
     }
   },
-  "active": "8a30fc4ab2ffed2f",
+  "active": "6be93aa94d13052a",
   "lastOpenFiles": [
-    "Variables and Mutability.md",
+    "Structs.md",
+    "Stack and Heap.md",
+    "Reference & Borrowing.md",
+    "Ownership.md",
+    "Macros.md",
+    "Loops.md",
+    "Functions.md",
+    "Enums.md",
+    "Control Flow.md",
     "Constants in Rust.md",
-    "Basics/IO.md",
-    "Interpolation.md",
-    "index.md",
-    "Naming Conventions.md",
+    "Excalidraw/Stack and Heap 2025-07-22 22.35.17.excalidraw.md",
+    "Basics/Data Types in Rust.md",
+    "Advanced/Traits.md",
+    "Enums.md~",
+    "Control Flow.md~",
+    "Structs.md~",
+    "=",
+    "Gb.md",
+    "Ranges.md",
     "Basics/Modules in Rust.md",
+    "Excalidraw",
+    "Generics in Rust.md",
+    "Type Aliases.md",
+    "Compiler Directives.md",
+    "Methods.md",
+    "Operators.md",
+    "Naming Conventions.md",
+    "Variables and Mutability.md",
     "Documentation.md",
-    "Basics/Creating a Rust Project.md",
-    "Basics/Crates in Rust.md",
-    "Basics/Formatting.md",
-    "Untitled",
+    "Basics/IO.md",
+    "Advanced",
     "Creating a Rust Project",
     "Basics",
     "bg.jpg",
     "Unconfirmed 788509.crdownload",
-    "bg.mp4",
-    "rustup-init.exe",
-    "Unconfirmed 824302.crdownload",
-    "output.mp4",
-    "input.mp4",
-    "Unconfirmed 539915.crdownload",
-    "Resume.md",
-    "Basics/Variables and Constants.md",
-    "Basics/Compiler & Linker.md",
-    "Basics/C++.md",
-    "Basics/Anatomy of a C++ Program.md",
-    "Welcome.md"
+    "bg.mp4"
   ]
 }

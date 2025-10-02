@@ -60,6 +60,7 @@ OgqXVlB
 OMf
 OHBBFgol
 OsT
+Overall
 short
 system
 standards
@@ -317,6 +318,9 @@ subscribing
 seJx
 spFlqapA
 sw
+shifting
+squared
+straightforward
 form
 for
 framework
@@ -984,6 +988,8 @@ constructive
 contests
 combinatorics
 consistently
+calucate
+convert
 used
 university
 unstructured
@@ -1058,6 +1064,7 @@ ulmmYUB
 upon
 uYjg
 uXywN
+unsorted
 to
 the
 total
@@ -1213,6 +1220,7 @@ though
 topic
 taking
 tqrget
+third
 describe
 data
 device
@@ -1379,6 +1387,8 @@ dYqXbhE
 dnUhia
 dYqn
 dJqcu
+devided
+draw
 of
 organization
 or
@@ -1560,6 +1570,7 @@ nF
 nV
 nb
 nVbJuRNf
+naive
 ancient
 are
 area
@@ -1734,6 +1745,7 @@ aO
 aKtC
 abzi
 avxPdehc
+assumed
 btw
 by
 be
@@ -1847,6 +1859,8 @@ basics
 beginning
 bascially
 bjK
+boundary
+bit
 made
 model
 moderate
@@ -1997,6 +2011,9 @@ mE
 merge
 mZReXeq
 mavoY
+moved
+multiplications
+mod
 layers
 large
 lowest
@@ -2249,6 +2266,7 @@ Auk
 ALPi
 Atku
 APkaHm
+Applications
 LAN
 Local
 Limited
@@ -2371,6 +2389,7 @@ Not
 Notes
 NKBWSRwE
 NmMr
+Number
 MAN
 Metropolitan
 May
@@ -3132,6 +3151,8 @@ rcBZd
 rN
 ro
 rbdjLPUJ
+recursively
+recurrence
 High
 Home
 Higher
@@ -3527,6 +3548,8 @@ preorder
 palindromic
 pGFuGANo
 po
+pattern
+power
 wide
 wireless
 wired
