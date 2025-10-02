@@ -709,19 +709,9 @@
               "icon": "lucide-list",
               "title": "Outline of Structs"
             }
-          },
-          {
-            "id": "eff6fa2c02813a80",
-            "type": "leaf",
-            "state": {
-              "type": "copilot-chat-view",
-              "state": {},
-              "icon": "message-square",
-              "title": "Copilot"
-            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
