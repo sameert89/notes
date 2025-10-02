@@ -32,6 +32,62 @@
             }
           },
           {
+            "id": "8b74d61087b38ce2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Signed vs Unsigned Data Types.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Signed vs Unsigned Data Types"
+            }
+          },
+          {
+            "id": "c30e2a9194eecd9d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Basics/Variables and Constants.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Variables and Constants"
+            }
+          },
+          {
+            "id": "14cf27dba3a211aa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Arrays and Vectors.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Arrays and Vectors"
+            }
+          },
+          {
+            "id": "c195551d4c89a1df",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Flow of Control.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Flow of Control"
+            }
+          },
+          {
             "id": "96a2d54efdf6a5ea",
             "type": "leaf",
             "state": {
@@ -46,7 +102,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -191,19 +247,23 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "obsidian-excalidraw-plugin:New drawing": false
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "webpage-html-export:Export Vault to HTML": false
     }
   },
-  "active": "e5a7af0b48ac02b0",
+  "active": "c195551d4c89a1df",
   "lastOpenFiles": [
-    "Untitled.md",
+    "Expressions, Statements & Operators.md",
+    "Flow of Control.md",
+    "Signed vs Unsigned Data Types.md",
+    "index.md",
     "Basics/Variables and Constants.md",
+    "Arrays and Vectors.md",
     "Basics/IO.md",
     "Basics/Compiler & Linker.md",
     "Basics/C++.md",
     "Basics/Anatomy of a C++ Program.md",
     "Basics",
-    "index.md",
     "_excalidraw",
     "_assets",
     "Welcome.md"
