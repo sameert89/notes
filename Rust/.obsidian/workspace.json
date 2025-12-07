@@ -265,12 +265,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Basics/Data Types in Rust.md",
+                "file": "Control Flow.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Data Types in Rust"
+              "title": "Control Flow"
             }
           },
           {
@@ -578,9 +578,37 @@
               "icon": "lucide-file",
               "title": "Control Flow"
             }
+          },
+          {
+            "id": "e73ee0cfc3daf1d3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Enums.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Enums"
+            }
+          },
+          {
+            "id": "e2105f41bca98f0e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Enums.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Enums"
+            }
           }
         ],
-        "currentTab": 40
+        "currentTab": 42
       }
     ],
     "direction": "vertical"
@@ -730,12 +758,15 @@
       "obsidian-excalidraw-plugin:New drawing": false,
       "webpage-html-export:Export Vault to HTML": false,
       "darlal-switcher-plus:Open in Headings Mode": false,
-      "darlal-switcher-plus:Open Symbols for the active editor": false,
-      "copilot:Open Copilot Chat": false
+      "darlal-switcher-plus:Open Symbols for the active editor": false
     }
   },
-  "active": "6be93aa94d13052a",
+  "active": "e2105f41bca98f0e",
   "lastOpenFiles": [
+    "Generics.md",
+    "Enums.md",
+    "Control Flow.md",
+    "Basics/Data Types in Rust.md",
     "Structs.md",
     "Stack and Heap.md",
     "Reference & Borrowing.md",
@@ -743,11 +774,8 @@
     "Macros.md",
     "Loops.md",
     "Functions.md",
-    "Enums.md",
-    "Control Flow.md",
     "Constants in Rust.md",
     "Excalidraw/Stack and Heap 2025-07-22 22.35.17.excalidraw.md",
-    "Basics/Data Types in Rust.md",
     "Advanced/Traits.md",
     "Enums.md~",
     "Control Flow.md~",
