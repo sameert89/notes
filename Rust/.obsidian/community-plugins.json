@@ -1,9 +1,10 @@
 [
-  "obsidian-excalidraw-plugin",
-  "obsidian-style-settings",
-  "webpage-html-export",
-  "darlal-switcher-plus",
-  "obsidian-hider",
+  "table-editor-obsidian",
   "custom-font-loader",
-  "highlightr-plugin"
+  "obsidian-excalidraw-plugin",
+  "obsidian-hider",
+  "highlightr-plugin",
+  "obsidian-minimal-settings",
+  "obsidian-style-settings",
+  "webpage-html-export"
 ]
