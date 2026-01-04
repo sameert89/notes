@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documentation.md",
+                "file": "Control Flow.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Documentation"
+              "title": "Control Flow"
             }
           }
         ],
@@ -68,7 +68,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "comments",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -190,17 +190,37 @@
   },
   "active": "97b5f9a5ebe2f56f",
   "lastOpenFiles": [
+    "index.md",
+    "Basics/Creating a Rust Project.md",
+    "Naming Conventions.md",
+    "Type Aliases.md",
+    "Compiler Directives.md",
+    "Variables and Mutability.md",
+    "Methods.md",
+    "Type Casting.md",
+    "Operators.md",
+    "Ranges.md",
+    "Constants in Rust.md",
+    "Functions.md",
+    "Loops.md",
+    "Stack and Heap.md",
+    "Reference & Borrowing.md",
+    "Ownership.md",
+    "Vectors.md",
+    "Structs.md",
+    "Documentation.md",
+    "Packages and Crates.md",
+    "Hashmaps & Hashsets.md",
+    "Basics/IO.md",
+    "File Handling.md",
+    "Error Handling.md",
+    "Generics.md",
+    "Advanced/Traits.md",
     "Packages and Crates.md~",
     "4913",
     "Documentation.md~",
-    "Packages and Crates.md",
     "Basics/Crates in Rust.md~",
     "Basics/4913",
-    "Structs.md~",
-    "Structs.md",
-    "Vectors.md",
-    "Ownership.md",
-    "Reference & Borrowing.md",
-    "Enums.md"
+    "Structs.md~"
   ]
 }
