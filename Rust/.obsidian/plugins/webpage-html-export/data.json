@@ -10,7 +10,7 @@
     "postProcess": true,
     "displayProgress": true,
     "inlineHTML": false,
-    "exportPath": "C:\\Users\\samee\\Documents\\Projects\\notes\\server\\public\\Rust",
+    "exportPath": "/mnt/c/Users/INSTRIVE/notes/server/public/Rust",
     "filesToExport": [],
     "useFallbackRenderer": false,
     "addBodyClasses": true,
@@ -159,7 +159,7 @@
     },
     "customHeadOptions": {
       "featureId": "custom-head",
-      "enabled": true,
+      "enabled": false,
       "unavailable": false,
       "alwaysEnabled": false,
       "hideSettingsButton": false,

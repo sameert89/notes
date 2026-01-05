@@ -1,4 +1,368 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Rust]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Rust</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Sun, 04 Jan 2026 19:54:08 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Sun, 04 Jan 2026 19:53:59 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[Control Flow]]></title><description><![CDATA[The if statement is weird, look at the syntaxif expression { // you dont need parenthesis here } // but you need the curly braces
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Rust]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Rust</title><link></link></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Mon, 05 Jan 2026 08:38:22 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Mon, 05 Jan 2026 08:38:05 GMT</pubDate><ttl>60</ttl><dc:creator></dc:creator><item><title><![CDATA[Iterators]]></title><description><![CDATA[Read More: <a data-href="Loops.md" href="loops.html" class="internal-link" target="_self" rel="noopener nofollow">Loops.md</a>
+Iterate means to traverse a sequence of values one-by-one.Rust provides an Iterator trait in the std::iter module, it requires the implementation of a single method, next, which returns an Option&lt;T&gt;, where T is the type of the value being iterated over. If there are more values to yield, next returns Some(value), otherwise it returns None.The collections themselves don't implement the Iterator trait directly. Instead they implement the IntoIterator trait, which defines a method into_iter that returns an iterator over the collection. This also allows the use of the for loop syntax on the collection.Common collections such as Vec, HashMap, and HashSet implement the IntoIterator trait, these return an IntoIter struct that implements the Iterator trait.Some important caveats of iterators:
+Iterators exhaust their values once consumed. To iterate again, you need to create a new iterator.
+Iterators by default move ownership of the values they yield. If you want to borrow values instead, you can use methods like iter() or iter_mut() on collections.
+]]></description><link>iterators.html</link><guid isPermaLink="false">Iterators.md</guid><pubDate>Mon, 05 Jan 2026 08:34:57 GMT</pubDate></item><item><title><![CDATA[Associated Types]]></title><description><![CDATA[An associated types is a placeholder for a type that is required within a trait. struct Lunch { cost: f64
+} impl Add for Lunch { type Output = Lunch; // Output is an associated type, since Lunch + Lunch may not be a lunch as far as rust is concerned fn add(self, other: Lunch) -&gt; Lunch { Lunch { cost: self.cost + other.cost } }
+}
+Associated types can be constrained in trait bounds by specifying their concrete types directly in the angle brackets or using where clauses. This allows you to enforce specific type requirements on implementations.trait Calculator { type Input; type Output; fn calculate(&amp;self, input: Self::Input) -&gt; Self::Output;
+} // Implement for a simple struct
+struct DoubleCalculator; impl Calculator for DoubleCalculator { type Input = f64; type Output = f64; fn calculate(&amp;self, input: Self::Input) -&gt; Self::Output { input * 2.0 }
+} // A generic function that requires specific associated types, ofcourse you can do it without the where clause &lt;T: Calculator&lt;Input = 64, Output = f64&gt;
+fn process_with_specific_types&lt;T&gt;(calc: T, value: f64) -&gt; f64
+where T: Calculator&lt;Input = f64, Output = f64&gt;,
+{ calc.calculate(value)
+}
+]]></description><link>associated-types.html</link><guid isPermaLink="false">Associated Types.md</guid><pubDate>Mon, 05 Jan 2026 06:02:42 GMT</pubDate></item><item><title><![CDATA[Loops]]></title><description><![CDATA[⚠️ Another because I said so syntax ahead-loop { println!("Infinite loop");
+}
+In the loop keyword you have to manually break out of the loop using break statement when you are done. There is also a continue statement.fn main() { for i in 1..10 { if i == 3 { continue; } if i == 7 { break; } println!("{}", i); }
+} The loop loop can return a value as well, this is done using the break statement break value_to_return; This only works in the loop loop
+Standard while loop nothing special.let mut i = 0;
+while i &lt; 15 { i += 1; println!("{i}");
+} Break and continue work the same way but unlike loop loop, it cannot return via break.
+The good ol' for-loopfn main() { // 1. Basic for loop over a range (exclusive end) println!("Basic range (1..6):"); for i in 1..6 { println!(" {}", i); // Prints 1 to 5 } // 2. Inclusive range (includes the end) println!("\nInclusive range (1..=6):"); for i in 1..=6 { println!(" {}", i); // Prints 1 to 6 } // 3. Iterating over an array or a vector let fruits = ["Apple", "Orange", "Banana"]; println!("\nArray iteration:"); for fruit in fruits { println!(" {}", fruit); // Prints each fruit } // 4. Index-based iteration over an array let colors = ["red", "green", "blue"]; println!("\nIndex-based iteration:"); for i in 0..colors.len() { println!(" The color name is {}", colors[i]); // Uses index to access element } // 5. Using enumerate to get (index, value) pairs let items = ["x", "y", "z"]; println!("\nEnumerate for index and value:"); for (index, value) in items.iter().enumerate() { println!(" {}: {}", index, value); // Prints index and value } // 6. Reverse iteration (descending order) println!("\nRange reversed (1..6).rev():"); for i in (1..6).rev() { println!(" {}", i); // Prints 5 to 1 } // 7. Stepping by intervals (e.g., every 2nd number) println!("\nRange with step_by(2) (0..10).step_by(2):"); for i in (0..10).step_by(2) { println!(" {}", i); // Prints 0, 2, 4, 6, 8 }
+}
+Read More: <a data-href="Recursions" href=".html" class="internal-link" target="_self" rel="noopener nofollow">Recursions</a>]]></description><link>loops.html</link><guid isPermaLink="false">Loops.md</guid><pubDate>Mon, 05 Jan 2026 05:23:43 GMT</pubDate></item><item><title><![CDATA[index]]></title><description><![CDATA[Rust is a systems programming language, meaning it is generally deployed in places where system resource (such as CPU, Memory, Bandwidth) usage is critical. Rust is advertised to be safe, fast &amp; efficient programs.Up Next: <a data-href="Creating a Rust Project" href="basics/creating-a-rust-project.html" class="internal-link" target="_self" rel="noopener nofollow">Creating a Rust Project</a>]]></description><link>index.html</link><guid isPermaLink="false">index.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Vectors]]></title><description><![CDATA[Solves the problem of problem of having a fixed size of arrays. It stores data on the heap, hence this can grow and shrink at runtime.// Declaring a vector
+let natural_numbers: Vec&lt;i32&gt; = Vec::new(); // see the String like constructor
+// if type annotation is done on the left side it is not needed on the right, but if not done on the left side then Vec::&lt;i32&gt;::new() is the way to do it on the right side.
+let whole_numers = vec![0, 1, 2, 3]; // Using vec macro we can initialize this inline
+let orange = String::from("Orange");
+let fruits : Vec&lt;String&gt; = vec![orange]; // transfer of ownership since no Copy trait // Adding &amp; Removing elements
+let mut numbers = vec![1,2,3,4];
+numbers.push(1);
+numbers.insert(0, 0); let val = numbers.pop(); // Returns an option enum
+numbers.remove(0); // by index // Accessing elements
+let three = numbers[2]; // This can cause a runtime panic if the index is out of bounds, this is caught during compile time in case of arrays because of fixed length
+let three = numbers.get(2); // This addresses the above problem by returning an Option enum numbers[1] = 56; // Of course the array needs to be mutable for this to work // Slicing
+let subset = &amp;numbers[0..2];
+A vector owns all of its contents
+You cannot assign the value of an element to another owner, a vector owns all of its contents, it is only possible if a full Copy is made or a reference is borrowed.
+]]></description><link>vectors.html</link><guid isPermaLink="false">Vectors.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Variables and Mutability]]></title><description><![CDATA[Below is how you declare a variable in rustlet my_var = 50; // compiler auto deduces type 'i32' in this case
+Rust variables are immutable by default, meaning once assigned they cannot be re-assigned.my_var = 90; // will throw and error during compilation
+let mut myMutableVar = 50; // This defines a mutable variable which CAN be re-assigned
+Rust supports shadowing (surprise, surprise!), meaning a variable can be redeclared in the same scope and the earlier declaration is invalidated (only occurs when done in the same scope).let my_var = 50; // i32 as of now
+let my_var = "text"; // &amp;str now
+// mut or non mut does not matter
+The Crab Hates Global Variables
+So much so that variable declarations can only be done inside a local scope.
+Related: <a data-href="Naming Conventions" href="naming-conventions.html" class="internal-link" target="_self" rel="noopener nofollow">Naming Conventions</a>, <a data-href="Data Types in Rust" href="basics/data-types-in-rust.html" class="internal-link" target="_self" rel="noopener nofollow">Data Types in Rust</a>]]></description><link>variables-and-mutability.html</link><guid isPermaLink="false">Variables and Mutability.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Operators]]></title><description><![CDATA[Rust supports all common operators, and they are not batshit crazy to floor towards negative infinity for negative divisions. And there is no crazy things like == &amp; ===. There is no ++ and -- cause who needs that but all compoud assignment operators are there +=, |= and all that.]]></description><link>operators.html</link><guid isPermaLink="false">Operators.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Ownership]]></title><description><![CDATA[Ownership is a set of compile-time rules that the compiler checks for to ensure the program will be free of memory errors.Owner is something that is responsible for cleaning up a piece of memory when it is no longer in use. Every value in a rust program has a 1 owner. The owner can change over the course of a program.Move this refers to transfer of ownership from one owner to another in rust.let name = String::from("Sameer"); // lives in heap, name stores the **pointer**
+let next = name; // Ownership transferred, now next is the ONLY pointer pointin to the String
+println!("{name}"); // name is useless now, this won't compile.
+Rust's Borrowing RulesRust allows multiple ways to access data, but with strict safety rules:Immutable References (&amp;T)
+You can create multiple immutable references to the same data
+These references only allow reading the data, not modifying it
+Multiple immutable references can coexist safely since no one can change the data
+Mutable References (&amp;mut T)
+Only one active mutable reference can exist at a time
+This reference allows both reading and modifying the data
+No other references (mutable or immutable) can exist while a mutable reference is active
+The Key Rule: Exclusive Access At any given time, you can have either:
+Multiple immutable references, OR
+Exactly one active mutable reference
+A reference is considered "active" from when it's created until its last use, not just until the end of its scope. Below is an example:let mut data = vec![1, 2, 3];
+let immut_ref = &amp;data; // immutable reference created
+println!("{:?}", immut_ref); // last use of immutable reference
+let mut_ref = &amp;mut data; // mutable reference created (OK!)
+mut_ref.push(4); // use mutable reference Immutable references implement the copy trait.
+The drop function
+drop(&amp;mut self) function is a special function which is called by Rust at the end of a scope which cleans up the data in the heap or signals the rust runtime to do so. This only works on heap allocated memory. You can also define the drop function which is a part of the Drop trait, for custom types. Also it can be manually called whenever you want for the types that implement it, this makes them unusable.
+let mut person = String::from("Test");
+drop(person);
+println!("{person}"); fn consume_string(s: String) { // This can also be mut s: String even if the previous owner is not mutable println!("{}", s); // s is dropped here
+} let my_string = String::from("hello");
+consume_string(my_string); // my_string is moved, no longer accessible
+fn read_string(s: &amp;String) { println!("{}", s);
+} let my_string = String::from("hello");
+read_string(&amp;my_string); // my_string is still accessible after the call
+fn modify_string(s: &amp;mut String) { s.push_str(" world");
+} let mut my_string = String::from("hello");
+modify_string(&amp;mut my_string);
+println!("{}", my_string); // prints "hello world"
+fn process_str(s: &amp;str) { // Immutable reference println!("{}", s);
+} // Works with both String and &amp;str
+let owned = String::from("hello");
+let borrowed = "world";
+process_str(&amp;owned);
+process_str(borrowed);
+When functions return a variable, there is again an ownership transfer, following the same set of rules. The function is no longer responsible for <a data-tooltip-position="top" aria-label="^e064ef" data-href="#^e064ef" href="#^e064ef" class="internal-link" target="_self" rel="noopener nofollow">drop</a>. <br>Compound types such as <a data-tooltip-position="top" aria-label="Data Types in Rust > Compound Types" data-href="Data Types in Rust#Compound Types" href="basics/data-types-in-rust.html#Compound Types" class="internal-link" target="_self" rel="noopener nofollow">Arrays &amp; Tuples</a>, own each element inside them. So when their elements are accessed, a full copy needs to be created or access must be done via reference.let my_array = [1,2,3];
+let el = my_array[0]; // Full copy created, only possible when copy trait implemented by type
+let my_array_2 = [String::from("Test")]
+let el_2 = my_array_2[0] // Throws error, either .clone() must be used or el_2 must hold a reference.
+]]></description><link>ownership.html</link><guid isPermaLink="false">Ownership.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Packages and Crates]]></title><description><![CDATA[Modules are subdivisions inside crates which are used to organize code. Below is an example folder structuremy_dual_crate ├── src │ ├── main.rs ← crate root (binary) │ ├── lib.rs ← crate root (library) │ └── math.rs ← module
+A crate is a unit of compilation in rust, simply put it can be called as a package of rust code. A crate is the smallest amount of code that the Rust compiler considers at a time.There are two types of crates in rust:
+Binary Crates: Crates that contain executable code. They contain a single main.rs with a main() method.
+Library Crates: Crates that don't contain executable code and are used to ship reusable code by linking them to other crates. Does not have a main method.
+Dual Crates?
+A crate can ship as both a binary and a library crate. In such cases the add command links the library portion of the crate, whereas the install command installs the executable. The binary crate can use the library crate internally. The modules must be public and declared in the lib.rs file for it to work.
+Aside from this, a package can have multiple binary crates but only one library crate. These binary crates must be placed inside the src/bin folder. Each of the rs files here will create a separate binary.Like nuget &amp; npm there is a central repository for rust crates. Below are some useful commands -cargo add crate_name # adds the dependency of the crate_name in current package, ONLY works with library crates
+cargo install crate_name # installs the executable globally on your machine crates.io: A Cautionary Tale
+Cargo install, installs rust crates globally on your machine, although the rust crates are audited but there has been multiple incidents of <a data-tooltip-position="top" aria-label="https://www.reddit.com/r/rust/comments/1605fqj/rust_malware_staged_on_cratesio/" rel="noopener nofollow" class="external-link is-unresolved" href="https://www.reddit.com/r/rust/comments/1605fqj/rust_malware_staged_on_cratesio/" target="_self">fake crates</a>. Better be safe with this command. Also there was some <a data-tooltip-position="top" aria-label="https://news.ycombinator.com/item?id=42972525" rel="noopener nofollow" class="external-link is-unresolved" href="https://news.ycombinator.com/item?id=42972525" target="_self">Rust Drama</a> where some popular package maintainers self deprecated their packages over a fight.
+A packages is a collection of one or more crates.cargo init cargo new project_name The main difference between the two commands is that cargo new creates a new directory with the project name and initializes the project inside it, whereas cargo init initializes a new cargo project in the current directory.
+Cargo looks for src/main.rs, if it exists Rust infers that is a binary crate.
+If Cargo finds src/lib.rs, Rust infers that is a library crate.
+mod inventory { const FLOOR_SPACE: i32 = 10000; pub const MANAGER: &amp;str = "Lalit"; // Notice the pub keyword #[derive(Debug)] enum ProductCategory{ Ladder, Manner } #[derive(Debug)] struct Item { name: String, category: ProductCategory, quantity: u32 } fn talk_to_manager(){ println!("Hey, {MANAGER}, how's your coffee"); }
+} fn main() { println!("The manager is {}", inventory::MANAGER);
+} By default all items in a module are private. They are enclosed in their own namespace. We use the pub keyword to make them public. Modules can be declared in separate files. In the above example the 'inventory' module is a part of the main binary crate. For example, to turn the inventory module into a separate file, create a file named inventory.rs in the src directory and move the module code there (just the code not the whole mod name {} syntax. Then, in main.rs, you can declare the module with mod inventory;. Or create a folder with the name inventory and inside it create a file named mod.rs. main.rs and lib.rs are special files. They are the root of binary and library crates respectively. <br>
+Read More: <a data-tooltip-position="top" aria-label="Structs > ^8be5" data-href="Structs#^8be5" href="structs.html#^8be5" class="internal-link" target="_self" rel="noopener nofollow">Structs &amp; Field Accessibility</a> Modules can be nested inside other modules, these are called sub-modules. Either in the same file or in a file inside the parent module's folder or a folder inside it, you get the idea. When declaring sub-modules you need to use pub if you want to access them from outside the parent module.The crate keyword
+When you have too many nested modules, it can get tedious to use the full path from the root of the crate. The crate keyword allows you to start from the root of the crate. For example
+crate::inventory::talk_to_manager(); This means the search starts from the root of the crate, useful when referring submodules inside other modules.
+When using fields from nested sub-modules it gets tedious to type out long paths over and over, Rust provides the use keyword to bring paths into scope.use inventory::ProductCategory;
+use inventory::{Item, ProductCategory}; // for multiple items
+use inventory::products::{self, Toothpaste}; // use self to bring the parent module into scopebest cheapest general purpose model right now
+use std::collections::*; // bring everything from the module into scope using the glob operator
+pub use std::fmt; // re-exporting the module, useful for library crates to expose their submodules
+But in case of conflicts, it is recommended to use the full path. There is also the as keyword to rename imports.use inventory::ProductCategory as PC;
+The super keyword
+The super keyword allows you to access the parent module from a sub-module. The sub-module can access non-public items from the parent module.
+These are dependencies, these can be specified in the Cargo.toml file. During build cargo will download it from crates.io. Below is a sample Cargo.toml.[package]
+name = "my_project"
+version = "0.1.0"
+edition = "2021" [dependencies]
+rand = "0.8.5"
+General convention for ordering mod declarations
+mod declarations &gt; rust standard library imports &gt; external crate imports &gt; internal crate imports.
+]]></description><link>packages-and-crates.html</link><guid isPermaLink="false">Packages and Crates.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Ranges]]></title><description><![CDATA[A range is a sequence of consecutive values.similar to python rangelet my_range = 1..5; Below table summarizes range types in rust- Ranges implement Iterator, so anything which implements that can have be the type in Range&lt;T&gt;
+let my_char_range = 'b'..'q'; Ranges can be used for Array Slicing
+let arr = [0, 1, 2, 3];
+assert_eq!(arr[1..3], [1,2]);
+Below is an example with a for loopfor i in 1..=6 { println!(i);
+}
+for i in (1..=6).rev() { // Methods are present on Range type // Others include .step_by(val)
+}
+]]></description><link>ranges.html</link><guid isPermaLink="false">Ranges.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Reference & Borrowing]]></title><description><![CDATA[
+Borrowing means taking something without transferring ownership, a borrower must return the reference.
+Borrowing involves creating a reference to a value. Generally Heap Data's reference are used, but stack data can also be referenced. let my_val: i32 = 2;
+let my_ref: &amp;i32 = &amp;my_val; // Type address leading to i32
+References must never outlive their referent.println!("{*my_ref}");
+Rust auto dereferences display trait implementing types]]></description><link>reference-&amp;-borrowing.html</link><guid isPermaLink="false">Reference &amp; Borrowing.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Stack and Heap]]></title><description><![CDATA[Yes these are the same ones you studied in Operating Systems class. Stack and Heap are 2 memory regions where data is stored during program execution. Good old stack, below is the diagram which tells you "where" this stack isProcessMemoryStaticHeapCodeThreadRegistersStackThreadRegistersStackThreadRegistersStackLike any other stack, this is also a LIFO structure. Very fast for allocation and deallocation.In Rust stack is used for storing:
+Scalar types (integers, booleans, characters)
+Fixed size arrays
+Structs and enums where all fields have known sizes
+Function parameters etc.
+The location of heap is also mentioned in the above drawing. This is used for data which is unknown or has variable type at compile time. Allocation is slower than the stack and pointers are required for data access.Rust stores the following in heap:
+Data types with dynamic or unknown size, such as Vec&lt;T&gt;
+Large data, only pointer to the data resides on the stack.
+If data needs to outlive the function or scope where it was created, heap allocation is often necessary.
+Box pointer 📦
+All values in Rust are stack allocated by default. Values can be&nbsp;boxed&nbsp;(allocated on the heap) by creating a&nbsp;Box&lt;T&gt;. A box is a smart pointer to a heap allocated value of type&nbsp;T. When a box goes out of scope, its destructor is called, the inner object is destroyed, and the memory on the heap is freed.
+Memory safety without a Garbage Collector?
+Rust claims to be memory safe, but it does not have a garbage collector. Well there are a lot of tricks in the crabs claws, one of them is automatically calling the destructor of an allocated value once it goes out of scope.
+See also: <a data-tooltip-position="top" aria-label="Traits > ^1a31c0" data-href="Traits#^1a31c0" href="advanced/traits.html#^1a31c0" class="internal-link" target="_self" rel="noopener nofollow">Copy trait</a>]]></description><link>stack-and-heap.html</link><guid isPermaLink="false">Stack and Heap.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Structs]]></title><description><![CDATA[A struct or structure is a container for related pieces of data.There are 3 types of structs in rust:
+Named Type Structs: Fields have names, this is the most common type of struct.
+Tuple structs: These are like tuples but have a name. Which can be used to create more instances of the struct type.
+Unit structs: These structs don't have any fields. These are used when you want a type to implement traits but don't want to store any data.
+/* Named Type Structs */
+struct Person { name: String, age: u8 } let heroine = Person { name: String::from("Daenerys Targaryen"), age: 197
+}; // Notice the delimiter println!("{} was the rightful heir to the Iron Throne", heroine.name); /* Tuple structs */
+struct Rgb(u8, u8, u8); let black = Rgb(255,255,255); println!("R value of black is: {Rgb.0}"); /* Unit structs */
+struct Marker; let m1 = Marker; Mutability of Fields
+All fields are either mutable or immutable depending on whether the variable that owns the struct is declared as&nbsp;mut Field Init Shorthand and Spreading
+Like TS and JS Object property shorthand, rust has a handy syntactical sugar for doing below
+struct Player { class: String, name: String, level: u8
+} fn create_player(class: String, name: String, level: u8) -&gt; Player { Player { class, level, name } } Apart from this it also has spreading, which in Rust is called "struct update syntax":
+fn level_up_player(player: Player) -&gt; Player { Player { level: player.level + 1, ..player // Must be written last in the syntax field and rust will not replace anything that was declared before the spread }
+} // Example usage:
+let player1 = Player { class: String::from("Warrior"), name: String::from("Alice"), level: 5
+}; let player2 = level_up_player(player1);
+// player2 will have class: "Warrior", name: "Alice", level: 6 Structs &amp; Field Accessibility
+By default, all fields in a struct are private to the module where the struct is defined. We need to use the pub keyword on the struct as well as the fields to make them accessible for the module users. Same goes for the impl block as well, each method needs to be marked as pub to be accessible outside the module.
+We can define functions on structs, a function can either belong to instance of struct or struct itself (called associated function)const PI: f64 = 3.14;
+struct Circle { radius: f64
+} impl Circle { fn calc_area(&amp;self: Self) -&gt; f64 { // You can also pass self and mut self which will result in an ownership transfer PI * self.radius * self.radius } fn increase_radius(&amp;mut self: &amp;mut Circle, increase_by: f64) { self.radius += increase_by; } // Associated function (does not take self) fn get_sides() -&gt; u8 { 0 }
+} A struct can define multiple impl blocks, during compilation it will combine all the blocks to create the final implementation.
+Every method returns the instance itself. Like in C#builder.AddOptions().AddHttpClient().AddControllers();
+Its also possible in rust: #[derive(Clone)]
+struct Builder { options: Vec&lt;String&gt;,
+} impl Builder { fn new() -&gt; Self { Self { options: Vec::new(), } } fn add_option(mut self, opt: String) -&gt; Self { // we can also return a mutable reference self.options.push(opt); self } fn build(self) -&gt; Vec&lt;String&gt; { self.options } fn main() { let builder = Builder::new() .add_option("option1".to_string()) .add_option("option2".to_string()); let result = builder.build(); println!("{:?}", result);
+}
+]]></description><link>structs.html</link><guid isPermaLink="false">Structs.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Type Aliases]]></title><description><![CDATA[You can nickname types in rust to increase readability in code, For example:type Meters = i32; // Convention is PascalCase fn main(){ var track_length: Meters = 400;
+}
+]]></description><link>type-aliases.html</link><guid isPermaLink="false">Type Aliases.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Type Casting]]></title><description><![CDATA[Rust supports type casting with the as keyword. As long as its a plausible conversion.]]></description><link>type-casting.html</link><guid isPermaLink="false">Type Casting.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Hashmaps & Hashsets]]></title><description><![CDATA[Like every other language, Rust has Hashmaps and Hashsets.A Hashmap is a collection of key-value pairs where each key must be unique.use std::collections::{HashMap, HashSet}; let mut hashmap = HashMap::new(); // notice the mut keyword
+hashmap.insert("key1", "value1"); // type inferred from first insert, or use turbofish // Using the from function
+let hashmap2: HashMap&lt;&amp;str, i32&gt; = HashMap::from([ ("one", 1), ("two", 2), ("three", 3),
+]); // array of tuples
+// Accessing keys
+let val = hashmap.get("key1"); // returns an Option enum
+let val2 = hashmap["key1"]; // panics if key doesn't exist // Keys implement the Hash trait // Removing keys
+hashmap.remove("key1"); // Returns an Option enum // Length
+println!("Length of hashmap: {}", hashmap.len()); // Entry and or_insert
+let entry = hashmap.entry("key2").or_insert("default_value"); // Inserts if not exists
+Inserting non-primitive types moves ownership to the Hashmap. Use references if needed, but ensure lifetimes.let mut hashmap = HashMap::new();
+let key = String::from("key1");
+let value = String::from("value1");
+hashmap.insert(&amp;key, &amp;value); // Inserting references
+// key and value must live as long as hashmap
+A Hashset is a collection of unique values.use std::collections::HashSet; let mut hashset = HashSet::new();
+hashset.insert("apple");
+hashset.insert("banana"); // Will not insert duplicates
+// Check if contains
+if hashset.contains("apple") { /* ... */ } // Get method
+let item = hashset.get("banana"); // Returns Option&lt;&amp;T&gt; // Remove
+hashset.remove("apple"); // Returns bool depending on the value existence // Length
+println!("Length of hashset: {}", hashset.len());
+// Union
+let mut set1 = HashSet::from(["a", "b", "c"]);
+let mut set2 = HashSet::from(["c", "d", "e"]);
+let union_set: HashSet&lt;_&gt; = set1.union(&amp;set2).cloned().collect(); // Intersection
+let intersection_set: HashSet&lt;_&gt; = set1.intersection(&amp;set2).cloned().collect(); // Difference &amp; symmetric difference
+let difference_set: HashSet&lt;_&gt; = set1.difference(&amp;set2).cloned().collect(); //found in set1 but not in 2
+let sym_diff_set: HashSet&lt;_&gt; = set1.symmetric_difference(&amp;set2).cloned().collect(); // found in either 1 or 2 but not both // Check Disjoint
+let mut are_sets_disjoint = set1.is_disjoint(&amp;set2); // returns true // Is subset/superset
+let is_subset = set1.is_subset(&amp;set2); // returns false
+let is_superset = set1.is_superset(&amp;set2); // returns false Similar to Hashmaps, inserting moves ownership.]]></description><link>hashmaps-&amp;-hashsets.html</link><guid isPermaLink="false">Hashmaps &amp; Hashsets.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Lifetimes]]></title><description><![CDATA[Lifetimes are a compile time feature that track how long references are valid. The actual compiler determined span of validity is often called concrete lifetime.
+borrow checker: The part of the compiler that enforces the rules of references and lifetimes.
+referrent/lender: The data being borrowed.
+reference: borrowNon Lexical Lifetimes (NLL)
+The rust compiler treats the last usage of a reference as the end of its lifetime, rather than the end of its scope. This was not originally the part of the language, see <a data-tooltip-position="top" aria-label="https://rust-lang.github.io/rfcs/2094-nll.html" rel="noopener nofollow" class="external-link is-unresolved" href="https://rust-lang.github.io/rfcs/2094-nll.html" target="_self">RFC 2094</a> for more details.
+Warning
+A function cannot return a reference to owned values or parameters
+// It might seem intuitive to write a function like this:
+fn create() -&gt; &amp;i32 { let x = 5; &amp;x // Invalid, x goes out of scope here
+} The only way to return a reference from a function is to return a reference to data that is owned by the caller. For that to happen you need to have a reference as a parameter:
+fn get_first_element(v: &amp;Vec&lt;i32&gt;) -&gt; &amp;i32 { &amp;v[0] // Valid, returns a reference to data owned by the caller
+} A generic lifetime is an abstract, hypothetical lifetime that can vary, we can annotate generic lifetimes in code, this enables functions that are flexible enough to handle varying lifetimes.Lifetime annotations are used to specify generic lifetimes.fn get_first_element&lt;'a&gt;(v: &amp;'a Vec&lt;i32&gt;) -&gt; &amp;'a i32 { &amp;v[0]
+} // The above example with explicit lifetime annotations, we can omit these here due to lifetime elision rules.
+Lifetime Elision Rules
+Rust has three lifetime elision rules that the compiler uses to infer lifetimes when they are not explicitly annotated: Each parameter that is a reference gets its own lifetime parameter.
+If there is exactly one input reference/lifetime parameter, that lifetime is assigned to all output lifetime parameters.
+If there are multiple input lifetimes and one of them is &amp;self or &amp;mut self, the lifetime of self is assigned to all elided output lifetimes. In simple cases like the one above, Rust's lifetime elision might let you omit annotations, but they are essential for correctness in functions with multiple reference parameters or when lifetimes vary:// This fails without annotations due to ambiguity.
+fn longest_string(x: &amp;str, y: &amp;str) -&gt; &amp;str { // Compile error if x.len() &gt; y.len() { x } else { y }
+} // Multiple lifetimes can be annotated with 'a, 'b, etc.
+fn return_first&lt;'a, 'b&gt;(x: &amp;'a str, y: &amp;'b str) -&gt; &amp;'a str { // 'b is optional here x
+} // Explicitly annotated to specify the relationship.
+fn longest_string&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str { if x.len() &gt; y.len() { x } else { y }
+}
+// This means that the returned reference will live as long as both input references i.e if any one goes out of scope the returned reference becomes invalid.
+Structs also need lifetime annotations when they hold references:struct ImportantExcerpt&lt;'a&gt; { part: &amp;'a str,
+} // part and the struct instance must have the same lifetime, if any one is shorter the other becomes invalid as soon as the shorter one goes out of scope. The following text is AI generated.
+A struct instance cannot live longer than its shortest-lived field. However, the validity of the references inside the struct depends on how you define the lifetimes.
+We have two string references:
+from: Lives a long time (Outer scope).
+to: Lives a short time (Inner scope).
+struct TravelPlan&lt;'a&gt; { from: &amp;'a str, to: &amp;'a str,
+}
+Mechanism: Both fields share a single lifetime "visa." The compiler must find one lifespan that satisfies both.
+Result: The struct is forced to adopt the shortest lifespan (that of to).
+The Consequence: The reference from is "dragged down." Even though the actual data from exists longer, the reference &amp;from inside the struct is treated as if it dies when to dies.
+Extraction: Failed. You cannot return travel_plan.from because Rust thinks it is tied to the short life of to.
+struct TravelPlan&lt;'a, 'b&gt; { from: &amp;'a str, to: &amp;'b str,
+}
+Mechanism: The fields have independent "visas."
+Result: The struct instance still dies when the shortest field (to) dies, because a struct cannot exist with a dead field. However, the from field retains its long lifespan.
+The Consequence: While the container (travel_plan) dies, the data inside it (&amp;from) is known to be valid for a longer time.
+Extraction: Success. You can return travel_plan.from because the compiler sees that this specific reference was never tied to to.
+A 'static lifetime means that the reference is valid for the entire duration of the program. String literals have a 'static lifetime because they are stored in the binary's read-only memory and exist for the entire runtime of the program.
+fn speak() -&gt; &amp;'static str { "I have a static lifetime."
+} // string literals and constants have a 'static lifetime static PRIMES: &amp;[i32] = &amp;[2, 3, 5, 7, 11, 13]; // A static variable with a 'static lifetime struct Point { x: i32, y: i32,
+}
+struct ORIGIN: Point = Point { x: 0, y: 0 }; // A static instance of a struct static EXPECTED_RESULT: Result&lt;i32, String&gt; = Ok(42); // A static instance of a generic built-in type
+]]></description><link>lifetimes.html</link><guid isPermaLink="false">Lifetimes.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Macros]]></title><description><![CDATA[In Rust, macros are a powerful metaprogramming feature that let you write code that writes code. They allow you to define patterns and generate code at compile time, which can reduce boilerplate, improve readability, or enable complex functionality.Metaprogramming
+Concept in computer programming where, a program can treat other programs as input data
+There are 3 kinds of macros in rust:The most straight forward macrosmacro_rules! say_hello { // Macros are created using macro_rules! macro () =&gt; { println!("Hello!"); };
+} fn main() { say_hello!(); // Prints "Hello!"
+}
+These are more powerful and flexible, and work on Rust code as input (AST manipulation). They're like compiler plugins which generate code from macros.use proc_macro; #[some_attribute]
+pub fn some_name(input: TokenStream) -&gt; TokenStream {
+}
+It prints the value of an expression along with the file name and line number where it’s used.fn main() { let a = 2; let b = dbg!(a * 3) + 1; dbg!(b);
+} /* Output
+[src/main.rs:4] a * 3 = 6
+[src/main.rs:6] b = 7
+*/
+Can be passed written in the arms of a conditional where you are sure that the control won't reach to silence the return requirements by the compilerfn describe_day(day: u8) -&gt; &amp;'static str { match day { 1..=5 =&gt; "Weekday", 6 | 7 =&gt; "Weekend", _ =&gt; unreachable!("'day' should be between 1 and 7"), }
+} fn main() { println!("{}", describe_day(2)); // Weekday println!("{}", describe_day(6)); // Weekend // println!("{}", describe_day(8)); // Panics with message
+}
+Crash the program, well its not a crash since the cleanup is done by unwinding the stack.panic!(":(");
+^panic_macroCreates a String using interpolationlet name = "Alice";
+let greeting = format!("Hello, {}!", name);
+println!("{}", greeting); // Prints "Hello, Alice!"
+all println! tricks are applicable in format! as well.^format_macroPrints to standard erroreprintln!("An error occurred: {}", "File not found");
+^eprintln_macro]]></description><link>macros.html</link><guid isPermaLink="false">Macros.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Methods]]></title><description><![CDATA[
+Methods are functions that are defined on types
+Below is an example on an integer and an &amp;str.let my_var: i32 = -15;
+println!("The absolute value is: {}", my_var.abs()); // built-in method that returns the modulus of the integer.
+let s = "hello";
+println!("{}", s.len()); // method on &amp;str
+Methods can't be called on inferred type variables.
+You must explicitly mention the type of the variable using : to be able to call methods, otherwise rust throws an ambiguous type error and program fails to compile.
+We can define custom methods on types, but only the types we create. It does not work on built in types.struct Circle { radius: f64,
+} impl Circle { // Method: takes self by reference fn area(&amp;self) -&gt; f64 { 3.1415 * self.radius * self.radius // don't use magic numbers kids 🔫 } // Associated function: doesn't take self like Static fn new(radius: f64) -&gt; Self { Circle { radius } }
+} fn main() { let c = Circle::new(5.0); // associated function (like a constructor) println!("Area: {}", c.area()); // method call on instance
+}
+]]></description><link>methods.html</link><guid isPermaLink="false">Methods.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Naming Conventions]]></title><description><![CDATA[Below table neatly summarizes the naming conventions used in Rust.]]></description><link>naming-conventions.html</link><guid isPermaLink="false">Naming Conventions.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Functions]]></title><description><![CDATA[I am not going to define functions, that would be absurd. Below is the syntax however if I ever get dementia. Rust is a functional programming language so you have pretty much all function functionalities with added extras.Parameters vs Arguments
+Functions&nbsp;may declare a set of input variables as&nbsp;parameters, through which the caller passes&nbsp;arguments&nbsp;into the&nbsp;function
+fn my_function(){ // Body here
+}
+Well there are a few differences between the functions you see in other languages-You don't have to add an explicit return statement for functions. fn add(x: i32, y: i32) -&gt; i32 { // The return type is a must when your function returns anything other than a unit tuple x + y // implicit return (no semicolon)
+} // This behaviour is not limited to functions, any block's last statement is an implicit return
+let x = { let k = 2.14; k*k
+}
+Notice the semi-colon (Statements vs Expressions)
+Statements in rust end with a semi-colon and do not return a value, Expressions don't end with a semi-colon and do return a value, in the implicit return the last line has to be an expression for it to work. Furthermore if you specified a return type in the function definition and then add a statement at the end of the function, it will trigger a compile time error. Parameters can take ownership, borrow immutably, or borrow mutably:fn take_ownership(s: String) { /* s is moved here */ }
+fn borrow_immutably(s: &amp;String) { /* s is borrowed */ }
+fn borrow_mutably(s: &amp;mut String) { /* s is mutably borrowed */ } The default return type for a function without any explicit or implicit returns i.e. void is a Unit Tuple
+]]></description><link>functions.html</link><guid isPermaLink="false">Functions.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Generics]]></title><description><![CDATA[Generics let you write type-safe code that works with multiple types using type parameters.fn generic_function&lt;T&gt;(value: T) -&gt; T { value;
+} During compilation, rustc generates multiple functions based on the variants of T, this behavior is called monomorphization. By default the compiler guesses the most appropriate type for T, but we can force our own types using the turbofish operator. generic_function::&lt;i64&gt;(6);
+Standard stufffn multiple_generics&lt;T, U&gt;(a: T, b: U) -&gt; (T, U) { (a, b)
+}
+of course you can mix non generic types with generic onesfn mix_generics&lt;T&gt;(a: T, b: i32) -&gt; (T, i32) { (a, b)
+}
+You can define structs with generic type parameters.struct TreasureChest&lt;T&gt;{ pirate: String, value: double, treasure: T
+}
+// Setting the type beforehand
+impl TreasureChest&lt;String&gt; { fn display_treasure(&amp;self) { println!("The treasure is: {}", self.treasure); }
+}
+// Generic impl block
+impl&lt;T&gt; TreasureChest&lt;T&gt; {
+}
+^generic_impl_blocksenum Maybe&lt;T&gt; { Some(T), None,
+}
+]]></description><link>generics.html</link><guid isPermaLink="false">Generics.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[File Handling]]></title><description><![CDATA[File handling is achieved through the std::fs module in Rust's standard library.use std::fs::File; fn main() { let file = File::open("example.txt"); // returns Result&lt;File, Error&gt;ase do not close the settings page while loading the model.
+} use std::io::Read; // This trait is needed to use the read_to_string method
+let mut file_contents = String::new(); if let Err(e) = file.read_to_string(&amp;mut file_contents) { // This returns a Result enum println!("Error reading file: {}", e);
+} else { println!("File contents: {}", file_contents); } // There is a shorter way using the fs module's read_to_string associated function
+use std::fs;
+let file_contents = fs::read_to_string("example.txt")?; // returns Result&lt;String, Error&gt;
+]]></description><link>file-handling.html</link><guid isPermaLink="false">File Handling.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Closures]]></title><description><![CDATA[Since rust is a functional language, it supports closures.A closure is a function that "remembers" its lexical scope even when the function is called outside the scope. A functional language allows you to treat functions as first-class citizens, meaning you can pass them as arguments, return them from other functions, and assign them to variables.Rust achieves this using anonymous functions which it calls closures.let add_one = |x: i32| -&gt; i32 x + 1; let y = 10;
+let add_y = |x: i32| x + y; // Closure captures y from its environment
+The syntax is |parameters| -&gt; return_type { body }. The parameter types &amp; return type can often be inferred by the compiler, so they can be omitted, the parameter types are inferred using the first invocation something like hashmap insert. The only required thing is the pipe symbols | | that enclose the parameters, the curly braces can also be omitted for single-expression closures, the -&gt; is also completely optional since in most cases the return type can be inferred.Rust closures implement one or more traits based on how they capture variables from their environment:
+Fn: for closures that capture variables by reference. Can be called multiple times.
+FnMut: for closures that capture variables by mutable reference. Can modify the captured variables. Can be called multiple times.
+FnOnce: for closures that capture variables by value. Can only be called once because they take ownership of the captured variables. Fn : FnMut : FnOnce is the heirarcy
+The rust compiler treats a closure capture like a borrow, so lifetimes of the captures determine how long the closure can be used. The capture modes are determined at compile time based on how the closure is used.
+You can pass normal functions where closures are expected
+Since functions also implement the Fn, FnMut, and FnOnce traits (depending on their signature), you can pass regular functions to places where closures are expected.
+Below are example use-cases:// Immutable Borrow
+let y = 10;
+let closure = || { // explicit type annotation impl Fn() is not allowed here println!("y is: {}", y); // Captures y by immutable reference (no modification, no ownership transfer hence Fn)
+} // Mutable Borrow
+let mut count = 0;
+let mut closure = || { // see the mut keyword, you wont be able to call this without it count += 1; // Captures count by mutable reference (modification hence FnMut)
+} // The mut keyword is required because calling this closure mutates its captured environment, so calling it requires the FnMut trait, which takes a mutable reference to the closure itself. // Ownership Transfer
+let data = vec![1, 2, 3];
+let closure = move || { // move keyword forces ownership transfer, although it will be inferred if the body has ownership transfer println!("data: {:?}", data); // Captures data by value (ownership transfer hence FnOnce)
+} // If the type implements Copy, it can still be used after the closure
+move Does NOT Imply FnOnce
+It's intuitive to think that since move transfers ownership, the closure cannot be called again. However, this is not true.
+A closure annotated with move can still be Fn, FnMut, or FnOnce, depending on how it uses the captured variables: If the closure only reads the captured variables, it can be Fn (callable multiple times).
+If it mutates them, it can be FnMut (callable multiple times with mutable access).
+If it consumes them (e.g., by calling a method that takes ownership), then it is FnOnce (callable only once). The move keyword only affects how the closure captures variables—it forces them to be moved into the closure. In layman's terms, it's like saying, "Hey, I'm taking ownership of these variables and putting them in my bag."
+Using the analogy of a variable as an apple: If the closure only looks at the apple, it can do so multiple times.
+If it takes a tiny slice each time (mutating it slightly), it can still do that multiple times.
+But if it gives the entire apple away (to a local variable or to the caller i.e. consuming it) or throws it in the trash (drops it), it cannot use the apple again. Thus, the closure's trait depends on the operations in its body, not just the presence of move.
+You can pass closures as arguments to functions or return them from functions. When doing so, you need to specify the closure traits.// Accepting a closure as a parameter
+fn apply&lt;F&gt;(func: F, value: i32) -&gt; i32
+where F: Fn(i32) -&gt; i32, // you can inline the F into the angle brackets or annotate it in the type parameter list func: impl Fn(i32) -&gt; i32
+{ func(value)
+} // Returning a closure from a function
+fn make_adder(x: i32) -&gt; impl Fn(i32) -&gt; i32 { move |y| x + y // move keyword to capture x by value
+} // Due to Trait heirarcy, you can return FnMut or FnOnce where Fn is expected
+]]></description><link>closures.html</link><guid isPermaLink="false">Closures.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Compiler Directives]]></title><link>compiler-directives.html</link><guid isPermaLink="false">Compiler Directives.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Constants in Rust]]></title><description><![CDATA[For a constant in rust the following hold true: Its value never changes.
+It must be declared and initialized at the same time means the value must be known at compile time.
+Cannot be shadowed
+Can live in a global scope unlike Variables.
+const MY_CONSTANT = 24.5;
+]]></description><link>constants-in-rust.html</link><guid isPermaLink="false">Constants in Rust.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Control Flow]]></title><description><![CDATA[The if statement is weird, look at the syntaxif expression { // you dont need parenthesis here } // but you need the curly braces
 And yes you have else and else if like any sane languageif expression { }
 else if expression2 { // Pardon my .NET psychopath habits }
 else { }
@@ -16,7 +380,94 @@ _ =&gt; { /* rest */ }
 Every match arm must return a value because the RHS of the =&gt; is a "statement" and they must be of same type, if it doesn't return anything it returns a <a data-tooltip-position="top" aria-label="Functions > ^cbdcdc" data-href="Functions#^cbdcdc" href="functions.html#^cbdcdc" class="internal-link" target="_self" rel="noopener nofollow">Unit Tuple</a>
 In this episode or Rusty Voodoo we are looking at matched if-else.match x { n if n &gt; 0 =&gt; { if n % 2 == 0 { "positive even" } else { "positive odd" } } n if n &lt; 0 =&gt; { if n % 2 == 0 { "negative even" } else { "negative odd" } } 0 =&gt; "zero", _ =&gt; "unknown",
 }
-<br>Read More: <a data-tooltip-position="top" aria-label="Macros > `unreachable` macro" data-href="Macros#`unreachable` macro" href="macros.html#`unreachable` macro" class="internal-link" target="_self" rel="noopener nofollow">Unreachable macro</a><br>Up Next: <a data-href="Loops" href="loops.html" class="internal-link" target="_self" rel="noopener nofollow">Loops</a>]]></description><link>control-flow.html</link><guid isPermaLink="false">Control Flow.md</guid><pubDate>Sun, 04 Jan 2026 19:53:09 GMT</pubDate></item><item><title><![CDATA[Data Types in Rust]]></title><description><![CDATA[Data types in Rust are divided into 2 broad categories:These data types only hold 1 value. There are 4 scalar types- integers, Booleans, floating point numbers &amp; characters. These scalar types are subdivided into further types.
+<br>Read More: <a data-tooltip-position="top" aria-label="Macros > `unreachable` macro" data-href="Macros#`unreachable` macro" href="macros.html#`unreachable` macro" class="internal-link" target="_self" rel="noopener nofollow">Unreachable macro</a><br>Up Next: <a data-href="Loops" href="loops.html" class="internal-link" target="_self" rel="noopener nofollow">Loops</a>]]></description><link>control-flow.html</link><guid isPermaLink="false">Control Flow.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Documentation]]></title><description><![CDATA[// line comments
+/* block commment
+*/
+These describe the item they’re inside, typically at the top of a crate or module.
+Example: Documenting the entire crate://! This crate provides utilities for working with geometrical shapes.
+Or at the start of a module:mod math {
+//! Math utilities }
+These document the item that follows, such as functions, structs, enums. Example:/// Adds two numbers together.
+///
+/// Examples
+///
+/// let sum = add(2, 3);
+/// assert_eq!(sum, 5);
+fn add(a: i32, b: i32) -&gt; i32 { a + b
+}
+To generate HTML documentation for your crate, use:cargo doc --open --no-deps
+]]></description><link>documentation.html</link><guid isPermaLink="false">Documentation.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Enums]]></title><description><![CDATA[A special type that represents a group of constants.
+enum Color{ Red, Blue, Yellow, Green
+} let treeColor: Color = Color::Green;
+Rust enums are powerful; each variant can store different types and amounts of data.enum Message { Quit, // Unit variant, no data Move { x: i32, y: i32 }, // Struct variant with named fields Write(String), // Tuple variant with one anonymous field ChangeColor(i32, i32, i32), // Tuple variant with multiple fields
+} Unit variants like Quit store no data.
+Tuple variants like Write or ChangeColor hold anonymous data.
+Struct variants like Move have named fields for structured data.
+About memory allocation
+The amount of memory rust allocates for a struct is &gt;= largest_size_among_all_fields, when creating the struct it atleast allocates this much. They live on heap as expected.
+The match expression becomes very powerful when used with enums, since rust checks that all possible values of that enum must be covered in the match statement, below is an example: enum Color { Red, Green, Blue,
+} fn main() { let color = Color::Red; match color { Color::Red =&gt; println!("Red"), Color::Green =&gt; println!("Green"), Color::Blue =&gt; println!("Blue"), } // you can also access the data inside the enums if they have any enum Message { Quit, // Unit variant, no data Move { x: i32, y: i32 }, // Struct variant with named fields Write(String), // Tuple variant with one anonymous field ChangeColor(i32, i32, i32), // Tuple variant with multiple fields } let m = Message::Write; match m { Message::Write(data_string) =&gt; {// name does not matter // now this data-string is available here, }, Message::Move{x, y} =&gt; { // name must match // notice the different accessor {} instead of () } } // you can also define methods on enums // the syntax is same as with structs // Match is also possible using specific value contained in the enum enum Milk{ Lowfat(i32), Whole } impl Milk{ fn drink(self){ match self { Milk::Lowfact(2) =&gt; { // spefic match that only matches when value = 2 } } } }
+}
+Sometimes you want to execute a piece of code for a specific enum value and you don't care about other possible values, sure you can use the match to achieve this, but the you have to match all possible values and even when using - you are writing unreachable code. if let solves that.enum Milk{ Lowfat(i32), Whole
+}
+let x: Milk = Milk::Whole; if let Milk::Whole = x { // syntax is very crucial if let &lt;constant_val&gt; = variable // do something
+}
+// naturally this also will work with all enum variants and the member access if needed works the same as in the match construct There is also a let else which does the opposite of if let i.e. it only executes when the values are not equal.let Milk::Whole = x else { // do something
+}
+one super confusing difference comes when dealing with non-unit variants, when you do value access with if let then that value is available inside the scope of that if let, in case of let-else the inverse is true, if the else block fails to execute i.e. the condition is true then the member variables declared will be available to the rest of the program outside the let else. But that does not make sense right? How would the compiler know if the dynamic value x matches the conditional? Because if it doesn't know how would it ensure that the parameters declared are available after the block?It requires you to break out of the current scope if you want to run a let else for a method this will be the return.Rust provides a built-in enum called Option to handle cases where a value may or may not be present. It is defined as follows:let a = Option::Some(5); // This is a generic enum, the type here is Option&lt;i32&gt;
+let b: Option&lt;i32&gt; = Option::None; // there is another way to do this
+let b = Option::&lt;i32&gt;::None; // using the turbofish operator Option enum is very useful such is demonstrated by the built in array method get
+let musical_instruments: [i32;3] = [56; 3]; let second = musical_instruments.get(2); // This returns an Option&lt;&amp;String&gt; By default Option implements the copy-trait.
+Because Option is so common its members are already in scope use Option::* implicitly, so you can directly do something like Some or None. See <a data-tooltip-position="top" aria-label="Enums > ^a5c2f7" data-href="Enums#^a5c2f7" href="enums.html#^a5c2f7" class="internal-link" target="_self" rel="noopener nofollow">The Rust Prelude</a>
+The "unwrap" method attempts to extract the associated data out of the Some variant. If the variant is None it will result in a RuntimeError.let fifth = musical_instruments.get(5); // This is the None Variant
+let value = fifth.unwrap();
+The expect method is almost identical to unwrap but it allows us to customize the error message in case it fails.let sixth = musical_instruments.get(6);
+let value = sixth.expect("Unable to retrieve element from the array");
+There is also an unwrap_or method, which can take a default value to return in case the unwrap is called on the None variant.let value = fifth.unwrap_or(-1);
+<br>Along with this there is an unwrap_or_else method which takes a <a data-tooltip-position="top" aria-label="Closures" data-href="Closures" href="closures.html" class="internal-link" target="_self" rel="noopener nofollow">closure</a> that generates the default value.let value = fifth.unwrap_or_else(|| { // complex logic to generate default value -1
+}); The match syntax is very useful for Option since it forces you to cover all possible cases unlike unwrap and expect.
+The copied method
+The copied method can be used to convert an Option&lt;&amp;T&gt; to an Option&lt;T&gt; where T implements the Copy trait.
+let musical_instruments: [i32;3] = [56; 3];
+let second = musical_instruments.get(2).copied(); // This returns an Option&lt;i32&gt; The Rust Prelude
+The Rust prelude is a collection of named constructs that are available automatically in every program eg: types, functions, Option etc. Some other constructs require manual importing.
+A result can be either a Success or an Error.pub enum Result&lt;T,E&gt;{ Ok(T), Err(E),
+} match operator works very well with it.
+Like Option, this enum also has very useful impl methods.
+unwrap: In case of success the data is returned else panics.
+expect: Works the same way as Option's expect.
+unwrap_or: Works the same way as Unwrap or.
+is_ok: Returns boolean
+is_err
+<br>Like the <a data-tooltip-position="top" aria-label="Enums > ^0458e9" data-href="Enums#^0458e9" href="enums.html#^0458e9" class="internal-link" target="_self" rel="noopener nofollow">if let</a> statement, but instead this runs a look while the condition in the let yields the specified enum variantlet mut sauces: Vec&lt;&amp;str&gt; = vec!["Sauce1", "Sauce2", "Sauce3"];
+while let Some(sauce: &amp;str) = sauces.pop() { // Pop returns a None variant if there are no elements left println!("The next sauce is {sauce}");
+}
+]]></description><link>enums.html</link><guid isPermaLink="false">Enums.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Error Handling]]></title><description><![CDATA[exit function is equivalent to os level exit call. No cleanup happens, no buffers are flushed, no destructors called, just a flat crash.use std::process;
+fn main() { process::exit(1);
+}
+Read More: <a data-tooltip-position="top" aria-label="Macros > ^panic_macro" data-href="Macros#^panic_macro" href="macros.html#^panic_macro" class="internal-link" target="_self" rel="noopener nofollow">panic macro</a>, <a data-tooltip-position="top" aria-label="Macros > ^eprintln_macro" data-href="Macros#^eprintln_macro" href="macros.html#^eprintln_macro" class="internal-link" target="_self" rel="noopener nofollow">eprintln! macro</a>The ? operator is a shorthand for propagating errors in Rust. It can be used on functions that return a Result type. If the result is Ok, it unwraps the value; if it's Err, it returns the error from the current function.use std::fs::File;
+use std::io::{self, Read};
+fn read_file_contents(path: &amp;str) -&gt; io::Result&lt;String&gt; { let mut file = File::open(path)?; // If this fails, the error is returned let mut contents = String::new(); file.read_to_string(&amp;mut contents)?; // If this fails, the error is returned // it can be chained as well File::Open(path)?.read_to_string(&amp;mut contents)?; Ok(contents) // If everything is successful, return the contents
+} It also works on the Option enum, returning None if the value is None early &amp; returning the unwrapped value if Some.fn get_first_char(s: &amp;str) -&gt; Option&lt;char&gt; { let first_char = s.chars().next()?; // If there is no first char, return None Some(first_char)
+}
+]]></description><link>error-handling.html</link><guid isPermaLink="false">Error Handling.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Creating a Rust Project]]></title><description><![CDATA[The standard way to do this is using cargo.cargo new project_name
+This command:
+Creates a folder named hello_world
+Auto initializes a git repository inside that folder
+Creates an src subfolder with a main.rs file.
+Creates a Cargo.toml file for library and version info.
+The content of main.rs looks like:fn main() { println!("Hello, world!");
+}
+This command actually creates a so-called binary crate. See <a data-href="Crates in Rust" href=".html" class="internal-link" target="_self" rel="noopener nofollow">Crates in Rust</a>There are a couple of ways of doing this:rustc main.rs
+This produces an executable that then can be run normally.The standard way to go for projectscargo build # builds and produces a binary which needs to be separately executed
+cargo run # build and run in single step
+cargo check # checks the program whether it can be compiled, usually faster but IDEs do this job most of the time
+cargo clean # removes all old compiled objects and binaries
+<br>Build Flags
+By default the cargo commands do a debug build of the program, which is bulky non optimized version useful for debugging and sifting through instructions. The build and run command accept a build flag which can be used to change the target executable cargo build --release. There are several other build flags in rust, can be found <a data-tooltip-position="top" aria-label="https://doc.rust-lang.org/cargo/commands/cargo-build.html" rel="noopener nofollow" class="external-link is-unresolved" href="https://doc.rust-lang.org/cargo/commands/cargo-build.html" target="_self">here</a>
+Built in Autoformatting
+rustfmt file_name can be used to auto format a rust file, cargo fmt does the same thing for the whole project.
+]]></description><link>basics/creating-a-rust-project.html</link><guid isPermaLink="false">Basics/Creating a Rust Project.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Data Types in Rust]]></title><description><![CDATA[Data types in Rust are divided into 2 broad categories:These data types only hold 1 value. There are 4 scalar types- integers, Booleans, floating point numbers &amp; characters. These scalar types are subdivided into further types.
 isize &amp; usize are platform dependent for example for 32 bit architecture.
 There is no concept of truthy and falsy values in rust, there is only boolean which is either true or false
 int my_variable: u8 = 15;
@@ -77,166 +528,21 @@ let s6 = String::from("Hello, World!");
 let replaced = s6.replace("World", "Rust"); // "Hello, Rust!"
 Split returns a Split&lt;&amp;str&gt; iteratorlet s7 = String::from("red blue")
 let parts: Vec&lt;&amp;str&gt; = s7.split(' ').collect(); // ["red", "blue"]
-<br>Read More: <a data-tooltip-position="top" aria-label="Macros > ^format_macro" data-href="Macros#^format_macro" href="macros.html#^format_macro" class="internal-link" target="_self" rel="noopener nofollow">Format Macro</a>]]></description><link>basics/data-types-in-rust.html</link><guid isPermaLink="false">Basics/Data Types in Rust.md</guid><pubDate>Sun, 04 Jan 2026 19:52:31 GMT</pubDate></item><item><title><![CDATA[Enums]]></title><description><![CDATA[A special type that represents a group of constants.
-enum Color{ Red, Blue, Yellow, Green
-} let treeColor: Color = Color::Green;
-Rust enums are powerful; each variant can store different types and amounts of data.enum Message { Quit, // Unit variant, no data Move { x: i32, y: i32 }, // Struct variant with named fields Write(String), // Tuple variant with one anonymous field ChangeColor(i32, i32, i32), // Tuple variant with multiple fields
-} Unit variants like Quit store no data.
-Tuple variants like Write or ChangeColor hold anonymous data.
-Struct variants like Move have named fields for structured data.
-About memory allocation
-The amount of memory rust allocates for a struct is &gt;= largest_size_among_all_fields, when creating the struct it atleast allocates this much. They live on heap as expected.
-The match expression becomes very powerful when used with enums, since rust checks that all possible values of that enum must be covered in the match statement, below is an example: enum Color { Red, Green, Blue,
-} fn main() { let color = Color::Red; match color { Color::Red =&gt; println!("Red"), Color::Green =&gt; println!("Green"), Color::Blue =&gt; println!("Blue"), } // you can also access the data inside the enums if they have any enum Message { Quit, // Unit variant, no data Move { x: i32, y: i32 }, // Struct variant with named fields Write(String), // Tuple variant with one anonymous field ChangeColor(i32, i32, i32), // Tuple variant with multiple fields } let m = Message::Write; match m { Message::Write(data_string) =&gt; {// name does not matter // now this data-string is available here, }, Message::Move{x, y} =&gt; { // name must match // notice the different accessor {} instead of () } } // you can also define methods on enums // the syntax is same as with structs // Match is also possible using specific value contained in the enum enum Milk{ Lowfat(i32), Whole } impl Milk{ fn drink(self){ match self { Milk::Lowfact(2) =&gt; { // spefic match that only matches when value = 2 } } } }
-}
-Sometimes you want to execute a piece of code for a specific enum value and you don't care about other possible values, sure you can use the match to achieve this, but the you have to match all possible values and even when using - you are writing unreachable code. if let solves that.enum Milk{ Lowfat(i32), Whole
-}
-let x: Milk = Milk::Whole; if let Milk::Whole = x { // syntax is very crucial if let &lt;constant_val&gt; = variable // do something
-}
-// naturally this also will work with all enum variants and the member access if needed works the same as in the match construct There is also a let else which does the opposite of if let i.e. it only executes when the values are not equal.let Milk::Whole = x else { // do something
-}
-one super confusing difference comes when dealing with non-unit variants, when you do value access with if let then that value is available inside the scope of that if let, in case of let-else the inverse is true, if the else block fails to execute i.e. the condition is true then the member variables declared will be available to the rest of the program outside the let else. But that does not make sense right? How would the compiler know if the dynamic value x matches the conditional? Because if it doesn't know how would it ensure that the parameters declared are available after the block?It requires you to break out of the current scope if you want to run a let else for a method this will be the return.Rust provides a built-in enum called Option to handle cases where a value may or may not be present. It is defined as follows:let a = Option::Some(5); // This is a generic enum, the type here is Option&lt;i32&gt;
-let b: Option&lt;i32&gt; = Option::None; // there is another way to do this
-let b = Option::&lt;i32&gt;::None; // using the turbofish operator Option enum is very useful such is demonstrated by the built in array method get
-let musical_instruments: [i32;3] = [56; 3]; let second = musical_instruments.get(2); // This returns an Option&lt;&amp;String&gt; By default Option implements the copy-trait.
-Because Option is so common its members are already in scope use Option::* implicitly, so you can directly do something like Some or None. See <a data-tooltip-position="top" aria-label="Enums > ^a5c2f7" data-href="Enums#^a5c2f7" href="enums.html#^a5c2f7" class="internal-link" target="_self" rel="noopener nofollow">The Rust Prelude</a>
-The "unwrap" method attempts to extract the associated data out of the Some variant. If the variant is None it will result in a RuntimeError.let fifth = musical_instruments.get(5); // This is the None Variant
-let value = fifth.unwrap();
-The expect method is almost identical to unwrap but it allows us to customize the error message in case it fails.let sixth = musical_instruments.get(6);
-let value = sixth.expect("Unable to retrieve element from the array");
-There is also an unwrap_or method, which can take a default value to return in case the unwrap is called on the None variant.let value = fifth.unwrap_or(-1);
-<br>Along with this there is an unwrap_or_else method which takes a <a data-tooltip-position="top" aria-label="Closures" data-href="Closures" href="closures.html" class="internal-link" target="_self" rel="noopener nofollow">closure</a> that generates the default value.let value = fifth.unwrap_or_else(|| { // complex logic to generate default value -1
-}); The match syntax is very useful for Option since it forces you to cover all possible cases unlike unwrap and expect.
-The copied method
-The copied method can be used to convert an Option&lt;&amp;T&gt; to an Option&lt;T&gt; where T implements the Copy trait.
-let musical_instruments: [i32;3] = [56; 3];
-let second = musical_instruments.get(2).copied(); // This returns an Option&lt;i32&gt; The Rust Prelude
-The Rust prelude is a collection of named constructs that are available automatically in every program eg: types, functions, Option etc. Some other constructs require manual importing.
-A result can be either a Success or an Error.pub enum Result&lt;T,E&gt;{ Ok(T), Err(E),
-} match operator works very well with it.
-Like Option, this enum also has very useful impl methods.
-unwrap: In case of success the data is returned else panics.
-expect: Works the same way as Option's expect.
-unwrap_or: Works the same way as Unwrap or.
-is_ok: Returns boolean
-is_err
-<br>Like the <a data-tooltip-position="top" aria-label="Enums > ^0458e9" data-href="Enums#^0458e9" href="enums.html#^0458e9" class="internal-link" target="_self" rel="noopener nofollow">if let</a> statement, but instead this runs a look while the condition in the let yields the specified enum variantlet mut sauces: Vec&lt;&amp;str&gt; = vec!["Sauce1", "Sauce2", "Sauce3"];
-while let Some(sauce: &amp;str) = sauces.pop() { // Pop returns a None variant if there are no elements left println!("The next sauce is {sauce}");
-}
-]]></description><link>enums.html</link><guid isPermaLink="false">Enums.md</guid><pubDate>Sun, 04 Jan 2026 19:52:13 GMT</pubDate></item><item><title><![CDATA[Macros]]></title><description><![CDATA[In Rust, macros are a powerful metaprogramming feature that let you write code that writes code. They allow you to define patterns and generate code at compile time, which can reduce boilerplate, improve readability, or enable complex functionality.Metaprogramming
-Concept in computer programming where, a program can treat other programs as input data
-There are 3 kinds of macros in rust:The most straight forward macrosmacro_rules! say_hello { // Macros are created using macro_rules! macro () =&gt; { println!("Hello!"); };
-} fn main() { say_hello!(); // Prints "Hello!"
-}
-These are more powerful and flexible, and work on Rust code as input (AST manipulation). They're like compiler plugins which generate code from macros.use proc_macro; #[some_attribute]
-pub fn some_name(input: TokenStream) -&gt; TokenStream {
-}
-It prints the value of an expression along with the file name and line number where it’s used.fn main() { let a = 2; let b = dbg!(a * 3) + 1; dbg!(b);
-} /* Output
-[src/main.rs:4] a * 3 = 6
-[src/main.rs:6] b = 7
-*/
-Can be passed written in the arms of a conditional where you are sure that the control won't reach to silence the return requirements by the compilerfn describe_day(day: u8) -&gt; &amp;'static str { match day { 1..=5 =&gt; "Weekday", 6 | 7 =&gt; "Weekend", _ =&gt; unreachable!("'day' should be between 1 and 7"), }
-} fn main() { println!("{}", describe_day(2)); // Weekday println!("{}", describe_day(6)); // Weekend // println!("{}", describe_day(8)); // Panics with message
-}
-Crash the program, well its not a crash since the cleanup is done by unwinding the stack.panic!(":(");
-^panic_macroCreates a String using interpolationlet name = "Alice";
-let greeting = format!("Hello, {}!", name);
-println!("{}", greeting); // Prints "Hello, Alice!"
-all println! tricks are applicable in format! as well.^format_macroPrints to standard erroreprintln!("An error occurred: {}", "File not found");
-^eprintln_macro]]></description><link>macros.html</link><guid isPermaLink="false">Macros.md</guid><pubDate>Sun, 04 Jan 2026 19:52:06 GMT</pubDate></item><item><title><![CDATA[Closures]]></title><description><![CDATA[Since rust is a functional language, it supports closures.A closure is a function that "remembers" its lexical scope even when the function is called outside the scope. A functional language allows you to treat functions as first-class citizens, meaning you can pass them as arguments, return them from other functions, and assign them to variables.Rust achieves this using anonymous functions which it calls closures.let add_one = |x: i32| -&gt; i32 x + 1; let y = 10;
-let add_y = |x: i32| x + y; // Closure captures y from its environment
-The syntax is |parameters| -&gt; return_type { body }. The parameter types &amp; return type can often be inferred by the compiler, so they can be omitted, the parameter types are inferred using the first invocation something like hashmap insert. The only required thing is the pipe symbols | | that enclose the parameters, the curly braces can also be omitted for single-expression closures, the -&gt; is also completely optional since in most cases the return type can be inferred.Rust closures implement one or more traits based on how they capture variables from their environment:
-Fn: for closures that capture variables by reference. Can be called multiple times.
-FnMut: for closures that capture variables by mutable reference. Can modify the captured variables. Can be called multiple times.
-FnOnce: for closures that capture variables by value. Can only be called once because they take ownership of the captured variables. Fn : FnMut : FnOnce is the heirarcy
-The rust compiler treats a closure capture like a borrow, so lifetimes of the captures determine how long the closure can be used. The capture modes are determined at compile time based on how the closure is used.
-You can pass normal functions where closures are expected
-Since functions also implement the Fn, FnMut, and FnOnce traits (depending on their signature), you can pass regular functions to places where closures are expected.
-Below are example use-cases:// Immutable Borrow
-let y = 10;
-let closure = || { // explicit type annotation impl Fn() is not allowed here println!("y is: {}", y); // Captures y by immutable reference (no modification, no ownership transfer hence Fn)
-} // Mutable Borrow
-let mut count = 0;
-let mut closure = || { // see the mut keyword, you wont be able to call this without it count += 1; // Captures count by mutable reference (modification hence FnMut)
-} // The mut keyword is required because calling this closure mutates its captured environment, so calling it requires the FnMut trait, which takes a mutable reference to the closure itself. // Ownership Transfer
-let data = vec![1, 2, 3];
-let closure = move || { // move keyword forces ownership transfer, although it will be inferred if the body has ownership transfer println!("data: {:?}", data); // Captures data by value (ownership transfer hence FnOnce)
-} // If the type implements Copy, it can still be used after the closure
-move Does NOT Imply FnOnce
-It's intuitive to think that since move transfers ownership, the closure cannot be called again. However, this is not true.
-A closure annotated with move can still be Fn, FnMut, or FnOnce, depending on how it uses the captured variables: If the closure only reads the captured variables, it can be Fn (callable multiple times).
-If it mutates them, it can be FnMut (callable multiple times with mutable access).
-If it consumes them (e.g., by calling a method that takes ownership), then it is FnOnce (callable only once). The move keyword only affects how the closure captures variables—it forces them to be moved into the closure. In layman's terms, it's like saying, "Hey, I'm taking ownership of these variables and putting them in my bag."
-Using the analogy of a variable as an apple: If the closure only looks at the apple, it can do so multiple times.
-If it takes a tiny slice each time (mutating it slightly), it can still do that multiple times.
-But if it gives the entire apple away (to a local variable or to the caller i.e. consuming it) or throws it in the trash (drops it), it cannot use the apple again. Thus, the closure's trait depends on the operations in its body, not just the presence of move.
-You can pass closures as arguments to functions or return them from functions. When doing so, you need to specify the closure traits.// Accepting a closure as a parameter
-fn apply&lt;F&gt;(func: F, value: i32) -&gt; i32
-where F: Fn(i32) -&gt; i32, // you can inline the F into the angle brackets or annotate it in the type parameter list func: impl Fn(i32) -&gt; i32
-{ func(value)
-} // Returning a closure from a function
-fn make_adder(x: i32) -&gt; impl Fn(i32) -&gt; i32 { move |y| x + y // move keyword to capture x by value
-} // Due to Trait heirarcy, you can return FnMut or FnOnce where Fn is expected
-]]></description><link>closures.html</link><guid isPermaLink="false">Closures.md</guid><pubDate>Fri, 02 Jan 2026 18:42:11 GMT</pubDate></item><item><title><![CDATA[Lifetimes]]></title><description><![CDATA[Lifetimes are a compile time feature that track how long references are valid. The actual compiler determined span of validity is often called concrete lifetime.
-borrow checker: The part of the compiler that enforces the rules of references and lifetimes.
-referrent/lender: The data being borrowed.
-reference: borrowNon Lexical Lifetimes (NLL)
-The rust compiler treats the last usage of a reference as the end of its lifetime, rather than the end of its scope. This was not originally the part of the language, see <a data-tooltip-position="top" aria-label="https://rust-lang.github.io/rfcs/2094-nll.html" rel="noopener nofollow" class="external-link is-unresolved" href="https://rust-lang.github.io/rfcs/2094-nll.html" target="_self">RFC 2094</a> for more details.
-Warning
-A function cannot return a reference to owned values or parameters
-// It might seem intuitive to write a function like this:
-fn create() -&gt; &amp;i32 { let x = 5; &amp;x // Invalid, x goes out of scope here
-} The only way to return a reference from a function is to return a reference to data that is owned by the caller. For that to happen you need to have a reference as a parameter:
-fn get_first_element(v: &amp;Vec&lt;i32&gt;) -&gt; &amp;i32 { &amp;v[0] // Valid, returns a reference to data owned by the caller
-} A generic lifetime is an abstract, hypothetical lifetime that can vary, we can annotate generic lifetimes in code, this enables functions that are flexible enough to handle varying lifetimes.Lifetime annotations are used to specify generic lifetimes.fn get_first_element&lt;'a&gt;(v: &amp;'a Vec&lt;i32&gt;) -&gt; &amp;'a i32 { &amp;v[0]
-} // The above example with explicit lifetime annotations, we can omit these here due to lifetime elision rules.
-Lifetime Elision Rules
-Rust has three lifetime elision rules that the compiler uses to infer lifetimes when they are not explicitly annotated: Each parameter that is a reference gets its own lifetime parameter.
-If there is exactly one input reference/lifetime parameter, that lifetime is assigned to all output lifetime parameters.
-If there are multiple input lifetimes and one of them is &amp;self or &amp;mut self, the lifetime of self is assigned to all elided output lifetimes. In simple cases like the one above, Rust's lifetime elision might let you omit annotations, but they are essential for correctness in functions with multiple reference parameters or when lifetimes vary:// This fails without annotations due to ambiguity.
-fn longest_string(x: &amp;str, y: &amp;str) -&gt; &amp;str { // Compile error if x.len() &gt; y.len() { x } else { y }
-} // Multiple lifetimes can be annotated with 'a, 'b, etc.
-fn return_first&lt;'a, 'b&gt;(x: &amp;'a str, y: &amp;'b str) -&gt; &amp;'a str { // 'b is optional here x
-} // Explicitly annotated to specify the relationship.
-fn longest_string&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str { if x.len() &gt; y.len() { x } else { y }
-}
-// This means that the returned reference will live as long as both input references i.e if any one goes out of scope the returned reference becomes invalid.
-Structs also need lifetime annotations when they hold references:struct ImportantExcerpt&lt;'a&gt; { part: &amp;'a str,
-} // part and the struct instance must have the same lifetime, if any one is shorter the other becomes invalid as soon as the shorter one goes out of scope. The following text is AI generated.
-A struct instance cannot live longer than its shortest-lived field. However, the validity of the references inside the struct depends on how you define the lifetimes.
-We have two string references:
-from: Lives a long time (Outer scope).
-to: Lives a short time (Inner scope).
-struct TravelPlan&lt;'a&gt; { from: &amp;'a str, to: &amp;'a str,
-}
-Mechanism: Both fields share a single lifetime "visa." The compiler must find one lifespan that satisfies both.
-Result: The struct is forced to adopt the shortest lifespan (that of to).
-The Consequence: The reference from is "dragged down." Even though the actual data from exists longer, the reference &amp;from inside the struct is treated as if it dies when to dies.
-Extraction: Failed. You cannot return travel_plan.from because Rust thinks it is tied to the short life of to.
-struct TravelPlan&lt;'a, 'b&gt; { from: &amp;'a str, to: &amp;'b str,
-}
-Mechanism: The fields have independent "visas."
-Result: The struct instance still dies when the shortest field (to) dies, because a struct cannot exist with a dead field. However, the from field retains its long lifespan.
-The Consequence: While the container (travel_plan) dies, the data inside it (&amp;from) is known to be valid for a longer time.
-Extraction: Success. You can return travel_plan.from because the compiler sees that this specific reference was never tied to to.
-A 'static lifetime means that the reference is valid for the entire duration of the program. String literals have a 'static lifetime because they are stored in the binary's read-only memory and exist for the entire runtime of the program.
-fn speak() -&gt; &amp;'static str { "I have a static lifetime."
-} // string literals and constants have a 'static lifetime static PRIMES: &amp;[i32] = &amp;[2, 3, 5, 7, 11, 13]; // A static variable with a 'static lifetime struct Point { x: i32, y: i32,
-}
-struct ORIGIN: Point = Point { x: 0, y: 0 }; // A static instance of a struct static EXPECTED_RESULT: Result&lt;i32, String&gt; = Ok(42); // A static instance of a generic built-in type
-]]></description><link>lifetimes.html</link><guid isPermaLink="false">Lifetimes.md</guid><pubDate>Thu, 01 Jan 2026 20:43:16 GMT</pubDate></item><item><title><![CDATA[Associated Types]]></title><description><![CDATA[An associated types is a placeholder for a type that is required within a trait. struct Lunch { cost: f64
-} iml Add for Lunch { type Output = Lunch; // Output is an associated type, since Lunch + Lunch may not be a lunch as far as rust is concerned fn add(self, other: Lunch) -&gt; Lunch { Lunch { cost: self.cost + other.cost } }
-}
-Associated types can be constrained in trait bounds by specifying their concrete types directly in the angle brackets or using where clauses. This allows you to enforce specific type requirements on implementations.trait Calculator { type Input; type Output; fn calculate(&amp;self, input: Self::Input) -&gt; Self::Output;
-} // Implement for a simple struct
-struct DoubleCalculator; impl Calculator for DoubleCalculator { type Input = f64; type Output = f64; fn calculate(&amp;self, input: Self::Input) -&gt; Self::Output { input * 2.0 }
-} // A generic function that requires specific associated types, ofcourse you can do it without the where clause &lt;T: Calculator&lt;Input = 64, Output = f64&gt;
-fn process_with_specific_types&lt;T&gt;(calc: T, value: f64) -&gt; f64
-where T: Calculator&lt;Input = f64, Output = f64&gt;,
-{ calc.calculate(value)
-}
-]]></description><link>associated-types.html</link><guid isPermaLink="false">Associated Types.md</guid><pubDate>Wed, 31 Dec 2025 11:28:46 GMT</pubDate></item><item><title><![CDATA[Traits]]></title><description><![CDATA[A trait is a contract that requires the types that implement the trait to have certain functionality according to the contract. Imagine them like an interface in C# and Java and abstract classes in C++. They enable polymorphism in Rust.A trait is defined using the trait keyword.enum AccomodationCategory { Hotel, Hostel, House
+<br>Read More: <a data-tooltip-position="top" aria-label="Macros > ^format_macro" data-href="Macros#^format_macro" href="macros.html#^format_macro" class="internal-link" target="_self" rel="noopener nofollow">Format Macro</a>]]></description><link>basics/data-types-in-rust.html</link><guid isPermaLink="false">Basics/Data Types in Rust.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[IO]]></title><description><![CDATA[The println! macro supports interpolation using curly braces,var my_age = 24;
+var my_name = "Sameer";
+println!("My age is {}", my_age); // outputs My age is 24
+println!("My age is {my_age}"); // works the same way how cool is that
+println!("My age is {0} &amp; My Name is {1}, My Name was always {1}, I turned {my_age} last year", my_age, myname); // positional arguments start from 0 and can be reused in the target string
+println! macro provides an option of format specifiers which control how certain data will be printed. Works with all interpolations, just follow with the specifier.Exampleslet name = "Alice";
+let age = 30;
+println!("{} is {} years old.", name, age); println!("{:&gt;5}", 42); // right-align
+println!("{:&lt;5}", 42); // left-align
+println!("{:^7}", 42); // center-align println!("{:08.2}", 3.1415); // total 8 chars incl decimal = pad + float precision → 00003.14 println!("{name} likes {lang}", name = "Bob", lang = "Rust"); let arr = [1, 2, 3];
+println!("{:?}", arr); // Debug print There are a lot of these specifiers To accept user input from the console, we can use the std::io module.let mut input = String::new();
+println!("Please enter some input:");
+io::stdin() // returns a struct .read_line(&amp;mut input) // returns a Result .expect("Failed to read line");
+println!("You entered: {}", input); // This captures the \n as well unlike other languages, so its important to trim it if not needed
+]]></description><link>basics/io.html</link><guid isPermaLink="false">Basics/IO.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item><item><title><![CDATA[Traits]]></title><description><![CDATA[A trait is a contract that requires the types that implement the trait to have certain functionality according to the contract. Imagine them like an interface in C# and Java and abstract classes in C++. They enable polymorphism in Rust.A trait is defined using the trait keyword.enum AccomodationCategory { Hotel, Hostel, House
 }
 trait Accomodation { fn number_of_rooms(&amp;self) -&gt; u32; fn cost_per_night(&amp;self) -&gt; f64; fn is_booked(&amp;mut self) -&gt; bool; fn category() -&gt; AccomodationCategory; // static/Associated function const MAX_ROOMS: u32 = 100; // Associated constant
 }
@@ -329,313 +635,4 @@ These traits allow you to compare two instances of a type for ordering (&lt;, &g
 }
 impl PartialOrd for Rock { fn partial_cmp(&amp;self, other: &amp;Self) -&gt; Option&lt;Ordering&gt; { if(self.weight &lt;= 0 || other.weight &lt;= 0) { return None; // invalid comparison } if self.weight &lt; other.weight { Some(Ordering::Less) } else if self.weight &gt; other.weight { Some(Ordering::Greater) } else { Some(Ordering::Equal) } } // there are also methods like lt, le, gt, ge that can be implemented if not they will be derived from partial_cmp // Usage let rock1 = Rock { weight: 5.0, type: String::from("Granite") }; let rock2 = Rock { weight: 10.0, type: String::from("Limestone") }; assert!(rock1 &lt; rock2); // true
 }
-<br>Read More: <a data-href="Associated Types" href="associated-types.html" class="internal-link" target="_self" rel="noopener nofollow">Associated Types</a>]]></description><link>advanced/traits.html</link><guid isPermaLink="false">Advanced/Traits.md</guid><pubDate>Wed, 31 Dec 2025 11:09:12 GMT</pubDate></item><item><title><![CDATA[Generics]]></title><description><![CDATA[Generics let you write type-safe code that works with multiple types using type parameters.fn generic_function&lt;T&gt;(value: T) -&gt; T { value;
-} During compilation, rustc generates multiple functions based on the variants of T, this behavior is called monomorphization. By default the compiler guesses the most appropriate type for T, but we can force our own types using the turbofish operator. generic_function::&lt;i64&gt;(6);
-Standard stufffn multiple_generics&lt;T, U&gt;(a: T, b: U) -&gt; (T, U) { (a, b)
-}
-of course you can mix non generic types with generic onesfn mix_generics&lt;T&gt;(a: T, b: i32) -&gt; (T, i32) { (a, b)
-}
-You can define structs with generic type parameters.struct TreasureChest&lt;T&gt;{ pirate: String, value: double, treasure: T
-}
-// Setting the type beforehand
-impl TreasureChest&lt;String&gt; { fn display_treasure(&amp;self) { println!("The treasure is: {}", self.treasure); }
-}
-// Generic impl block
-impl&lt;T&gt; TreasureChest&lt;T&gt; {
-}
-^generic_impl_blocksenum Maybe&lt;T&gt; { Some(T), None,
-}
-]]></description><link>generics.html</link><guid isPermaLink="false">Generics.md</guid><pubDate>Tue, 30 Dec 2025 07:40:30 GMT</pubDate></item><item><title><![CDATA[Error Handling]]></title><description><![CDATA[exit function is equivalent to os level exit call. No cleanup happens, no buffers are flushed, no destructors called, just a flat crash.use std::process;
-fn main() { process::exit(1);
-}
-Read More: <a data-tooltip-position="top" aria-label="Macros > ^panic_macro" data-href="Macros#^panic_macro" href="macros.html#^panic_macro" class="internal-link" target="_self" rel="noopener nofollow">panic macro</a>, <a data-tooltip-position="top" aria-label="Macros > ^eprintln_macro" data-href="Macros#^eprintln_macro" href="macros.html#^eprintln_macro" class="internal-link" target="_self" rel="noopener nofollow">eprintln! macro</a>The ? operator is a shorthand for propagating errors in Rust. It can be used on functions that return a Result type. If the result is Ok, it unwraps the value; if it's Err, it returns the error from the current function.use std::fs::File;
-use std::io::{self, Read};
-fn read_file_contents(path: &amp;str) -&gt; io::Result&lt;String&gt; { let mut file = File::open(path)?; // If this fails, the error is returned let mut contents = String::new(); file.read_to_string(&amp;mut contents)?; // If this fails, the error is returned // it can be chained as well File::Open(path)?.read_to_string(&amp;mut contents)?; Ok(contents) // If everything is successful, return the contents
-} It also works on the Option enum, returning None if the value is None early &amp; returning the unwrapped value if Some.fn get_first_char(s: &amp;str) -&gt; Option&lt;char&gt; { let first_char = s.chars().next()?; // If there is no first char, return None Some(first_char)
-}
-]]></description><link>error-handling.html</link><guid isPermaLink="false">Error Handling.md</guid><pubDate>Mon, 29 Dec 2025 09:17:55 GMT</pubDate></item><item><title><![CDATA[File Handling]]></title><description><![CDATA[File handling is achieved through the std::fs module in Rust's standard library.use std::fs::File; fn main() { let file = File::open("example.txt"); // returns Result&lt;File, Error&gt;ase do not close the settings page while loading the model.
-} use std::io::Read; // This trait is needed to use the read_to_string method
-let mut file_contents = String::new(); if let Err(e) = file.read_to_string(&amp;mut file_contents) { // This returns a Result enum println!("Error reading file: {}", e);
-} else { println!("File contents: {}", file_contents); } // There is a shorter way using the fs module's read_to_string associated function
-use std::fs;
-let file_contents = fs::read_to_string("example.txt")?; // returns Result&lt;String, Error&gt;
-]]></description><link>file-handling.html</link><guid isPermaLink="false">File Handling.md</guid><pubDate>Mon, 29 Dec 2025 09:10:25 GMT</pubDate></item><item><title><![CDATA[IO]]></title><description><![CDATA[The println! macro supports interpolation using curly braces,var my_age = 24;
-var my_name = "Sameer";
-println!("My age is {}", my_age); // outputs My age is 24
-println!("My age is {my_age}"); // works the same way how cool is that
-println!("My age is {0} &amp; My Name is {1}, My Name was always {1}, I turned {my_age} last year", my_age, myname); // positional arguments start from 0 and can be reused in the target string
-println! macro provides an option of format specifiers which control how certain data will be printed. Works with all interpolations, just follow with the specifier.Exampleslet name = "Alice";
-let age = 30;
-println!("{} is {} years old.", name, age); println!("{:&gt;5}", 42); // right-align
-println!("{:&lt;5}", 42); // left-align
-println!("{:^7}", 42); // center-align println!("{:08.2}", 3.1415); // total 8 chars incl decimal = pad + float precision → 00003.14 println!("{name} likes {lang}", name = "Bob", lang = "Rust"); let arr = [1, 2, 3];
-println!("{:?}", arr); // Debug print There are a lot of these specifiers To accept user input from the console, we can use the std::io module.let mut input = String::new();
-println!("Please enter some input:");
-io::stdin() // returns a struct .read_line(&amp;mut input) // returns a Result .expect("Failed to read line");
-println!("You entered: {}", input); // This captures the \n as well unlike other languages, so its important to trim it if not needed
-]]></description><link>basics/io.html</link><guid isPermaLink="false">Basics/IO.md</guid><pubDate>Mon, 29 Dec 2025 08:06:51 GMT</pubDate></item><item><title><![CDATA[Hashmaps & Hashsets]]></title><description><![CDATA[Like every other language, Rust has Hashmaps and Hashsets.A Hashmap is a collection of key-value pairs where each key must be unique.use std::collections::{HashMap, HashSet}; let mut hashmap = HashMap::new(); // notice the mut keyword
-hashmap.insert("key1", "value1"); // type inferred from first insert, or use turbofish // Using the from function
-let hashmap2: HashMap&lt;&amp;str, i32&gt; = HashMap::from([ ("one", 1), ("two", 2), ("three", 3),
-]); // array of tuples
-// Accessing keys
-let val = hashmap.get("key1"); // returns an Option enum
-let val2 = hashmap["key1"]; // panics if key doesn't exist // Keys implement the Hash trait // Removing keys
-hashmap.remove("key1"); // Returns an Option enum // Length
-println!("Length of hashmap: {}", hashmap.len()); // Entry and or_insert
-let entry = hashmap.entry("key2").or_insert("default_value"); // Inserts if not exists
-Inserting non-primitive types moves ownership to the Hashmap. Use references if needed, but ensure lifetimes.let mut hashmap = HashMap::new();
-let key = String::from("key1");
-let value = String::from("value1");
-hashmap.insert(&amp;key, &amp;value); // Inserting references
-// key and value must live as long as hashmap
-A Hashset is a collection of unique values.use std::collections::HashSet; let mut hashset = HashSet::new();
-hashset.insert("apple");
-hashset.insert("banana"); // Will not insert duplicates
-// Check if contains
-if hashset.contains("apple") { /* ... */ } // Get method
-let item = hashset.get("banana"); // Returns Option&lt;&amp;T&gt; // Remove
-hashset.remove("apple"); // Returns bool depending on the value existence // Length
-println!("Length of hashset: {}", hashset.len());
-// Union
-let mut set1 = HashSet::from(["a", "b", "c"]);
-let mut set2 = HashSet::from(["c", "d", "e"]);
-let union_set: HashSet&lt;_&gt; = set1.union(&amp;set2).cloned().collect(); // Intersection
-let intersection_set: HashSet&lt;_&gt; = set1.intersection(&amp;set2).cloned().collect(); // Difference &amp; symmetric difference
-let difference_set: HashSet&lt;_&gt; = set1.difference(&amp;set2).cloned().collect(); //found in set1 but not in 2
-let sym_diff_set: HashSet&lt;_&gt; = set1.symmetric_difference(&amp;set2).cloned().collect(); // found in either 1 or 2 but not both // Check Disjoint
-let mut are_sets_disjoint = set1.is_disjoint(&amp;set2); // returns true // Is subset/superset
-let is_subset = set1.is_subset(&amp;set2); // returns false
-let is_superset = set1.is_superset(&amp;set2); // returns false Similar to Hashmaps, inserting moves ownership.]]></description><link>hashmaps-&amp;-hashsets.html</link><guid isPermaLink="false">Hashmaps &amp; Hashsets.md</guid><pubDate>Mon, 29 Dec 2025 06:47:30 GMT</pubDate></item><item><title><![CDATA[Packages and Crates]]></title><description><![CDATA[Modules are subdivisions inside crates which are used to organize code. Below is an example folder structuremy_dual_crate ├── src │ ├── main.rs ← crate root (binary) │ ├── lib.rs ← crate root (library) │ └── math.rs ← module
-A crate is a unit of compilation in rust, simply put it can be called as a package of rust code. A crate is the smallest amount of code that the Rust compiler considers at a time.There are two types of crates in rust:
-Binary Crates: Crates that contain executable code. They contain a single main.rs with a main() method.
-Library Crates: Crates that don't contain executable code and are used to ship reusable code by linking them to other crates. Does not have a main method.
-Dual Crates?
-A crate can ship as both a binary and a library crate. In such cases the add command links the library portion of the crate, whereas the install command installs the executable. The binary crate can use the library crate internally. The modules must be public and declared in the lib.rs file for it to work.
-Aside from this, a package can have multiple binary crates but only one library crate. These binary crates must be placed inside the src/bin folder. Each of the rs files here will create a separate binary.Like nuget &amp; npm there is a central repository for rust crates. Below are some useful commands -cargo add crate_name # adds the dependency of the crate_name in current package, ONLY works with library crates
-cargo install crate_name # installs the executable globally on your machine crates.io: A Cautionary Tale
-Cargo install, installs rust crates globally on your machine, although the rust crates are audited but there has been multiple incidents of <a data-tooltip-position="top" aria-label="https://www.reddit.com/r/rust/comments/1605fqj/rust_malware_staged_on_cratesio/" rel="noopener nofollow" class="external-link is-unresolved" href="https://www.reddit.com/r/rust/comments/1605fqj/rust_malware_staged_on_cratesio/" target="_self">fake crates</a>. Better be safe with this command. Also there was some <a data-tooltip-position="top" aria-label="https://news.ycombinator.com/item?id=42972525" rel="noopener nofollow" class="external-link is-unresolved" href="https://news.ycombinator.com/item?id=42972525" target="_self">Rust Drama</a> where some popular package maintainers self deprecated their packages over a fight.
-A packages is a collection of one or more crates.cargo init cargo new project_name The main difference between the two commands is that cargo new creates a new directory with the project name and initializes the project inside it, whereas cargo init initializes a new cargo project in the current directory.
-Cargo looks for src/main.rs, if it exists Rust infers that is a binary crate.
-If Cargo finds src/lib.rs, Rust infers that is a library crate.
-mod inventory { const FLOOR_SPACE: i32 = 10000; pub const MANAGER: &amp;str = "Lalit"; // Notice the pub keyword #[derive(Debug)] enum ProductCategory{ Ladder, Manner } #[derive(Debug)] struct Item { name: String, category: ProductCategory, quantity: u32 } fn talk_to_manager(){ println!("Hey, {MANAGER}, how's your coffee"); }
-} fn main() { println!("The manager is {}", inventory::MANAGER);
-} By default all items in a module are private. They are enclosed in their own namespace. We use the pub keyword to make them public. Modules can be declared in separate files. In the above example the 'inventory' module is a part of the main binary crate. For example, to turn the inventory module into a separate file, create a file named inventory.rs in the src directory and move the module code there (just the code not the whole mod name {} syntax. Then, in main.rs, you can declare the module with mod inventory;. Or create a folder with the name inventory and inside it create a file named mod.rs. main.rs and lib.rs are special files. They are the root of binary and library crates respectively. <br>
-Read More: <a data-tooltip-position="top" aria-label="Structs > ^8be5" data-href="Structs#^8be5" href="structs.html#^8be5" class="internal-link" target="_self" rel="noopener nofollow">Structs &amp; Field Accessibility</a> Modules can be nested inside other modules, these are called sub-modules. Either in the same file or in a file inside the parent module's folder or a folder inside it, you get the idea. When declaring sub-modules you need to use pub if you want to access them from outside the parent module.The crate keyword
-When you have too many nested modules, it can get tedious to use the full path from the root of the crate. The crate keyword allows you to start from the root of the crate. For example
-crate::inventory::talk_to_manager(); This means the search starts from the root of the crate, useful when referring submodules inside other modules.
-When using fields from nested sub-modules it gets tedious to type out long paths over and over, Rust provides the use keyword to bring paths into scope.use inventory::ProductCategory;
-use inventory::{Item, ProductCategory}; // for multiple items
-use inventory::products::{self, Toothpaste}; // use self to bring the parent module into scopebest cheapest general purpose model right now
-use std::collections::*; // bring everything from the module into scope using the glob operator
-pub use std::fmt; // re-exporting the module, useful for library crates to expose their submodules
-But in case of conflicts, it is recommended to use the full path. There is also the as keyword to rename imports.use inventory::ProductCategory as PC;
-The super keyword
-The super keyword allows you to access the parent module from a sub-module. The sub-module can access non-public items from the parent module.
-These are dependencies, these can be specified in the Cargo.toml file. During build cargo will download it from crates.io. Below is a sample Cargo.toml.[package]
-name = "my_project"
-version = "0.1.0"
-edition = "2021" [dependencies]
-rand = "0.8.5"
-General convention for ordering mod declarations
-mod declarations &gt; rust standard library imports &gt; external crate imports &gt; internal crate imports.
-]]></description><link>packages-and-crates.html</link><guid isPermaLink="false">Packages and Crates.md</guid><pubDate>Sat, 27 Dec 2025 13:47:09 GMT</pubDate></item><item><title><![CDATA[Documentation]]></title><description><![CDATA[// line comments
-/* block commment
-*/
-These describe the item they’re inside, typically at the top of a crate or module.
-Example: Documenting the entire crate://! This crate provides utilities for working with geometrical shapes.
-Or at the start of a module:mod math {
-//! Math utilities }
-These document the item that follows, such as functions, structs, enums. Example:/// Adds two numbers together.
-///
-/// Examples
-///
-/// let sum = add(2, 3);
-/// assert_eq!(sum, 5);
-fn add(a: i32, b: i32) -&gt; i32 { a + b
-}
-To generate HTML documentation for your crate, use:cargo doc --open --no-deps
-]]></description><link>documentation.html</link><guid isPermaLink="false">Documentation.md</guid><pubDate>Sat, 27 Dec 2025 13:41:55 GMT</pubDate></item><item><title><![CDATA[Structs]]></title><description><![CDATA[A struct or structure is a container for related pieces of data.There are 3 types of structs in rust:
-Named Type Structs: Fields have names, this is the most common type of struct.
-Tuple structs: These are like tuples but have a name. Which can be used to create more instances of the struct type.
-Unit structs: These structs don't have any fields. These are used when you want a type to implement traits but don't want to store any data.
-/* Named Type Structs */
-struct Person { name: String, age: u8 } let heroine = Person { name: String::from("Daenerys Targaryen"), age: 197
-}; // Notice the delimiter println!("{} was the rightful heir to the Iron Throne", heroine.name); /* Tuple structs */
-struct Rgb(u8, u8, u8); let black = Rgb(255,255,255); println!("R value of black is: {Rgb.0}"); /* Unit structs */
-struct Marker; let m1 = Marker; Mutability of Fields
-All fields are either mutable or immutable depending on whether the variable that owns the struct is declared as&nbsp;mut Field Init Shorthand and Spreading
-Like TS and JS Object property shorthand, rust has a handy syntactical sugar for doing below
-struct Player { class: String, name: String, level: u8
-} fn create_player(class: String, name: String, level: u8) -&gt; Player { Player { class, level, name } } Apart from this it also has spreading, which in Rust is called "struct update syntax":
-fn level_up_player(player: Player) -&gt; Player { Player { level: player.level + 1, ..player // Must be written last in the syntax field and rust will not replace anything that was declared before the spread }
-} // Example usage:
-let player1 = Player { class: String::from("Warrior"), name: String::from("Alice"), level: 5
-}; let player2 = level_up_player(player1);
-// player2 will have class: "Warrior", name: "Alice", level: 6 Structs &amp; Field Accessibility
-By default, all fields in a struct are private to the module where the struct is defined. We need to use the pub keyword on the struct as well as the fields to make them accessible for the module users. Same goes for the impl block as well, each method needs to be marked as pub to be accessible outside the module.
-We can define functions on structs, a function can either belong to instance of struct or struct itself (called associated function)const PI: f64 = 3.14;
-struct Circle { radius: f64
-} impl Circle { fn calc_area(&amp;self: Self) -&gt; f64 { // You can also pass self and mut self which will result in an ownership transfer PI * self.radius * self.radius } fn increase_radius(&amp;mut self: &amp;mut Circle, increase_by: f64) { self.radius += increase_by; } // Associated function (does not take self) fn get_sides() -&gt; u8 { 0 }
-} A struct can define multiple impl blocks, during compilation it will combine all the blocks to create the final implementation.
-Every method returns the instance itself. Like in C#builder.AddOptions().AddHttpClient().AddControllers();
-Its also possible in rust: #[derive(Clone)]
-struct Builder { options: Vec&lt;String&gt;,
-} impl Builder { fn new() -&gt; Self { Self { options: Vec::new(), } } fn add_option(mut self, opt: String) -&gt; Self { // we can also return a mutable reference self.options.push(opt); self } fn build(self) -&gt; Vec&lt;String&gt; { self.options } fn main() { let builder = Builder::new() .add_option("option1".to_string()) .add_option("option2".to_string()); let result = builder.build(); println!("{:?}", result);
-}
-]]></description><link>structs.html</link><guid isPermaLink="false">Structs.md</guid><pubDate>Sat, 27 Dec 2025 12:07:39 GMT</pubDate></item><item><title><![CDATA[Vectors]]></title><description><![CDATA[Solves the problem of problem of having a fixed size of arrays. It stores data on the heap, hence this can grow and shrink at runtime.// Declaring a vector
-let natural_numbers: Vec&lt;i32&gt; = Vec::new(); // see the String like constructor
-// if type annotation is done on the left side it is not needed on the right, but if not done on the left side then Vec::&lt;i32&gt;::new() is the way to do it on the right side.
-let whole_numers = vec![0, 1, 2, 3]; // Using vec macro we can initialize this inline
-let orange = String::from("Orange");
-let fruits : Vec&lt;String&gt; = vec![orange]; // transfer of ownership since no Copy trait // Adding &amp; Removing elements
-let mut numbers = vec![1,2,3,4];
-numbers.push(1);
-numbers.insert(0, 0); let val = numbers.pop(); // Returns an option enum
-numbers.remove(0); // by index // Accessing elements
-let three = numbers[2]; // This can cause a runtime panic if the index is out of bounds, this is caught during compile time in case of arrays because of fixed length
-let three = numbers.get(2); // This addresses the above problem by returning an Option enum numbers[1] = 56; // Of course the array needs to be mutable for this to work // Slicing
-let subset = &amp;numbers[0..2];
-A vector owns all of its contents
-You cannot assign the value of an element to another owner, a vector owns all of its contents, it is only possible if a full Copy is made or a reference is borrowed.
-]]></description><link>vectors.html</link><guid isPermaLink="false">Vectors.md</guid><pubDate>Sun, 14 Dec 2025 08:43:57 GMT</pubDate></item><item><title><![CDATA[Ownership]]></title><description><![CDATA[Ownership is a set of compile-time rules that the compiler checks for to ensure the program will be free of memory errors.Owner is something that is responsible for cleaning up a piece of memory when it is no longer in use. Every value in a rust program has a 1 owner. The owner can change over the course of a program.Move this refers to transfer of ownership from one owner to another in rust.let name = String::from("Sameer"); // lives in heap, name stores the **pointer**
-let next = name; // Ownership transferred, now next is the ONLY pointer pointin to the String
-println!("{name}"); // name is useless now, this won't compile.
-Rust's Borrowing RulesRust allows multiple ways to access data, but with strict safety rules:Immutable References (&amp;T)
-You can create multiple immutable references to the same data
-These references only allow reading the data, not modifying it
-Multiple immutable references can coexist safely since no one can change the data
-Mutable References (&amp;mut T)
-Only one active mutable reference can exist at a time
-This reference allows both reading and modifying the data
-No other references (mutable or immutable) can exist while a mutable reference is active
-The Key Rule: Exclusive Access At any given time, you can have either:
-Multiple immutable references, OR
-Exactly one active mutable reference
-A reference is considered "active" from when it's created until its last use, not just until the end of its scope. Below is an example:let mut data = vec![1, 2, 3];
-let immut_ref = &amp;data; // immutable reference created
-println!("{:?}", immut_ref); // last use of immutable reference
-let mut_ref = &amp;mut data; // mutable reference created (OK!)
-mut_ref.push(4); // use mutable reference Immutable references implement the copy trait.
-The drop function
-drop(&amp;mut self) function is a special function which is called by Rust at the end of a scope which cleans up the data in the heap or signals the rust runtime to do so. This only works on heap allocated memory. You can also define the drop function which is a part of the Drop trait, for custom types. Also it can be manually called whenever you want for the types that implement it, this makes them unusable.
-let mut person = String::from("Test");
-drop(person);
-println!("{person}"); fn consume_string(s: String) { // This can also be mut s: String even if the previous owner is not mutable println!("{}", s); // s is dropped here
-} let my_string = String::from("hello");
-consume_string(my_string); // my_string is moved, no longer accessible
-fn read_string(s: &amp;String) { println!("{}", s);
-} let my_string = String::from("hello");
-read_string(&amp;my_string); // my_string is still accessible after the call
-fn modify_string(s: &amp;mut String) { s.push_str(" world");
-} let mut my_string = String::from("hello");
-modify_string(&amp;mut my_string);
-println!("{}", my_string); // prints "hello world"
-fn process_str(s: &amp;str) { // Immutable reference println!("{}", s);
-} // Works with both String and &amp;str
-let owned = String::from("hello");
-let borrowed = "world";
-process_str(&amp;owned);
-process_str(borrowed);
-When functions return a variable, there is again an ownership transfer, following the same set of rules. The function is no longer responsible for <a data-tooltip-position="top" aria-label="^e064ef" data-href="#^e064ef" href="#^e064ef" class="internal-link" target="_self" rel="noopener nofollow">drop</a>. <br>Compound types such as <a data-tooltip-position="top" aria-label="Data Types in Rust > Compound Types" data-href="Data Types in Rust#Compound Types" href="basics/data-types-in-rust.html#Compound Types" class="internal-link" target="_self" rel="noopener nofollow">Arrays &amp; Tuples</a>, own each element inside them. So when their elements are accessed, a full copy needs to be created or access must be done via reference.let my_array = [1,2,3];
-let el = my_array[0]; // Full copy created, only possible when copy trait implemented by type
-let my_array_2 = [String::from("Test")]
-let el_2 = my_array_2[0] // Throws error, either .clone() must be used or el_2 must hold a reference.
-]]></description><link>ownership.html</link><guid isPermaLink="false">Ownership.md</guid><pubDate>Mon, 28 Jul 2025 18:12:49 GMT</pubDate></item><item><title><![CDATA[Reference & Borrowing]]></title><description><![CDATA[
-Borrowing means taking something without transferring ownership, a borrower must return the reference.
-Borrowing involves creating a reference to a value. Generally Heap Data's reference are used, but stack data can also be referenced. let my_val: i32 = 2;
-let my_ref: &amp;i32 = &amp;my_val; // Type address leading to i32
-References must never outlive their referent.println!("{*my_ref}");
-Rust auto dereferences display trait implementing types]]></description><link>reference-&amp;-borrowing.html</link><guid isPermaLink="false">Reference &amp; Borrowing.md</guid><pubDate>Sat, 26 Jul 2025 18:09:20 GMT</pubDate></item><item><title><![CDATA[Stack and Heap]]></title><description><![CDATA[Yes these are the same ones you studied in Operating Systems class. Stack and Heap are 2 memory regions where data is stored during program execution. Good old stack, below is the diagram which tells you "where" this stack isProcessMemoryStaticHeapCodeThreadRegistersStackThreadRegistersStackThreadRegistersStackLike any other stack, this is also a LIFO structure. Very fast for allocation and deallocation.In Rust stack is used for storing:
-Scalar types (integers, booleans, characters)
-Fixed size arrays
-Structs and enums where all fields have known sizes
-Function parameters etc.
-The location of heap is also mentioned in the above drawing. This is used for data which is unknown or has variable type at compile time. Allocation is slower than the stack and pointers are required for data access.Rust stores the following in heap:
-Data types with dynamic or unknown size, such as Vec&lt;T&gt;
-Large data, only pointer to the data resides on the stack.
-If data needs to outlive the function or scope where it was created, heap allocation is often necessary.
-Box pointer 📦
-All values in Rust are stack allocated by default. Values can be&nbsp;boxed&nbsp;(allocated on the heap) by creating a&nbsp;Box&lt;T&gt;. A box is a smart pointer to a heap allocated value of type&nbsp;T. When a box goes out of scope, its destructor is called, the inner object is destroyed, and the memory on the heap is freed.
-Memory safety without a Garbage Collector?
-Rust claims to be memory safe, but it does not have a garbage collector. Well there are a lot of tricks in the crabs claws, one of them is automatically calling the destructor of an allocated value once it goes out of scope.
-See also: <a data-tooltip-position="top" aria-label="Traits > ^1a31c0" data-href="Traits#^1a31c0" href="advanced/traits.html#^1a31c0" class="internal-link" target="_self" rel="noopener nofollow">Copy trait</a>]]></description><link>stack-and-heap.html</link><guid isPermaLink="false">Stack and Heap.md</guid><pubDate>Tue, 22 Jul 2025 17:56:25 GMT</pubDate></item><item><title><![CDATA[Loops]]></title><description><![CDATA[⚠️ Another because I said so syntax ahead-loop { println!("Infinite loop");
-}
-In the loop keyword you have to manually break out of the loop using break statement when you are done. There is also a continue statement.fn main() { for i in 1..10 { if i == 3 { continue; } if i == 7 { break; } println!("{}", i); }
-} The loop loop can return a value as well, this is done using the break statement break value_to_return; This only works in the loop loop
-Standard while loop nothing special.let mut i = 0;
-while i &lt; 15 { i += 1; println!("{i}");
-} Break and continue work the same way but unlike loop loop, it cannot return via break.
-The good ol' for-loopfn main() { // 1. Basic for loop over a range (exclusive end) println!("Basic range (1..6):"); for i in 1..6 { println!(" {}", i); // Prints 1 to 5 } // 2. Inclusive range (includes the end) println!("\nInclusive range (1..=6):"); for i in 1..=6 { println!(" {}", i); // Prints 1 to 6 } // 3. Iterating over an array let fruits = ["Apple", "Orange", "Banana"]; println!("\nArray iteration:"); for fruit in fruits { println!(" {}", fruit); // Prints each fruit } // 4. Index-based iteration over an array let colors = ["red", "green", "blue"]; println!("\nIndex-based iteration:"); for i in 0..colors.len() { println!(" The color name is {}", colors[i]); // Uses index to access element } // 5. Using enumerate to get (index, value) pairs let items = ["x", "y", "z"]; println!("\nEnumerate for index and value:"); for (index, value) in items.iter().enumerate() { println!(" {}: {}", index, value); // Prints index and value } // 6. Reverse iteration (descending order) println!("\nRange reversed (1..6).rev():"); for i in (1..6).rev() { println!(" {}", i); // Prints 5 to 1 } // 7. Stepping by intervals (e.g., every 2nd number) println!("\nRange with step_by(2) (0..10).step_by(2):"); for i in (0..10).step_by(2) { println!(" {}", i); // Prints 0, 2, 4, 6, 8 }
-}
-Read More: <a data-href="Recursions" href=".html" class="internal-link" target="_self" rel="noopener nofollow">Recursions</a>]]></description><link>loops.html</link><guid isPermaLink="false">Loops.md</guid><pubDate>Sun, 20 Jul 2025 12:37:26 GMT</pubDate></item><item><title><![CDATA[Functions]]></title><description><![CDATA[I am not going to define functions, that would be absurd. Below is the syntax however if I ever get dementia. Rust is a functional programming language so you have pretty much all function functionalities with added extras.Parameters vs Arguments
-Functions&nbsp;may declare a set of input variables as&nbsp;parameters, through which the caller passes&nbsp;arguments&nbsp;into the&nbsp;function
-fn my_function(){ // Body here
-}
-Well there are a few differences between the functions you see in other languages-You don't have to add an explicit return statement for functions. fn add(x: i32, y: i32) -&gt; i32 { // The return type is a must when your function returns anything other than a unit tuple x + y // implicit return (no semicolon)
-} // This behaviour is not limited to functions, any block's last statement is an implicit return
-let x = { let k = 2.14; k*k
-}
-Notice the semi-colon (Statements vs Expressions)
-Statements in rust end with a semi-colon and do not return a value, Expressions don't end with a semi-colon and do return a value, in the implicit return the last line has to be an expression for it to work. Furthermore if you specified a return type in the function definition and then add a statement at the end of the function, it will trigger a compile time error. Parameters can take ownership, borrow immutably, or borrow mutably:fn take_ownership(s: String) { /* s is moved here */ }
-fn borrow_immutably(s: &amp;String) { /* s is borrowed */ }
-fn borrow_mutably(s: &amp;mut String) { /* s is mutably borrowed */ } The default return type for a function without any explicit or implicit returns i.e. void is a Unit Tuple
-]]></description><link>functions.html</link><guid isPermaLink="false">Functions.md</guid><pubDate>Sun, 20 Jul 2025 11:49:53 GMT</pubDate></item><item><title><![CDATA[Constants in Rust]]></title><description><![CDATA[For a constant in rust the following hold true: Its value never changes.
-It must be declared and initialized at the same time means the value must be known at compile time.
-Cannot be shadowed
-Can live in a global scope unlike Variables.
-const MY_CONSTANT = 24.5;
-]]></description><link>constants-in-rust.html</link><guid isPermaLink="false">Constants in Rust.md</guid><pubDate>Sun, 20 Jul 2025 11:25:29 GMT</pubDate></item><item><title><![CDATA[Ranges]]></title><description><![CDATA[A range is a sequence of consecutive values.similar to python rangelet my_range = 1..5; Below table summarizes range types in rust- Ranges implement Iterator, so anything which implements that can have be the type in Range&lt;T&gt;
-let my_char_range = 'b'..'q'; Ranges can be used for Array Slicing
-let arr = [0, 1, 2, 3];
-assert_eq!(arr[1..3], [1,2]);
-Below is an example with a for loopfor i in 1..=6 { println!(i);
-}
-for i in (1..=6).rev() { // Methods are present on Range type // Others include .step_by(val)
-}
-]]></description><link>ranges.html</link><guid isPermaLink="false">Ranges.md</guid><pubDate>Fri, 11 Jul 2025 19:03:20 GMT</pubDate></item><item><title><![CDATA[Operators]]></title><description><![CDATA[Rust supports all common operators, and they are not batshit crazy to floor towards negative infinity for negative divisions. And there is no crazy things like == &amp; ===. There is no ++ and -- cause who needs that but all compoud assignment operators are there +=, |= and all that.]]></description><link>operators.html</link><guid isPermaLink="false">Operators.md</guid><pubDate>Wed, 09 Jul 2025 18:12:30 GMT</pubDate></item><item><title><![CDATA[Type Casting]]></title><description><![CDATA[Rust supports type casting with the as keyword. As long as its a plausible conversion.]]></description><link>type-casting.html</link><guid isPermaLink="false">Type Casting.md</guid><pubDate>Wed, 09 Jul 2025 17:59:57 GMT</pubDate></item><item><title><![CDATA[Methods]]></title><description><![CDATA[
-Methods are functions that are defined on types
-Below is an example on an integer and an &amp;str.let my_var: i32 = -15;
-println!("The absolute value is: {}", my_var.abs()); // built-in method that returns the modulus of the integer.
-let s = "hello";
-println!("{}", s.len()); // method on &amp;str
-Methods can't be called on inferred type variables.
-You must explicitly mention the type of the variable using : to be able to call methods, otherwise rust throws an ambiguous type error and program fails to compile.
-We can define custom methods on types, but only the types we create. It does not work on built in types.struct Circle { radius: f64,
-} impl Circle { // Method: takes self by reference fn area(&amp;self) -&gt; f64 { 3.1415 * self.radius * self.radius // don't use magic numbers kids 🔫 } // Associated function: doesn't take self like Static fn new(radius: f64) -&gt; Self { Circle { radius } }
-} fn main() { let c = Circle::new(5.0); // associated function (like a constructor) println!("Area: {}", c.area()); // method call on instance
-}
-]]></description><link>methods.html</link><guid isPermaLink="false">Methods.md</guid><pubDate>Wed, 09 Jul 2025 17:51:35 GMT</pubDate></item><item><title><![CDATA[Variables and Mutability]]></title><description><![CDATA[Below is how you declare a variable in rustlet my_var = 50; // compiler auto deduces type 'i32' in this case
-Rust variables are immutable by default, meaning once assigned they cannot be re-assigned.my_var = 90; // will throw and error during compilation
-let mut myMutableVar = 50; // This defines a mutable variable which CAN be re-assigned
-Rust supports shadowing (surprise, surprise!), meaning a variable can be redeclared in the same scope and the earlier declaration is invalidated (only occurs when done in the same scope).let my_var = 50; // i32 as of now
-let my_var = "text"; // &amp;str now
-// mut or non mut does not matter
-The Crab Hates Global Variables
-So much so that variable declarations can only be done inside a local scope.
-Related: <a data-href="Naming Conventions" href="naming-conventions.html" class="internal-link" target="_self" rel="noopener nofollow">Naming Conventions</a>, <a data-href="Data Types in Rust" href="basics/data-types-in-rust.html" class="internal-link" target="_self" rel="noopener nofollow">Data Types in Rust</a>]]></description><link>variables-and-mutability.html</link><guid isPermaLink="false">Variables and Mutability.md</guid><pubDate>Wed, 09 Jul 2025 16:58:29 GMT</pubDate></item><item><title><![CDATA[Compiler Directives]]></title><link>compiler-directives.html</link><guid isPermaLink="false">Compiler Directives.md</guid><pubDate>Mon, 07 Jul 2025 09:27:15 GMT</pubDate></item><item><title><![CDATA[Type Aliases]]></title><description><![CDATA[You can nickname types in rust to increase readability in code, For example:type Meters = i32; // Convention is PascalCase fn main(){ var track_length: Meters = 400;
-}
-]]></description><link>type-aliases.html</link><guid isPermaLink="false">Type Aliases.md</guid><pubDate>Mon, 07 Jul 2025 09:26:08 GMT</pubDate></item><item><title><![CDATA[Naming Conventions]]></title><description><![CDATA[Below table neatly summarizes the naming conventions used in Rust.]]></description><link>naming-conventions.html</link><guid isPermaLink="false">Naming Conventions.md</guid><pubDate>Mon, 07 Jul 2025 07:51:04 GMT</pubDate></item><item><title><![CDATA[Creating a Rust Project]]></title><description><![CDATA[The standard way to do this is using cargo.cargo new project_name
-This command:
-Creates a folder named hello_world
-Auto initializes a git repository inside that folder
-Creates an src subfolder with a main.rs file.
-Creates a Cargo.toml file for library and version info.
-The content of main.rs looks like:fn main() { println!("Hello, world!");
-}
-This command actually creates a so-called binary crate. See <a data-href="Crates in Rust" href=".html" class="internal-link" target="_self" rel="noopener nofollow">Crates in Rust</a>There are a couple of ways of doing this:rustc main.rs
-This produces an executable that then can be run normally.The standard way to go for projectscargo build # builds and produces a binary which needs to be separately executed
-cargo run # build and run in single step
-cargo check # checks the program whether it can be compiled, usually faster but IDEs do this job most of the time
-cargo clean # removes all old compiled objects and binaries
-<br>Build Flags
-By default the cargo commands do a debug build of the program, which is bulky non optimized version useful for debugging and sifting through instructions. The build and run command accept a build flag which can be used to change the target executable cargo build --release. There are several other build flags in rust, can be found <a data-tooltip-position="top" aria-label="https://doc.rust-lang.org/cargo/commands/cargo-build.html" rel="noopener nofollow" class="external-link is-unresolved" href="https://doc.rust-lang.org/cargo/commands/cargo-build.html" target="_self">here</a>
-Built in Autoformatting
-rustfmt file_name can be used to auto format a rust file, cargo fmt does the same thing for the whole project.
-]]></description><link>basics/creating-a-rust-project.html</link><guid isPermaLink="false">Basics/Creating a Rust Project.md</guid><pubDate>Mon, 07 Jul 2025 07:47:03 GMT</pubDate></item><item><title><![CDATA[index]]></title><description><![CDATA[Rust is a systems programming language, meaning it is generally deployed in places where system resource (such as CPU, Memory, Bandwidth) usage is critical. Rust is advertised to be safe, fast &amp; efficient programs.Up Next: <a data-href="Creating a Rust Project" href="basics/creating-a-rust-project.html" class="internal-link" target="_self" rel="noopener nofollow">Creating a Rust Project</a>]]></description><link>index.html</link><guid isPermaLink="false">index.md</guid><pubDate>Sun, 06 Jul 2025 20:05:19 GMT</pubDate></item><item><title><![CDATA[Generics in Rust]]></title><description><![CDATA[Generics are abstract stand-ins for concrete types. You define them using angle brackets &lt;&gt;<img class="code-styler-icon is-unresolved" src="blob:/6266c130-7268-4c91-88e4-b0566fcd3060" target="_self">Declare basic generic types1struct Point&lt;T&gt; {2 x: T,3 y: T,4}56let integer = Point { x: 1, y: 2 };7let float = Point { x: 1.1, y: 2.2 };]]></description><link>generics-in-rust.html</link><guid isPermaLink="false">Generics in Rust.md</guid><pubDate>Fri, 11 Jul 2025 19:06:06 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Modules in Rust]]></title><description><![CDATA[Modules are subdivisions inside crates which are used to organize code. Below is an example folder structure<img class="code-styler-icon is-unresolved" src="blob:/104a8ef9-5866-422c-979b-afbb5c2d7278" target="_self">1my_dual_crate2 ├── src3 │ ├── main.rs ← crate root (binary)4 │ ├── lib.rs ← crate root (library)5 │ └── math.rs ← module]]></description><link>basics/modules-in-rust.html</link><guid isPermaLink="false">Basics/Modules in Rust.md</guid><pubDate>Sun, 06 Jul 2025 20:09:21 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Crates in Rust]]></title><description><![CDATA[A crate is a unit of compilation in rust, simply put it can be called as a package of rust code.There are two types of crates in rust:
-Binary Crates: Crates that contain executable code. They contain a single main.rs with a main() method.
-Library Crates: Crates that don't contain executable code and are used to ship reusable code by linking them to other crates. Does not have a main method.
-Dual Crates?
-A crate can ship as both a binary and a library crate. In such cases the add command links the library portion of the crate, whereas the install command installs the executable.
-Like nuget &amp; npm there is a central repository for rust crates. Below are some useful commands -1cargo add crate_name # adds the dependency of the crate_name in current package, ONLY works with library crates2cargo install crate_name # installs the executable globally on your machine crates.io: A Cautionary Tale
-Cargo install, installs rust crates globally on your machine, although the rust crates are audited but there has been multiple incidents of <a data-tooltip-position="top" aria-label="https://www.reddit.com/r/rust/comments/1605fqj/rust_malware_staged_on_cratesio/" rel="noopener nofollow" class="external-link is-unresolved" href="https://www.reddit.com/r/rust/comments/1605fqj/rust_malware_staged_on_cratesio/" target="_self">fake crates</a>. Better be safe with this command. Also there was some <a data-tooltip-position="top" aria-label="https://news.ycombinator.com/item?id=42972525" rel="noopener nofollow" class="external-link is-unresolved" href="https://news.ycombinator.com/item?id=42972525" target="_self">Rust Drama</a> where some popular package maintainers self deprecated their packages over a fight.
-<br>See Also: <a data-href="Modules in Rust" href="basics/modules-in-rust.html" class="internal-link" target="_self" rel="noopener nofollow">Modules in Rust</a>]]></description><link>basics/crates-in-rust.html</link><guid isPermaLink="false">Basics/Crates in Rust.md</guid><pubDate>Sun, 06 Jul 2025 20:07:25 GMT</pubDate></item></channel></rss>
+<br>Read More: <a data-href="Associated Types" href="associated-types.html" class="internal-link" target="_self" rel="noopener nofollow">Associated Types</a>]]></description><link>advanced/traits.html</link><guid isPermaLink="false">Advanced/Traits.md</guid><pubDate>Mon, 05 Jan 2026 05:12:09 GMT</pubDate></item></channel></rss>
