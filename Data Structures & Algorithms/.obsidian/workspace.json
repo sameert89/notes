@@ -1,77 +1,42 @@
 {
   "main": {
-    "id": "9a3c33ef94bb6b92",
+    "id": "ebe74b7f1f8b0783",
     "type": "split",
     "children": [
       {
-<<<<<<< HEAD
-        "id": "f4dc7b6d657c60eb",
+        "id": "b963834886d1fbe1",
         "type": "tabs",
         "children": [
           {
-            "id": "2fb55630828b8ee1",
-=======
-        "id": "9be82b551244ef27",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "6d312c1ed9ae5783",
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+            "id": "88f7fc4f92269c23",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-<<<<<<< HEAD
-                "file": "Problems/Leetcode/Trapping Rainwater 2.md",
-=======
-                "file": "Math/GCD.md",
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-<<<<<<< HEAD
-              "title": "Trapping Rainwater 2"
-=======
-              "title": "GCD"
-            }
-          },
-          {
-            "id": "2d14e60f097b9a75",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Math/Binary Exponentiation.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Binary Exponentiation"
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+              "title": "New tab"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "b4e1977b15e35c8a",
+    "id": "51843208181b0712",
     "type": "split",
     "children": [
       {
-        "id": "c2d2bef06fa12c78",
+        "id": "12588cd882e1005e",
         "type": "tabs",
         "children": [
           {
-            "id": "46e4e43708bf7b66",
+            "id": "a010cae33de5f41b",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "byCreatedTime",
+                "sortOrder": "alphabetical",
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
@@ -79,15 +44,15 @@
             }
           },
           {
-            "id": "fe24c0842b55a33f",
+            "id": "93404d75052035f8",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#prime-factors",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
-                "collapseAll": true,
+                "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
               },
@@ -96,7 +61,7 @@
             }
           },
           {
-            "id": "a060dd905d294c9f",
+            "id": "f5a58e768597888b",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -109,23 +74,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 236.50635528564453
+    "width": 300
   },
   "right": {
-    "id": "325bd71670ee6e7a",
+    "id": "1f1172d7fb698a60",
     "type": "split",
     "children": [
       {
-        "id": "3217380cb9c40c63",
+        "id": "028c2f75f534a0d5",
         "type": "tabs",
         "children": [
           {
-            "id": "7cdfcf95407b0c42",
+            "id": "6431d50e27e211b8",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Arrays/Bubble Sort.md",
+                "file": "images/Generate all subsets 2026-03-04 14.36.14.excalidraw.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -135,50 +100,40 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Bubble Sort"
+              "title": "Backlinks for Generate all subsets 2026-03-04 14.36.14.excalidraw"
             }
           },
           {
-            "id": "c1b3b8c8c18e0e5b",
+            "id": "2bb8562aeee10eed",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Arrays/Bubble Sort.md",
+                "file": "images/Generate all subsets 2026-03-04 14.36.14.excalidraw.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Bubble Sort"
+              "title": "Outgoing links from Generate all subsets 2026-03-04 14.36.14.excalidraw"
             }
           },
           {
-            "id": "4dc5cc4c8abd703a",
+            "id": "6a9db001ee8913f9",
             "type": "leaf",
             "state": {
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-tags",
               "title": "Tags"
             }
           },
           {
-            "id": "51686637c188657a",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "Arrays/Bubble Sort.md"
-              },
-              "icon": "lucide-list",
-              "title": "Outline of Bubble Sort"
-            }
-          },
-          {
-            "id": "1faccd836e7653db",
+            "id": "eaedbfe6b216ac8a",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -190,9 +145,23 @@
               "icon": "lucide-archive",
               "title": "All properties"
             }
+          },
+          {
+            "id": "32d19ad1024cf2eb",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "images/Generate all subsets 2026-03-04 14.36.14.excalidraw.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Generate all subsets 2026-03-04 14.36.14.excalidraw"
+            }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
@@ -201,89 +170,33 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:Create new base": false,
-      "webpage-html-export:Export as HTML": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": true,
+      "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
       "darlal-switcher-plus:Open in Headings Mode": false,
       "darlal-switcher-plus:Open Symbols for the active editor": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-excalidraw-plugin:New drawing": false,
+      "webpage-html-export:Export as HTML": false,
       "obsidian42-brat:BRAT": false
     }
   },
-<<<<<<< HEAD
-  "active": "2fb55630828b8ee1",
+  "active": "88f7fc4f92269c23",
   "lastOpenFiles": [
-    "_excalidraw/Trapping Rainwater 2 2025-10-04 02.07.18.excalidraw.md",
-    "Problems/Leetcode/Trapping Rainwater 2.md",
-    "_excalidraw/Trapping Rainwater 2 2025-10-04 01.54.01.excalidraw.md",
-    "Math/GCD.md",
+    "Backtracking/Generate all subsets.md",
+    "Backtracking/Backtracking.md",
+    "Trees/Trees.md",
+    "Trees/Range Queries.md",
+    "_assets/_assets.md",
+    "_excalidraw/Drawing 2023-10-01 22.21.21.excalidraw.md",
+    "Trees/AVL Trees.md",
+    "Tries/Tries.md",
     "images/images.md",
-    "images",
-    "Problems/Leetcode/Path Sum 3.md",
-    "Problems/Leetcode/Nth Digit.md",
-    "Problems/Leetcode/Leetcode.md",
-    "Problems/Problems.md",
-    "Graphs/Breadth First Search (BFS).md",
-=======
-  "active": "2d14e60f097b9a75",
-  "lastOpenFiles": [
-    "Math/GCD.md",
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
-    "Math/Binary Exponentiation.md",
-    "Arrays/Merge Sort.md",
-    "Math/Math.md",
-    "Math",
-    "Arrays/Insertion Sort.md",
-    "Arrays/Arrays.md",
-    "Graphs/Graphs.md",
-    "Arrays/Bubble Sort.md",
-    "Arrays/Selection Sort.md",
-    "Graphs/Strongly Connected Components.md",
-    "Tries/Problems.md",
-    "Trees/Red and Black Trees.md",
-    "Problems/GFG/Alien Dictionary.md",
-    "Strings/KMP algorithm.md",
-<<<<<<< HEAD
-    "Graphs/Cycle Detection.md",
-    "Graphs/Depth First Search (DFS).md",
-    "Graphs/Disjoint Set Union(DSU).md",
-=======
-    "Graphs/Breadth First Search (BFS).md",
-    "Graphs/Cycle Detection.md",
-    "Graphs/Depth First Search (DFS).md",
-    "Graphs/Disjoint Set Union(DSU).md",
-    "Graphs/Minimum Spanning Trees (MST).md",
-    "Graphs/Problems.md",
-    "Graphs/Representation of Graphs.md",
-    "Graphs/Shortest Path Problem.md",
-    "Graphs/Topological Sort.md",
-    "Heaps/Heaps.md",
-    "Leetcode Contests/Weekly/359/Find the longest equal subarray.md",
-    "Leetcode Contests/Weekly/359/Maximize Profit as a Salesman.md",
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
-    "_static/lib/search-index.json",
-    "_static/lib/metadata.json",
-    "_static/lib/styles/theme.css",
-    "_static/lib/styles/supported-plugins.css",
-    "_static/lib/styles/snippets.css",
-    "_static/lib/styles/obsidian.css",
-    "_static/lib/styles/main-styles.css",
-    "_static/lib/styles/global-variable-styles.css",
-    "_static/lib/media/favicon.png",
-    "_static/lib/media/6155340132a851f6089e.svg",
-    "_static/lib/media/pasted-image-20230924234109.png",
-    "_static/lib/media/pasted-image-20230917195830.png",
-    "_static/lib/media/pasted-image-20230821102417.png",
-    "_static/lib/media/pasted-image-20230821102028.png",
-    "_static/lib/media/pasted-image-20230821101105.png",
-    "_static/lib/media/pasted-image-20230821095820.png",
-    "_static/lib/media/pasted-image-20230821095302.png",
-    "_static/lib/media/example1-1.webp"
+    "_excalidraw/Generate all subsets 2026-03-04 14.36.14.excalidraw.md",
+    "Backtracking"
   ]
 }

@@ -61,6 +61,8 @@ OMf
 OHBBFgol
 OsT
 Overall
+OTvkJAX
+OIrHg
 short
 system
 standards
@@ -321,7 +323,6 @@ sw
 shifting
 squared
 straightforward
-<<<<<<< HEAD
 settings
 shape
 sQpaxatM
@@ -330,6 +331,9 @@ soon
 says
 subtract
 said
+sy
+sB
+<<<<<<< HEAD
 =======
 >>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 form
@@ -443,12 +447,12 @@ fVQoSWz
 fCdZI
 fuxORV
 faHci
-<<<<<<< HEAD
 forms
 floor
 fFe
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+fxZmdn
+fLqVpqhs
+fdHaPib
 Systems
 Scope
 Size
@@ -538,12 +542,9 @@ Smallest
 Structure
 SKUhveHA
 SG
-<<<<<<< HEAD
 Saving
 SlT
 Subtract
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 Interconnection
 It
 ISO
@@ -765,11 +766,11 @@ improve
 inclusion
 identify
 iN
-<<<<<<< HEAD
 int
 implies
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+idwVs
+iwTWg
+iLI
 conceptual
 consists
 called
@@ -1018,7 +1019,6 @@ combinatorics
 consistently
 calucate
 convert
-<<<<<<< HEAD
 check
 collected
 compute
@@ -1027,8 +1027,6 @@ correctly
 const
 class
 cH
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 used
 university
 unstructured
@@ -1104,12 +1102,9 @@ upon
 uYjg
 uXywN
 unsorted
-<<<<<<< HEAD
 under
 units
 updated
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 to
 the
 total
@@ -1266,13 +1261,11 @@ topic
 taking
 tqrget
 third
-<<<<<<< HEAD
 trap
 touching
 trapRainWater
 totalWaterCollected
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+tasked
 describe
 data
 device
@@ -1441,7 +1434,6 @@ dYqn
 dJqcu
 devided
 draw
-<<<<<<< HEAD
 decompress
 dME
 dGqNa
@@ -1451,8 +1443,6 @@ divisor
 delta
 dx
 dy
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 of
 organization
 or
@@ -1559,10 +1549,9 @@ official
 oKwXvAxv
 odqMjIr
 olYR
-<<<<<<< HEAD
 ordinate
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+oGzJa
+oCRGIul
 networking
 networks
 network
@@ -1639,11 +1628,8 @@ nV
 nb
 nVbJuRNf
 naive
-<<<<<<< HEAD
 neighboring
 neighbor
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 ancient
 are
 area
@@ -1819,14 +1805,12 @@ aKtC
 abzi
 avxPdehc
 assumed
-<<<<<<< HEAD
 atmost
 assumption
 absurdly
 auto
 abscissa
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+aka
 btw
 by
 be
@@ -1942,13 +1926,11 @@ bascially
 bjK
 boundary
 bit
-<<<<<<< HEAD
 boundaries
 bQvdl
 bjqQ
 bool
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+backtracking
 made
 model
 moderate
@@ -2102,13 +2084,11 @@ mavoY
 moved
 multiplications
 mod
-<<<<<<< HEAD
 modified
 mavU
 mouth
 maC
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+mqLLh
 layers
 large
 lowest
@@ -2282,11 +2262,9 @@ TNjm
 TkIxu
 TQ
 TPIr
-<<<<<<< HEAD
 TPR
 TZ
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+TE
 Aspect
 Area
 ABF
@@ -2367,10 +2345,9 @@ ALPi
 Atku
 APkaHm
 Applications
-<<<<<<< HEAD
 AmEhj
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+AnEqetsm
+AalgX
 LAN
 Local
 Limited
@@ -2439,10 +2416,9 @@ Ld
 LO
 LScKpvEk
 LuD
-<<<<<<< HEAD
 LLQNcLE
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+LDOroYCj
+LKKziY
 Network
 Needs
 NL
@@ -2498,10 +2474,9 @@ Notes
 NKBWSRwE
 NmMr
 Number
-<<<<<<< HEAD
 Naive
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+NKMmRk
+NAcBsxN
 MAN
 Metropolitan
 May
@@ -2580,11 +2555,8 @@ MOCs
 MuIps
 Min
 Max
-<<<<<<< HEAD
 MwVAE
 Mathematically
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 WAN
 Wide
 Wired
@@ -2709,12 +2681,9 @@ gcd
 glkHQDfp
 gQjv
 gaRaWbv
-<<<<<<< HEAD
 greatest
 guy
 greater
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 City
 Coverage
 Connectivity
@@ -2807,6 +2776,7 @@ Cbcl
 CFDRZhvS
 Clq
 Cvx
+CUEa
 Global
 GKXa
 GA
@@ -2856,10 +2826,7 @@ Getting
 General
 GTdqE
 GReVTTB
-<<<<<<< HEAD
 GCD
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 Varies
 VPD
 VV
@@ -2900,6 +2867,7 @@ VsHCsq
 VKNlXlvr
 VOS
 Vy
+VHCCvHKv
 extensive
 expensive
 easier
@@ -3052,11 +3020,9 @@ excluding
 eMeXv
 emzCtVKo
 egQl
-<<<<<<< HEAD
 elevation
 enOTr
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+eVwoJi
 Entire
 Examples
 Easier
@@ -3121,13 +3087,12 @@ EGVyRI
 Eyv
 EbPsnedJ
 EiuHmWR
-<<<<<<< HEAD
 Excalidraw
 EBvSiR
 EPawuLA
 Euclidean
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+Exclude
+ENjIH
 region
 robust
 raw
@@ -3294,15 +3259,12 @@ ro
 rbdjLPUJ
 recursively
 recurrence
-<<<<<<< HEAD
 raining
 rise
 realize
 rkVIPjV
 relations
 remainder
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 High
 Home
 Higher
@@ -3367,6 +3329,7 @@ HKeW
 HWek
 Happy
 HsFrgnP
+HZ
 high
 hubs
 hides
@@ -3468,11 +3431,8 @@ hu
 hNUf
 haGNzHAU
 hx
-<<<<<<< HEAD
 heightMap
 holding
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 Privately
 Public
 PNG
@@ -3540,10 +3500,8 @@ Pratt
 Pl
 PUvFS
 PsalM
-<<<<<<< HEAD
 PBn
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+PcdLvCEw
 privately
 publicly
 private
@@ -3709,7 +3667,6 @@ pGFuGANo
 po
 pattern
 power
-<<<<<<< HEAD
 palette
 pVigolXh
 pdeWR
@@ -3718,8 +3675,8 @@ pq
 pushing
 pop
 pwkD
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+powerset
+pE
 wide
 wireless
 wired
@@ -3827,12 +3784,10 @@ wUB
 wQiW
 wC
 wWTLrZ
-<<<<<<< HEAD
 water
 wierd
 watering
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+wZ
 Requires
 Relatively
 RY
@@ -3907,6 +3862,7 @@ RVfK
 RRUc
 RhtSG
 RVog
+RjUkkk
 voltages
 vWA
 vA
@@ -3989,11 +3945,9 @@ vDU
 vATUd
 vtIWV
 vZUZG
-<<<<<<< HEAD
 volume
 vector
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+vYic
 DLL
 DFf
 Dy
@@ -4063,11 +4017,11 @@ DzVCd
 DNKYShVl
 DoLah
 DGkTXBa
-<<<<<<< HEAD
 Decompress
 DPLh
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+DicZgl
+DAL
+DKj
 zl
 zg
 zP
@@ -4105,6 +4059,9 @@ zC
 zmn
 zi
 zdhNr
+ztcOk
+zeQ
+zYN
 Qr
 Qa
 Qk
@@ -4232,6 +4189,7 @@ xh
 xTOyIjYr
 xsYULjqO
 xkl
+xBR
 Bg
 Bx
 Bp
@@ -4306,10 +4264,9 @@ BMImhHC
 BtO
 BevyeF
 BSencXb
-<<<<<<< HEAD
 BOd
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+Bqz
+BeJnJe
 JR
 JX
 JFIF
@@ -4344,10 +4301,8 @@ JathfR
 Je
 JRBB
 JXkhTBxC
-<<<<<<< HEAD
 JHqOku
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+JN
 UiT
 UiY
 Ug
@@ -4395,10 +4350,9 @@ UYK
 UFsN
 UpJ
 UUNo
-<<<<<<< HEAD
 UmasmjsK
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+UnVCjcbZ
+Uv
 kOY
 kk
 kR
@@ -4452,11 +4406,10 @@ kth
 kNVUt
 kdvF
 kMx
-<<<<<<< HEAD
 knew
 kb
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+kwy
+kmPXL
 Yn
 YA
 Yy
@@ -4523,10 +4476,7 @@ ZJ
 ZjdFaqPv
 ZRQ
 ZtnjID
-<<<<<<< HEAD
 ZS
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 yO
 yCU
 yo
@@ -4568,6 +4518,9 @@ ygWd
 yxKdNmUD
 yd
 yE
+yN
+yyfZR
+yzGVr
 jpeg
 jk
 jj
@@ -4616,6 +4569,8 @@ jump
 jdGzOSka
 jwmtrRn
 jD
+jf
+jQ
 quality
 qg
 qy
@@ -4717,10 +4672,8 @@ Feel
 FS
 FM
 FtWMUFgs
-<<<<<<< HEAD
 FQlo
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+FePJSP
 Xk
 Xh
 XO
