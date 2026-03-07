@@ -321,7 +321,6 @@ sw
 shifting
 squared
 straightforward
-<<<<<<< HEAD
 settings
 shape
 sQpaxatM
@@ -330,6 +329,9 @@ soon
 says
 subtract
 said
+strs
+stringlets
+<<<<<<< HEAD
 =======
 >>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 form
@@ -443,12 +445,10 @@ fVQoSWz
 fCdZI
 fuxORV
 faHci
-<<<<<<< HEAD
 forms
 floor
 fFe
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+finishes
 Systems
 Scope
 Size
@@ -538,12 +538,9 @@ Smallest
 Structure
 SKUhveHA
 SG
-<<<<<<< HEAD
 Saving
 SlT
 Subtract
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 Interconnection
 It
 ISO
@@ -765,11 +762,10 @@ improve
 inclusion
 identify
 iN
-<<<<<<< HEAD
 int
 implies
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+iterating
+inserting
 conceptual
 consists
 called
@@ -1018,7 +1014,6 @@ combinatorics
 consistently
 calucate
 convert
-<<<<<<< HEAD
 check
 collected
 compute
@@ -1027,8 +1022,8 @@ correctly
 const
 class
 cH
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+counting
+count
 used
 university
 unstructured
@@ -1104,12 +1099,9 @@ upon
 uYjg
 uXywN
 unsorted
-<<<<<<< HEAD
 under
 units
 updated
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 to
 the
 total
@@ -1266,13 +1258,10 @@ topic
 taking
 tqrget
 third
-<<<<<<< HEAD
 trap
 touching
 trapRainWater
 totalWaterCollected
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 describe
 data
 device
@@ -1441,7 +1430,6 @@ dYqn
 dJqcu
 devided
 draw
-<<<<<<< HEAD
 decompress
 dME
 dGqNa
@@ -1451,8 +1439,6 @@ divisor
 delta
 dx
 dy
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 of
 organization
 or
@@ -1559,10 +1545,8 @@ official
 oKwXvAxv
 odqMjIr
 olYR
-<<<<<<< HEAD
 ordinate
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+optimize
 networking
 networks
 network
@@ -1639,11 +1623,9 @@ nV
 nb
 nVbJuRNf
 naive
-<<<<<<< HEAD
 neighboring
 neighbor
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+neetcode
 ancient
 are
 area
@@ -1819,14 +1801,13 @@ aKtC
 abzi
 avxPdehc
 assumed
-<<<<<<< HEAD
 atmost
 assumption
 absurdly
 auto
 abscissa
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+approaches
+anagram
 btw
 by
 be
@@ -1942,13 +1923,10 @@ bascially
 bjK
 boundary
 bit
-<<<<<<< HEAD
 boundaries
 bQvdl
 bjqQ
 bool
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 made
 model
 moderate
@@ -2102,13 +2080,10 @@ mavoY
 moved
 multiplications
 mod
-<<<<<<< HEAD
 modified
 mavU
 mouth
 maC
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 layers
 large
 lowest
@@ -2213,6 +2188,7 @@ lets
 leftmost
 lNj
 lDOP
+linearly
 The
 There
 Transmission
@@ -2282,11 +2258,8 @@ TNjm
 TkIxu
 TQ
 TPIr
-<<<<<<< HEAD
 TPR
 TZ
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 Aspect
 Area
 ABF
@@ -2367,10 +2340,7 @@ ALPi
 Atku
 APkaHm
 Applications
-<<<<<<< HEAD
 AmEhj
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 LAN
 Local
 Limited
@@ -2439,10 +2409,7 @@ Ld
 LO
 LScKpvEk
 LuD
-<<<<<<< HEAD
 LLQNcLE
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 Network
 Needs
 NL
@@ -2498,10 +2465,7 @@ Notes
 NKBWSRwE
 NmMr
 Number
-<<<<<<< HEAD
 Naive
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 MAN
 Metropolitan
 May
@@ -2580,11 +2544,9 @@ MOCs
 MuIps
 Min
 Max
-<<<<<<< HEAD
 MwVAE
 Mathematically
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+Maintain
 WAN
 Wide
 Wired
@@ -2709,12 +2671,9 @@ gcd
 glkHQDfp
 gQjv
 gaRaWbv
-<<<<<<< HEAD
 greatest
 guy
 greater
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 City
 Coverage
 Connectivity
@@ -2856,10 +2815,7 @@ Getting
 General
 GTdqE
 GReVTTB
-<<<<<<< HEAD
 GCD
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 Varies
 VPD
 VV
@@ -3052,11 +3008,8 @@ excluding
 eMeXv
 emzCtVKo
 egQl
-<<<<<<< HEAD
 elevation
 enOTr
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 Entire
 Examples
 Easier
@@ -3121,13 +3074,10 @@ EGVyRI
 Eyv
 EbPsnedJ
 EiuHmWR
-<<<<<<< HEAD
 Excalidraw
 EBvSiR
 EPawuLA
 Euclidean
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 region
 robust
 raw
@@ -3294,15 +3244,14 @@ ro
 rbdjLPUJ
 recursively
 recurrence
-<<<<<<< HEAD
 raining
 rise
 realize
 rkVIPjV
 relations
 remainder
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+resultant
+revise
 High
 Home
 Higher
@@ -3468,11 +3417,10 @@ hu
 hNUf
 haGNzHAU
 hx
-<<<<<<< HEAD
 heightMap
 holding
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+highest
+hashmap
 Privately
 Public
 PNG
@@ -3540,10 +3488,7 @@ Pratt
 Pl
 PUvFS
 PsalM
-<<<<<<< HEAD
 PBn
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 privately
 publicly
 private
@@ -3709,7 +3654,6 @@ pGFuGANo
 po
 pattern
 power
-<<<<<<< HEAD
 palette
 pVigolXh
 pdeWR
@@ -3718,8 +3662,8 @@ pq
 pushing
 pop
 pwkD
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+popping
+preserve
 wide
 wireless
 wired
@@ -3827,12 +3771,9 @@ wUB
 wQiW
 wC
 wWTLrZ
-<<<<<<< HEAD
 water
 wierd
 watering
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 Requires
 Relatively
 RY
@@ -3989,11 +3930,8 @@ vDU
 vATUd
 vtIWV
 vZUZG
-<<<<<<< HEAD
 volume
 vector
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 DLL
 DFf
 Dy
@@ -4063,11 +4001,8 @@ DzVCd
 DNKYShVl
 DoLah
 DGkTXBa
-<<<<<<< HEAD
 Decompress
 DPLh
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 zl
 zg
 zP
@@ -4306,10 +4241,7 @@ BMImhHC
 BtO
 BevyeF
 BSencXb
-<<<<<<< HEAD
 BOd
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 JR
 JX
 JFIF
@@ -4344,10 +4276,7 @@ JathfR
 Je
 JRBB
 JXkhTBxC
-<<<<<<< HEAD
 JHqOku
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 UiT
 UiY
 Ug
@@ -4395,10 +4324,8 @@ UYK
 UFsN
 UpJ
 UUNo
-<<<<<<< HEAD
 UmasmjsK
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
+Use
 kOY
 kk
 kR
@@ -4452,11 +4379,8 @@ kth
 kNVUt
 kdvF
 kMx
-<<<<<<< HEAD
 knew
 kb
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 Yn
 YA
 Yy
@@ -4523,10 +4447,7 @@ ZJ
 ZjdFaqPv
 ZRQ
 ZtnjID
-<<<<<<< HEAD
 ZS
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 yO
 yCU
 yo
@@ -4717,10 +4638,7 @@ Feel
 FS
 FM
 FtWMUFgs
-<<<<<<< HEAD
 FQlo
-=======
->>>>>>> b4134c0139b10cac0fbb64dd570820e60a9545e2
 Xk
 Xh
 XO
