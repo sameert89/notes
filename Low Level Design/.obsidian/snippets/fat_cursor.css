@@ -1,0 +1,11 @@
+/* Make the Vim block cursor wider and more visible */
+.cm-fat-cursor .CodeMirror-cursor {
+    width: 0.7em !important; /* Adjust this number to make it thicker */
+    background: #ff8c00 !important; /* Change the color if you want it to pop */
+    opacity: 0.8;
+}
+
+/* Optional: Ensure it doesn't disappear when blinking */
+.cm-fat-cursor .CodeMirror-cursor {
+    visibility: visible !important;
+}
