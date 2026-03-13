@@ -26,7 +26,8 @@
       "key": "H"
     }
   ],
-  "obsidian-excalidraw-plugin:excalidraw-autocreate-and-embed": [
+  "obsidian-excalidraw-plugin:save": [],
+  "obsidian-excalidraw-plugin:excalidraw-autocreate-and-embed-new-tab": [
     {
       "modifiers": [
         "Mod",
