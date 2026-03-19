@@ -8,7 +8,7 @@
   "blue-topaz-theme@@font-family-vault": "'Coolvetica Rg', 'Segoe UI Emoji'",
   "blue-topaz-theme@@bg-panel-page-option-dark": "panel-page-bg-theme-dark-random",
   "blue-topaz-theme@@background-image-settings-markdown-page-options": "background-image-settings-markdown-page-sea-and-sky",
-  "Blue-Topaz-Codebox-Highlight@@code-theme-selection": "code-theme-dracula",
+  "Blue-Topaz-Codebox-Highlight@@code-theme-selection": "code-theme-sublime",
   "Blue-Topaz-Codebox-Highlight@@code-box-style-option": "codebox-default-style",
   "blue-topaz-theme@@background-notebook-liked-switch": false,
   "blue-topaz-theme@@notebook-liked-markdown-page-options": "notebook-liked-markdown-page-dotted-notebook-1",
