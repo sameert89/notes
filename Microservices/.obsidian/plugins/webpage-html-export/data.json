@@ -1,95 +1,5 @@
 {
   "settingsVersion": "1.8.01",
-  "makeOfflineCompatible": false,
-  "inlineAssets": false,
-  "includePluginCSS": "highlightr-plugin",
-  "includeSvelteCSS": true,
-  "titleProperty": "title",
-  "customHeadContentPath": "C:\\\\Users\\samee\\Documents\\Projects\\notes\\common_obsidian_scripts\\WebpageHtmlExportFixIcons.html",
-  "faviconPath": "",
-  "documentWidth": "40em",
-  "sidebarWidth": "20em",
-  "minOutlineCollapse": 2,
-  "startOutlineCollapsed": false,
-  "allowFoldingHeadings": true,
-  "allowFoldingLists": true,
-  "allowResizingSidebars": true,
-  "logLevel": "warning",
-  "minifyHTML": true,
-  "makeNamesWebStyle": true,
-  "onlyExportModified": true,
-  "deleteOldFiles": true,
-  "addThemeToggle": true,
-  "addOutline": true,
-  "addFileNav": true,
-  "addSearchBar": true,
-  "addGraphView": true,
-  "addTitle": true,
-  "addRSSFeed": true,
-  "siteURL": "",
-  "authorName": "",
-  "vaultTitle": "Microservices",
-  "exportPreset": "online",
-  "openAfterExport": false,
-  "graphAttractionForce": 1,
-  "graphLinkLength": 10,
-  "graphRepulsionForce": 150,
-  "graphCentralForce": 3,
-  "graphEdgePruning": 100,
-  "graphMinNodeSize": 3,
-  "graphMaxNodeSize": 7,
-  "showDefaultTreeIcons": false,
-  "emojiStyle": "Native",
-  "defaultFileIcon": "lucide//file",
-  "defaultFolderIcon": "lucide//folder",
-  "defaultMediaIcon": "lucide//file-image",
-  "exportPath": "C:\\\\Users\\samee\\Documents\\Projects\\notes\\server\\public\\Microservices",
-  "filesToExport": [
-    [
-      "ACID.md",
-      "Advantages & Disadvantages of Microservices.md",
-      "BFF.md",
-      "Bounded Contexts.md",
-      "CAP Theorem.md",
-      "CDN.md",
-      "Cohesion & Coupling.md",
-      "Commands VS Requests.md",
-      "Communication Between Microservices.md",
-      "Communication Protocols.md",
-      "Container Orchestration.md",
-      "Containers and Kubernetes.md",
-      "Continuous Integration.md",
-      "Correlation ID.md",
-      "Database Transactions.md",
-      "Deployment.md",
-      "Domain Driven Design.md",
-      "Functions.md",
-      "GraphQL.md",
-      "HATEOAS.md",
-      "How to decompose Monoliths.md",
-      "index.md",
-      "Kafka.md",
-      "Key Concepts of Microservices.md",
-      "Log Aggregation and Distributed Tracing.md",
-      "Message Brokers.md",
-      "Microservices.md",
-      "Monitoring & Observability.md",
-      "Monoliths.md",
-      "Monoliths Are Not BAD.md",
-      "Names.md",
-      "Problems around Data Decomposition.md",
-      "Proxies and Reverse Proxies.md",
-      "Resiliency.md",
-      "REST.md",
-      "RPC.md",
-      "Scaling.md",
-      "Security.md",
-      "Service Oriented Architecture.md",
-      "Testing.md",
-      "Types of Systems.md",
-      "Virtualization.md"
-    ]
-  ],
   "exportOptions": {
     "createDocumentContainer": true,
     "keepModHeaderFooter": false,
@@ -145,6 +55,7 @@
       "Types of Systems.md",
       "Virtualization.md"
     ],
+    "useFallbackRenderer": false,
     "addBodyClasses": true,
     "addMathjaxStyles": true,
     "addHeadTag": true,
@@ -153,22 +64,24 @@
       "enabled": true,
       "unavailable": false,
       "alwaysEnabled": false,
-      "displayTitle": "Backlinks",
+      "hideSettingsButton": false,
       "featurePlacement": {
         "selector": ".footer",
         "type": "start"
-      }
+      },
+      "displayTitle": "Backlinks"
     },
     "tagOptions": {
       "featureId": "tags",
       "enabled": true,
       "unavailable": false,
       "alwaysEnabled": false,
-      "displayTitle": "",
+      "hideSettingsButton": false,
       "featurePlacement": {
         "selector": ".header .data-bar",
         "type": "end"
       },
+      "displayTitle": "",
       "showInlineTags": true,
       "showFrontmatterTags": true
     },
@@ -177,29 +90,31 @@
       "enabled": true,
       "unavailable": false,
       "alwaysEnabled": false,
-      "displayTitle": "",
+      "hideSettingsButton": false,
       "featurePlacement": {
         "selector": ".header .data-bar",
         "type": "start"
-      }
+      },
+      "displayTitle": ""
     },
     "propertiesOptions": {
       "featureId": "properties",
       "enabled": true,
       "unavailable": false,
       "alwaysEnabled": false,
-      "displayTitle": "Properties",
+      "hideSettingsButton": false,
       "featurePlacement": {
         "selector": ".header",
         "type": "start"
-      }
+      },
+      "displayTitle": "Properties"
     },
     "fileNavigationOptions": {
       "featureId": "file-navigation",
       "enabled": true,
       "unavailable": false,
       "alwaysEnabled": false,
-      "displayTitle": "",
+      "hideSettingsButton": false,
       "featurePlacement": {
         "selector": "#left-sidebar-content",
         "type": "end"
@@ -218,22 +133,24 @@
       "enabled": true,
       "unavailable": false,
       "alwaysEnabled": false,
-      "displayTitle": "Search...",
+      "hideSettingsButton": false,
       "featurePlacement": {
         "selector": "#left-sidebar .topbar-content",
         "type": "start"
-      }
+      },
+      "displayTitle": "Search..."
     },
     "outlineOptions": {
       "featureId": "outline",
       "enabled": true,
       "unavailable": false,
       "alwaysEnabled": false,
-      "displayTitle": "Outline",
+      "hideSettingsButton": false,
       "featurePlacement": {
         "selector": "#right-sidebar-content",
         "type": "end"
       },
+      "displayTitle": "Outline",
       "startCollapsed": false,
       "minCollapseDepth": 0
     },
@@ -242,22 +159,24 @@
       "enabled": true,
       "unavailable": false,
       "alwaysEnabled": false,
-      "displayTitle": "",
+      "hideSettingsButton": false,
       "featurePlacement": {
         "selector": "#right-sidebar .topbar-content",
         "type": "start"
-      }
+      },
+      "displayTitle": ""
     },
     "graphViewOptions": {
       "featureId": "graph-view",
       "enabled": true,
       "unavailable": false,
       "alwaysEnabled": false,
-      "displayTitle": "Graph View",
+      "hideSettingsButton": false,
       "featurePlacement": {
         "selector": "#right-sidebar-content",
         "type": "start"
       },
+      "displayTitle": "Graph View",
       "showOrphanNodes": true,
       "showAttachments": false,
       "allowGlobalGraph": true,
@@ -275,6 +194,7 @@
       "enabled": true,
       "unavailable": false,
       "alwaysEnabled": false,
+      "hideSettingsButton": false,
       "allowResizing": true,
       "allowCollapsing": true,
       "rightDefaultWidth": "20em",
@@ -285,7 +205,7 @@
       "enabled": true,
       "unavailable": false,
       "alwaysEnabled": false,
-      "displayTitle": "",
+      "hideSettingsButton": false,
       "featurePlacement": {
         "selector": "head",
         "type": "end"
@@ -298,6 +218,7 @@
       "enabled": true,
       "unavailable": false,
       "alwaysEnabled": true,
+      "hideSettingsButton": false,
       "allowFoldingLists": true,
       "allowFoldingHeadings": true,
       "documentWidth": "40em"
@@ -307,9 +228,16 @@
       "enabled": false,
       "unavailable": false,
       "alwaysEnabled": false,
+      "hideSettingsButton": false,
       "siteUrl": "https://notes.kernelrider.in/Microservices",
-      "siteName": "Microservices",
       "authorName": "Sameer Trivedi"
+    },
+    "linkPreviewOptions": {
+      "featureId": "link-preview",
+      "enabled": true,
+      "unavailable": false,
+      "alwaysEnabled": false,
+      "hideSettingsButton": true
     },
     "relativeHeaderLinks": false,
     "includeJS": true,
@@ -326,6 +254,7 @@
     "flattenExportPaths": false,
     "fixLinks": true,
     "faviconPath": "",
+    "siteName": "Microservices",
     "iconEmojiStyle": "Native",
     "exportRoot": "",
     "includePluginCss": [
@@ -334,7 +263,13 @@
     "includeStyleCssIds": [],
     "autoDisposeWebpages": true
   },
+  "logLevel": "warning",
+  "titleProperty": "title",
   "rssDateProperty": "date",
+  "onlyExportModified": true,
+  "deleteOldFiles": true,
+  "exportPreset": "online",
+  "openAfterExport": false,
   "filePickerBlacklist": [
     "(^|\\/)node_modules\\/",
     "(^|\\/)dist\\/",

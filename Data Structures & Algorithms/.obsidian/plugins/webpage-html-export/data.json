@@ -1,5 +1,5 @@
 {
-  "settingsVersion": "1.8.01",
+  "settingsVersion": "0.0.0",
   "exportOptions": {
     "createDocumentContainer": true,
     "keepModHeaderFooter": false,
@@ -13,9 +13,10 @@
     "exportPath": "C:\\Users\\samee\\Documents\\Projects\\notes\\server\\public\\Data Structures & Algorithms",
     "filesToExport": [
       "Arrays",
+      "Backtracking",
       "Graphs",
       "Heaps",
-      "Leetcode Contests",
+      "Math",
       "Miscellaneous",
       "Problems",
       "Queues",
@@ -65,7 +66,7 @@
         "selector": ".header .data-bar",
         "type": "start"
       },
-      "displayTitle": ""
+      "displayTitle": "Aliases"
     },
     "propertiesOptions": {
       "featureId": "properties",
@@ -180,7 +181,7 @@
         "selector": "head",
         "type": "end"
       },
-      "sourcePath": "..\\common_obsidian_scripts\\WebpageHtmlExportFixes.html",
+      "sourcePath": ".obsidian\\snippets\\sidebar-black.html",
       "includePath": "site-lib/html/custom-head.html"
     },
     "documentOptions": {
@@ -194,7 +195,7 @@
       "documentWidth": "40em"
     },
     "rssOptions": {
-      "featureId": "obsidian-document",
+      "featureId": "rss",
       "enabled": false,
       "unavailable": false,
       "alwaysEnabled": false,
@@ -218,7 +219,7 @@
     "inlineFonts": false,
     "inlineOther": false,
     "combineAsSingleFile": false,
-    "offlineResources": true,
+    "offlineResources": false,
     "themeName": "",
     "slugifyPaths": true,
     "flattenExportPaths": false,
@@ -228,18 +229,17 @@
     "iconEmojiStyle": "Native",
     "exportRoot": "",
     "includePluginCss": [
-      "highlightr-plugin",
+      "highlightr-styles",
       "excalidraw-embedded-light",
       "excalidraw-embedded-dark",
-      "highlightr-styles",
-      "obsidian-folder-index"
+      "highlightr-plugin",
+      "live-wallpaper"
     ],
     "includeStyleCssIds": [
-      "highlightr-plugin",
+      "highlightr-styles",
       "excalidraw-embedded-light",
       "excalidraw-embedded-dark",
-      "highlightr-styles",
-      "obsidian-folder-index"
+      "highlightr-plugin"
     ],
     "autoDisposeWebpages": true
   },
@@ -249,7 +249,7 @@
   "onlyExportModified": true,
   "deleteOldFiles": true,
   "exportPreset": "online",
-  "openAfterExport": false,
+  "openAfterExport": true,
   "filePickerBlacklist": [
     "(^|\\/)node_modules\\/",
     "(^|\\/)dist\\/",
