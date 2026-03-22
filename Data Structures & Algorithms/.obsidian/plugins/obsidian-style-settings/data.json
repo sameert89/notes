@@ -10,6 +10,7 @@
   "blue-topaz-theme@@background-settings-workplace-theme-light": "background-settings-workplace-waves2-light",
   "blue-topaz-theme@@saturate-4-bg": 2,
   "blue-topaz-theme@@disable-auto-hide-header": true,
-  "blue-topaz-theme@@bt-background-split-container@@light": "#FFFFFF1A",
-  "blue-topaz-theme@@bt-background-split-container@@dark": "#FFFFFF1F"
+  "blue-topaz-theme@@bt-background-split-container@@light": "#FFFFFF00",
+  "blue-topaz-theme@@bt-background-split-container@@dark": "#FFFFFF00",
+  "blue-topaz-theme@@tag-style-option": "rainbow-tag"
 }
