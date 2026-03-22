@@ -232,7 +232,8 @@
       "highlightr-styles",
       "excalidraw-embedded-light",
       "excalidraw-embedded-dark",
-      "highlightr-plugin"
+      "highlightr-plugin",
+      "live-wallpaper"
     ],
     "includeStyleCssIds": [
       "highlightr-styles",
