@@ -1,18 +1,132 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Rust]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Rust</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Sun, 22 Mar 2026 19:31:08 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Sun, 22 Mar 2026 19:30:52 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[Dependency Injection]]></title><description><![CDATA[Dependency Injection in rust is quite simple since its a functional programming language. You can pass dependencies as function parameters or use traits for more complex scenarios.// Define a trait for a service
-trait DataService { fn get_data(&amp;self) -&gt; String;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Rust]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Rust</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Sun, 22 Mar 2026 19:53:46 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Sun, 22 Mar 2026 19:53:37 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[Stack and Heap]]></title><description><![CDATA[Yes these are the same ones you studied in Operating Systems class. Stack and Heap are 2 memory regions where data is stored during program execution. Good old stack, below is the diagram which tells you "where" this stack isProcessMemoryStaticHeapCodeThreadRegistersStackThreadRegistersStackThreadRegistersStackLike any other stack, this is also a LIFO structure. Very fast for allocation and deallocation.In Rust stack is used for storing:
+Scalar types (integers, booleans, characters)
+Fixed size arrays
+Structs and enums where all fields have known sizes
+Function parameters etc.
+The location of heap is also mentioned in the above drawing. This is used for data which is unknown or has variable type at compile time. Allocation is slower than the stack and pointers are required for data access.Rust stores the following in heap:
+Data types with dynamic or unknown size, such as Vec&lt;T&gt;
+Large data, only pointer to the data resides on the stack.
+If data needs to outlive the function or scope where it was created, heap allocation is often necessary.
+Box pointer 📦
+All values in Rust are stack allocated by default. Values can be&nbsp;boxed&nbsp;(allocated on the heap) by creating a&nbsp;Box&lt;T&gt;. A box is a smart pointer to a heap allocated value of type&nbsp;T. When a box goes out of scope, its destructor is called, the inner object is destroyed, and the memory on the heap is freed.
+Memory safety without a Garbage Collector?
+Rust claims to be memory safe, but it does not have a garbage collector. Well there are a lot of tricks in the crabs claws, one of them is automatically calling the destructor of an allocated value once it goes out of scope.
+See also: <a data-tooltip-position="top" aria-label="Traits > ^1a31c0" data-href="Traits#^1a31c0" href="advanced/traits.html#^1a31c0" class="internal-link" target="_self" rel="noopener nofollow">Copy trait</a>]]></description><link>stack-and-heap.html</link><guid isPermaLink="false">Stack and Heap.md</guid><pubDate>Sun, 22 Mar 2026 19:51:48 GMT</pubDate></item><item><title><![CDATA[Associated Types]]></title><description><![CDATA[An associated types is a placeholder for a type that is required within a trait. struct Lunch { cost: f64
+} impl Add for Lunch { type Output = Lunch; // Output is an associated type, since Lunch + Lunch may not be a lunch as far as rust is concerned fn add(self, other: Lunch) -&gt; Lunch { Lunch { cost: self.cost + other.cost } }
 }
-// Implement the trait for a concrete type
-struct ApiService;
-impl DataService for ApiService { fn get_data(&amp;self) -&gt; String { "Data from API".to_string() }
+Associated types can be constrained in trait bounds by specifying their concrete types directly in the angle brackets or using where clauses. This allows you to enforce specific type requirements on implementations.trait Calculator { type Input; type Output; fn calculate(&amp;self, input: Self::Input) -&gt; Self::Output;
+} // Implement for a simple struct
+struct DoubleCalculator; impl Calculator for DoubleCalculator { type Input = f64; type Output = f64; fn calculate(&amp;self, input: Self::Input) -&gt; Self::Output { input * 2.0 }
+} // A generic function that requires specific associated types, ofcourse you can do it without the where clause &lt;T: Calculator&lt;Input = 64, Output = f64&gt;
+fn process_with_specific_types&lt;T&gt;(calc: T, value: f64) -&gt; f64
+where T: Calculator&lt;Input = f64, Output = f64&gt;,
+{ calc.calculate(value)
 }
-// Creating a mock implementation for testing
-mod tests { use super::*; struct MockService; impl DataService for MockService { fn get_data(&amp;self) -&gt; String { "Mock Data".to_string() } } #[test] fn test_get_data() { let mock_service = MockService; assert_eq!(mock_service.get_data(), "Mock Data"); }
-} // Using generics instead of concrete types
-fn fetch_data&lt;T: DataService&gt;(service: &amp;T) -&gt; String { // T just has to implement data service, hence we can use our mock service here service.get_data()
-} // Example with a structs
-struct DataFetcher&lt;T: DataService&gt; { service: T,
+]]></description><link>associated-types.html</link><guid isPermaLink="false">Associated Types.md</guid><pubDate>Sun, 22 Mar 2026 19:31:00 GMT</pubDate></item><item><title><![CDATA[Loops]]></title><description><![CDATA[⚠️ Another because I said so syntax ahead-loop { println!("Infinite loop");
 }
-]]></description><link>dependency-injection.html</link><guid isPermaLink="false">Dependency Injection.md</guid><pubDate>Sun, 22 Mar 2026 19:26:36 GMT</pubDate></item><item><title><![CDATA[Testing]]></title><description><![CDATA[Testing verifies that code behaves as expected and protects against regressions before shipping changes.
+In the loop keyword you have to manually break out of the loop using break statement when you are done. There is also a continue statement.fn main() { for i in 1..10 { if i == 3 { continue; } if i == 7 { break; } println!("{}", i); }
+} The loop loop can return a value as well, this is done using the break statement break value_to_return; This only works in the loop loop
+Standard while loop nothing special.let mut i = 0;
+while i &lt; 15 { i += 1; println!("{i}");
+} Break and continue work the same way but unlike loop loop, it cannot return via break.
+The good ol' for-loopfn main() { // 1. Basic for loop over a range (exclusive end) println!("Basic range (1..6):"); for i in 1..6 { println!(" {}", i); // Prints 1 to 5 } // 2. Inclusive range (includes the end) println!("\nInclusive range (1..=6):"); for i in 1..=6 { println!(" {}", i); // Prints 1 to 6 } // 3. Iterating over an array or a vector let fruits = ["Apple", "Orange", "Banana"]; println!("\nArray iteration:"); for fruit in fruits { println!(" {}", fruit); // Prints each fruit } // 4. Index-based iteration over an array let colors = ["red", "green", "blue"]; println!("\nIndex-based iteration:"); for i in 0..colors.len() { println!(" The color name is {}", colors[i]); // Uses index to access element } // 5. Using enumerate to get (index, value) pairs let items = ["x", "y", "z"]; println!("\nEnumerate for index and value:"); for (index, value) in items.iter().enumerate() { println!(" {}: {}", index, value); // Prints index and value } // 6. Reverse iteration (descending order) println!("\nRange reversed (1..6).rev():"); for i in (1..6).rev() { println!(" {}", i); // Prints 5 to 1 } // 7. Stepping by intervals (e.g., every 2nd number) println!("\nRange with step_by(2) (0..10).step_by(2):"); for i in (0..10).step_by(2) { println!(" {}", i); // Prints 0, 2, 4, 6, 8 }
+}
+Applies a consistent operation to every iterator element. It accepts a closure.let words = "This is a sententce.".split_whitespace();
+words.for_each(|word| println!("{},", word));
+Read More: <a data-href="Recursions" href=".html" class="internal-link" target="_self" rel="noopener nofollow">Recursions</a>, <a data-href="Closures" href="closures.html" class="internal-link" target="_self" rel="noopener nofollow">Closures</a>, <a data-href="Iterators" href="iterators.html" class="internal-link" target="_self" rel="noopener nofollow">Iterators</a>]]></description><link>loops.html</link><guid isPermaLink="false">Loops.md</guid><pubDate>Sun, 22 Mar 2026 19:31:00 GMT</pubDate></item><item><title><![CDATA[Rand Crate]]></title><description><![CDATA[rand is an external crate in Rust that provides functionality for generating random numbers and performing various randomization tasks.To use the rand crate in your Rust project, you need to add it as a dependency in your Cargo.toml file.[dependencies]
+rand = "0.8" # Check https://crates.io/crates/rand for the latest version
+use rand::Rng;
+// Generate a random number of basic types
+let random_number: u32 = rand::random(); println!("Random number: {}", random_number); // Generating multiple random numbers
+use rand::rng; let mut my_rng = rng(); // the random() method auto generates this ThreadRng instance, its efficient to generate it once and reuse for _ in 0..100 { let n = my_rng.random::&lt;u32&gt;(); // this by default generates numbers in the full range of u32, if you want to limit the range, use gen_range or multiply or divide by powers of 10 let m = my_rng.random_range(1..101); // generates a number between 1 and 100 inclusive let b = my_rng.random_bool(0.75); // generates a random boolean value, takes arg as probability of true, default is 0.5 let p = my_rng.random_ratio(1, 6); // generates a boolean like random_bool, but the change depends on the ratio of the two args, here it generates true with 1/6 probability println!("Random number: {}", n);
+} // Shuffle
+use rand::seq::SliceRandom;
+let mut arr = [1, 2, 3, 4, 5];
+my_rng.shuffle(&amp;mut arr);
+println!("Shuffled array: {:?}", arr);
+]]></description><link>rand-crate.html</link><guid isPermaLink="false">Rand Crate.md</guid><pubDate>Sun, 22 Mar 2026 19:30:56 GMT</pubDate></item><item><title><![CDATA[Dates & Times]]></title><description><![CDATA[The standard library only provides basic elapsed time.use std::time::{Duration, Instant}; let now = Instant::now();
+// some code execution
+let elapsed = now.elapsed();
+println!("Elapsed time: {:.2?}", elapsed); left five_seconds = Duration::from_secs(5);
+The community standard for date and time handling is the chrono crate.Khronos
+In greek mythology, Chronos (or Khronos) aka Protogenos is the personification of time. In Orphic Lineage it is said that Khronos emerged that the very beginning of the universe, Khronos along with his consort Ananke (necessity) produced Chaos, Aether (light) and Erebus (darkness). Khronos created a "World Egg" within Aether, from this egg hatched Phanes who brought forth the universe as we know it. He is often depicted as a serpentine being with 3 heads (man, bull, and lion) representing the past, present, and future. To use chrono, add it to your Cargo.toml:[dependencies]
+chrono = "0.4" # Check https://crates.io/crates/chrono for the latest version
+The NaiveDate struct represents a calendar date without timezone information.use chrono::NaiveDate;
+let date = NaiveDate::from_ymd_opt(2023, 10, 5); // returns an option enum, because the values may be invalid // Parsing strings
+let parsed_date = NaiveDate::parse::&lt;NaiveDate&gt;("2023-10-05").unwrap();
+The TimeDelta struct represents a duration of time.use chrono::{NaiveDate, TimeDelta};
+// using the constructor
+let five_seconds = TimeDelta::seconds(5, 0); // secs, nanos let five_minutes = TimeDelta::minutes(5); // there are hours, days, weeks etc. as well // arithmetic operations
+let total_duration = five_seconds + five_minutes;
+let difference = five_minutes - five_seconds; // adding and subtracting
+use std::ops::{Add, Sub}; let birthday = NaiveDate::from_ymd_opt(1990, 1, 1).unwrap();
+let next_birthday = birthday.add(TimeDelta::days(365));
+The NaiveTime struct represents a time of day without timezone information, while NaiveDateTime combines both date and time.let four_thirty_three_pm = NaiveTime::from_hms_opt(16, 33, 0).unwrap(); // uses 24 hour format let meeting = NaiveDateTime::new( NaiveDate::from_ymd_opt(2025, 10, 5).unwrap(), NaiveTime::from_hms_opt(14, 0, 0).unwrap(),
+)
+The DateTime struct represents a date and time with timezone information. You can use the chrono-tz crate for timezone support.[dependencies]
+chrono-tz = "0.6" # Check https://crates.io/crates/chrono-tz for the latest version
+chrono = "0.4"
+use chrono::prelude::*; let system_time = Local::now(); // current date and time in local timezone
+let utc_time = Utc::now(); // current date and time in UTC // extracting time and date components
+println!("Year: {}", system_time.year()); // hour minute second etc. are also available
+println!("Naive Date: {}", system_time.date_naive());
+println!("Naive Time: {}", system_time.time()); // offset
+println!("Offset from UTC: {}", system_time.offset()); // this takes into account daylight savings as well // Converting timezones
+use chrono_tz::Tz;
+let new_york_time: DateTime&lt;Tz&gt; = system_time.with_timezone(&amp;chrono_tz::America::New_York); // passing &amp;Utc will convert to UTC // parse_from_str
+// there is the parse method which we already saw, but date time strings come in various formats, so we can use parse_from_str to specify the format
+let independence_date_str = "15-Aug-1947 00:00:00 +0530";
+let independence_date = DateTime::parse_from_str( independence_date_str, "%d-%b-%Y %H:%M:%S %z", // format string
+); // returns a Result enum // format method, essentially the reverse of parse
+let formatted_date = independence_date .unwrap() .format("%Y/%m/%d %H:%M:%S %:z") .to_string();
+Daylight Savings Time
+Daylight Savings Time (DST) is the practice of setting the clock forward by one hour during the warmer months to extend evening daylight and setting it back again in the fall. This practice can affect time calculations, especially when dealing with time zones that observe DST. It is used primarily in NA and Europe, most countries near the equator do not use it because their daylight hours do not vary much by season.
+]]></description><link>dates-&amp;-times.html</link><guid isPermaLink="false">Dates &amp; Times.md</guid><pubDate>Sun, 22 Mar 2026 19:30:56 GMT</pubDate></item><item><title><![CDATA[Smart Pointers - Box]]></title><description><![CDATA[A variable that stores a memory address without any safety guarantees. Common in languages like C and C++ (called references interchangeably). But in Rust references are safe and have strict borrowing rules. Rust offers raw pointers but they are generally not recommended unless absolutely necessary.let mut password = String::from("test-123"); let password_ptr = &amp;raw const password; // immutable raw pointer let password_ptr2: *const String = &amp;password;// immutable raw pointer let password_mut_ptr = &amp;raw mut password; // mutable raw pointer, allowed let password_mut_ptr2: *mut String = &amp;mut password; // allowed
+The compiler is fine with above, it still refuses to compile when we try to dereference raw pointers directly.println!("Password is: {}", *password_ptr); // error
+This is where unsafe block comes into play.unsafe{ println!("Password is: {}", *password_ptr); // works fine as long as the memory is valid
+}
+struct Node&lt;T&gt; { value: T, next: Option&lt;Box&lt;Node&lt;T&gt;&gt;&gt;,
+} pub struct LinkedList&lt;T&gt; { head: Option&lt;Box&lt;Node&lt;T&gt;&gt;&gt;,
+} impl&lt;T&gt; LinkedList&lt;T&gt; { pub fn new() -&gt; Self { LinkedList { head: None } } pub fn push_front(&amp;mut self, value: T) { let new_node = Box::new(Node { value, next: self.head.take(), // .take() on Option replaces it with None and gives ownership of the original value }); self.head = Some(new_node); } pub fn append(&amp;mut self, value: T) { let mut curr = &amp;mut self.head; // Traverse until we find the None slot while let Some(node) = curr { curr = &amp;mut node.next; } *curr = Some(Box::new(Node { value, next: None })); }
+} fn main() { let mut my_list = LinkedList::&lt;i32&gt;::new(); // Must be mut my_list.push_front(0); my_list.append(1); // Use as_ref() to borrow the value instead of moving it if let Some(node) = my_list.head.as_ref() { println!("{}", node.value); }
+} Vectors are smart pointers as well.
+A binary tree where in order traversal is sorted. Each node has at most two children. Left child is less than parent, right child is greater than parent.use std::fmt::Display; struct TreeNode&lt;T&gt; { value: T, left: Option&lt;Box&lt;TreeNode&lt;T&gt;&gt;&gt;, right: Option&lt;Box&lt;TreeNode&lt;T&gt;&gt;&gt;,
+} struct BinarySearchTree&lt;T&gt; { root: Option&lt;Box&lt;TreeNode&lt;T&gt;&gt;&gt;,
+} impl&lt;T: Ord&gt; BinarySearchTree&lt;T&gt;{ pub fn new() -&gt; Self { BinarySearchTree { root: None } } pub fn insert(&amp;mut self, value: T) { let mut trav = &amp;mut self.root; loop { match trav { Some(node) =&gt; { if value &lt; node.value { trav = &amp;mut node.left; } else if value &gt; node.value { trav = &amp;mut node.right; } else { return; // duplicate } } None =&gt; { *trav = Some(Box::new(TreeNode { value, left: None, right: None, })); return; } } } }
+}
+impl&lt;T: Ord + Display&gt; BinarySearchTree&lt;T&gt; { pub fn print_in_order(&amp;self){ } pub fn print_in_order_rec(&amp;self, root: &amp;Option&lt;Box&lt;TreeNode&lt;T&gt;&gt;&gt;){ if root.is_none(){ return; } if root.as_ref().unwrap().left.is_some() { self.print_in_order_rec(&amp;root.as_ref().unwrap().left); } println!("{},", root.as_ref().unwrap().value); if root.as_ref().unwrap().right.is_some() { self.print_in_order_rec(&amp;root.as_ref().unwrap().right); } }
+}
+fn main(){ let mut first_tree = BinarySearchTree::&lt;i32&gt;::new(); first_tree.insert(1); first_tree.insert(2);
+}
+A smart pointer is a type that behaves like a pointer, but it can store additional information and perform more actions compared to plain pointers/references. Most smart pointers are built with structs, structs grant he capability to store data and implement behavior through methods.
+Unlike normal references where the original owner of the data is responsible for deallocation, smart pointers often own and manage their own data, typically on the heap. A String is an example of a smart pointer, it stores a pointer to the heap, it also stores extra metadata like length and capacity.
+The Box&lt;T&gt; is an owned type that is a container around the raw pointer that holds memory address of the allocated T data on the heap.let b = Box::new(5);
+println!("b = {}", *b); let new_b = b; // ownership of the heap data is moved to new_b
+A common use case for Box&lt;T&gt; is to create recursive data structures like linked lists.#[derive(Debug)]
+enum LinkedList { Empty, Node{ value: i32, next: Box&lt;LinkedList&gt; }, // if you do LinkedList instead of Box&lt;LinkedList&gt; it will cause infinite size error // you can do a plain reference, but the reference does not own the data and that must live longer than the list, it becomes difficult to manage lifetimes }
+In case of box pointers you can use * operator to get the data that pointer is pointing to, this behavior is enabled by implementing the Deref trait for the smart pointer type. The Deref trait requires you to implement the deref method that returns a reference to the data inside the smart pointer. Similaryly there is a DerefMut trait that allows mutable dereferencing.use std::ops::Deref; struct CustomBox&lt;T&gt;(T); impl&lt;T&gt; CustomBox&lt;T&gt; { fn new(x: T) -&gt; CustomBox&lt;T&gt; { CustomBox(x) }
+} impl&lt;T&gt; Deref for CustomBox&lt;T&gt; { type Target = T; fn deref(&amp;self) -&gt; &amp;Self::Target { &amp;self.0 }
+} impl&lt;T&gt; DerefMut for CustomBox&lt;T&gt; { fn deref_mut(&amp;mut self) -&gt; &amp;mut Self::Target { &amp;mut self.0 }
+} fn main() { let x = 5; let y = CustomBox::new(x); assert_eq!(5, x); assert_eq!(5, *y); // deref coercion happens here let mut z = CustomBox::new(String::from("Hello")); z.push_str(", world!"); // deref coercion to &amp;mut String happens here println!("{}", *z);
+} Deref coercion, works because of the Target associated type defined in the Deref trait. When you use the dereference operator `on a smart pointer, Rust automatically calls thederefmethod to get a reference to the underlying data. For exampleStringsmart pointer's Target would bestr`, it allows chaining as well, rust keeps derefing until it matches the required type.*
+The Drop trait allows you to customize the behavior when a value goes out of scope. Smart pointers often implement the Drop trait to ensure that the memory they manage is properly deallocated when they are no longer needed.struct CustomBox&lt;T&gt;(T);
+impl&lt;T&gt; Drop for CustomBox&lt;T&gt; { fn drop(&amp;mut self) { println!("Dropping CustomBox with data: {:?}", self.0); }
+}
+fn main() { let c = CustomBox::new(String::from("Hello, world!"));
+} // c goes out of scope here, and the drop method is called
+A trait object is an instance of some type that implements a specific trait. trait Wearable { fn wear(&amp;self) -&gt; String;
+} #[derive(Debug)]
+struct Pants { size: u32,
+} impl Wearable for Pants { fn wear(&amp;self) -&gt; String { format!("Wearing pants of size {}", self.size) }
+} #[derive(Debug)]
+struct Shirt { color: String,
+} impl Wearable for Shirt { fn wear(&amp;self) -&gt; String { format!("Wearing a {} shirt", self.color) }
+} // The problem statement is I'd like to iterate over a collection of Wearable items, but they are of different types (Pants and Shirt). fn main() { let wardrobe: Vec&lt;Box&lt;dyn Wearable&gt;&gt; = vec![ Box::new(Pants { size: 32 }), Box::new(Shirt { color: String::from("blue") }), ]; //box is fixed size pointer, this is the same solution to implementing recursive data structures for item in wardrobe.iter() { println!("{}", item.wear()); }
+}
+This is also very useful when working with functions that can return different types of errors, as long as they implement the Error trait.use std::error::Error;
+fn do_something(flag: bool) -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; { if flag { Ok(()) } else { Err(Box::new(std::fmt::Error)) // returning a different error type }
+}
+Read more: <a data-tooltip-position="top" aria-label="Data Types in Rust > ^deref" data-href="Data Types in Rust#^deref" href="basics/data-types-in-rust.html#^deref" class="internal-link" target="_self" rel="noopener nofollow">Deref Coercions</a>]]></description><link>smart-pointers-box.html</link><guid isPermaLink="false">Smart Pointers - Box.md</guid><pubDate>Sun, 22 Mar 2026 19:30:54 GMT</pubDate></item><item><title><![CDATA[Testing]]></title><description><![CDATA[Testing verifies that code behaves as expected and protects against regressions before shipping changes.
 Test: A plain Rust function annotated with #[test] and executed by the test runner.
 Assertions: Statements that validate expectations in a test; an assertion either passes silently or fails the test.
 Checks whether a boolean expression is true. If false, the macro panics and fails the test.assert!(is_even(4));
@@ -60,52 +174,21 @@ fn test_customer_count(setup_dummy_customers: Vec&lt;String&gt;) { // rstest aut
 TDD is a software development approach where tests are written before the actual code. The cycle typically follows these steps:
 Write a failing test that defines a desired function or improvement.
 Write the minimum amount of code necessary to make the test pass.
-Refactor the code while ensuring all tests still pass. Red -&gt; Green -&gt; Refactor.This is encouraged for critical components to ensure correctness from the start.]]></description><link>testing.html</link><guid isPermaLink="false">Testing.md</guid><pubDate>Mon, 02 Mar 2026 05:34:03 GMT</pubDate></item><item><title><![CDATA[Smart Pointers - Box]]></title><description><![CDATA[A variable that stores a memory address without any safety guarantees. Common in languages like C and C++ (called references interchangeably). But in Rust references are safe and have strict borrowing rules. Rust offers raw pointers but they are generally not recommended unless absolutely necessary.let mut password = String::from("test-123"); let password_ptr = &amp;raw const password; // immutable raw pointer let password_ptr2: *const String = &amp;password;// immutable raw pointer let password_mut_ptr = &amp;raw mut password; // mutable raw pointer, allowed let password_mut_ptr2: *mut String = &amp;mut password; // allowed
-The compiler is fine with above, it still refuses to compile when we try to dereference raw pointers directly.println!("Password is: {}", *password_ptr); // error
-This is where unsafe block comes into play.unsafe{ println!("Password is: {}", *password_ptr); // works fine as long as the memory is valid
+Refactor the code while ensuring all tests still pass. Red -&gt; Green -&gt; Refactor.This is encouraged for critical components to ensure correctness from the start.]]></description><link>testing.html</link><guid isPermaLink="false">Testing.md</guid><pubDate>Sun, 22 Mar 2026 19:30:53 GMT</pubDate></item><item><title><![CDATA[Dependency Injection]]></title><description><![CDATA[Dependency Injection in rust is quite simple since its a functional programming language. You can pass dependencies as function parameters or use traits for more complex scenarios.// Define a trait for a service
+trait DataService { fn get_data(&amp;self) -&gt; String;
 }
-struct Node&lt;T&gt; { value: T, next: Option&lt;Box&lt;Node&lt;T&gt;&gt;&gt;,
-} pub struct LinkedList&lt;T&gt; { head: Option&lt;Box&lt;Node&lt;T&gt;&gt;&gt;,
-} impl&lt;T&gt; LinkedList&lt;T&gt; { pub fn new() -&gt; Self { LinkedList { head: None } } pub fn push_front(&amp;mut self, value: T) { let new_node = Box::new(Node { value, next: self.head.take(), // .take() on Option replaces it with None and gives ownership of the original value }); self.head = Some(new_node); } pub fn append(&amp;mut self, value: T) { let mut curr = &amp;mut self.head; // Traverse until we find the None slot while let Some(node) = curr { curr = &amp;mut node.next; } *curr = Some(Box::new(Node { value, next: None })); }
-} fn main() { let mut my_list = LinkedList::&lt;i32&gt;::new(); // Must be mut my_list.push_front(0); my_list.append(1); // Use as_ref() to borrow the value instead of moving it if let Some(node) = my_list.head.as_ref() { println!("{}", node.value); }
-} Vectors are smart pointers as well.
-A binary tree where in order traversal is sorted. Each node has at most two children. Left child is less than parent, right child is greater than parent.use std::fmt::Display; struct TreeNode&lt;T&gt; { value: T, left: Option&lt;Box&lt;TreeNode&lt;T&gt;&gt;&gt;, right: Option&lt;Box&lt;TreeNode&lt;T&gt;&gt;&gt;,
-} struct BinarySearchTree&lt;T&gt; { root: Option&lt;Box&lt;TreeNode&lt;T&gt;&gt;&gt;,
-} impl&lt;T: Ord&gt; BinarySearchTree&lt;T&gt;{ pub fn new() -&gt; Self { BinarySearchTree { root: None } } pub fn insert(&amp;mut self, value: T) { let mut trav = &amp;mut self.root; loop { match trav { Some(node) =&gt; { if value &lt; node.value { trav = &amp;mut node.left; } else if value &gt; node.value { trav = &amp;mut node.right; } else { return; // duplicate } } None =&gt; { *trav = Some(Box::new(TreeNode { value, left: None, right: None, })); return; } } } }
+// Implement the trait for a concrete type
+struct ApiService;
+impl DataService for ApiService { fn get_data(&amp;self) -&gt; String { "Data from API".to_string() }
 }
-impl&lt;T: Ord + Display&gt; BinarySearchTree&lt;T&gt; { pub fn print_in_order(&amp;self){ } pub fn print_in_order_rec(&amp;self, root: &amp;Option&lt;Box&lt;TreeNode&lt;T&gt;&gt;&gt;){ if root.is_none(){ return; } if root.as_ref().unwrap().left.is_some() { self.print_in_order_rec(&amp;root.as_ref().unwrap().left); } println!("{},", root.as_ref().unwrap().value); if root.as_ref().unwrap().right.is_some() { self.print_in_order_rec(&amp;root.as_ref().unwrap().right); } }
+// Creating a mock implementation for testing
+mod tests { use super::*; struct MockService; impl DataService for MockService { fn get_data(&amp;self) -&gt; String { "Mock Data".to_string() } } #[test] fn test_get_data() { let mock_service = MockService; assert_eq!(mock_service.get_data(), "Mock Data"); }
+} // Using generics instead of concrete types
+fn fetch_data&lt;T: DataService&gt;(service: &amp;T) -&gt; String { // T just has to implement data service, hence we can use our mock service here service.get_data()
+} // Example with a structs
+struct DataFetcher&lt;T: DataService&gt; { service: T,
 }
-fn main(){ let mut first_tree = BinarySearchTree::&lt;i32&gt;::new(); first_tree.insert(1); first_tree.insert(2);
-}
-A smart pointer is a type that behaves like a pointer, but it can store additional information and perform more actions compared to plain pointers/references. Most smart pointers are built with structs, structs grant he capability to store data and implement behavior through methods.
-Unlike normal references where the original owner of the data is responsible for deallocation, smart pointers often own and manage their own data, typically on the heap. A String is an example of a smart pointer, it stores a pointer to the heap, it also stores extra metadata like length and capacity.
-The Box&lt;T&gt; is an owned type that is a container around the raw pointer that holds memory address of the allocated T data on the heap.let b = Box::new(5);
-println!("b = {}", *b); let new_b = b; // ownership of the heap data is moved to new_b
-A common use case for Box&lt;T&gt; is to create recursive data structures like linked lists.#[derive(Debug)]
-enum LinkedList { Empty, Node{ value: i32, next: Box&lt;LinkedList&gt; }, // if you do LinkedList instead of Box&lt;LinkedList&gt; it will cause infinite size error // you can do a plain reference, but the reference does not own the data and that must live longer than the list, it becomes difficult to manage lifetimes }
-In case of box pointers you can use * operator to get the data that pointer is pointing to, this behavior is enabled by implementing the Deref trait for the smart pointer type. The Deref trait requires you to implement the deref method that returns a reference to the data inside the smart pointer. Similaryly there is a DerefMut trait that allows mutable dereferencing.use std::ops::Deref; struct CustomBox&lt;T&gt;(T); impl&lt;T&gt; CustomBox&lt;T&gt; { fn new(x: T) -&gt; CustomBox&lt;T&gt; { CustomBox(x) }
-} impl&lt;T&gt; Deref for CustomBox&lt;T&gt; { type Target = T; fn deref(&amp;self) -&gt; &amp;Self::Target { &amp;self.0 }
-} impl&lt;T&gt; DerefMut for CustomBox&lt;T&gt; { fn deref_mut(&amp;mut self) -&gt; &amp;mut Self::Target { &amp;mut self.0 }
-} fn main() { let x = 5; let y = CustomBox::new(x); assert_eq!(5, x); assert_eq!(5, *y); // deref coercion happens here let mut z = CustomBox::new(String::from("Hello")); z.push_str(", world!"); // deref coercion to &amp;mut String happens here println!("{}", *z);
-} Deref coercion, works because of the Target associated type defined in the Deref trait. When you use the dereference operator `on a smart pointer, Rust automatically calls thederefmethod to get a reference to the underlying data. For exampleStringsmart pointer's Target would bestr`, it allows chaining as well, rust keeps derefing until it matches the required type.*
-The Drop trait allows you to customize the behavior when a value goes out of scope. Smart pointers often implement the Drop trait to ensure that the memory they manage is properly deallocated when they are no longer needed.struct CustomBox&lt;T&gt;(T);
-impl&lt;T&gt; Drop for CustomBox&lt;T&gt; { fn drop(&amp;mut self) { println!("Dropping CustomBox with data: {:?}", self.0); }
-}
-fn main() { let c = CustomBox::new(String::from("Hello, world!"));
-} // c goes out of scope here, and the drop method is called
-A trait object is an instance of some type that implements a specific trait. trait Wearable { fn wear(&amp;self) -&gt; String;
-} #[derive(Debug)]
-struct Pants { size: u32,
-} impl Wearable for Pants { fn wear(&amp;self) -&gt; String { format!("Wearing pants of size {}", self.size) }
-} #[derive(Debug)]
-struct Shirt { color: String,
-} impl Wearable for Shirt { fn wear(&amp;self) -&gt; String { format!("Wearing a {} shirt", self.color) }
-} // The problem statement is I'd like to iterate over a collection of Wearable items, but they are of different types (Pants and Shirt). fn main() { let wardrobe: Vec&lt;Box&lt;dyn Wearable&gt;&gt; = vec![ Box::new(Pants { size: 32 }), Box::new(Shirt { color: String::from("blue") }), ]; //box is fixed size pointer, this is the same solution to implementing recursive data structures for item in wardrobe.iter() { println!("{}", item.wear()); }
-}
-This is also very useful when working with functions that can return different types of errors, as long as they implement the Error trait.use std::error::Error;
-fn do_something(flag: bool) -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; { if flag { Ok(()) } else { Err(Box::new(std::fmt::Error)) // returning a different error type }
-}
-Read more: <a data-tooltip-position="top" aria-label="Data Types in Rust > ^deref" data-href="Data Types in Rust#^deref" href="basics/data-types-in-rust.html#^deref" class="internal-link" target="_self" rel="noopener nofollow">Deref Coercions</a>]]></description><link>smart-pointers-box.html</link><guid isPermaLink="false">Smart Pointers - Box.md</guid><pubDate>Mon, 02 Mar 2026 05:34:03 GMT</pubDate></item><item><title><![CDATA[Data Types in Rust]]></title><description><![CDATA[Data types in Rust are divided into 2 broad categories:These data types only hold 1 value. There are 4 scalar types- integers, Booleans, floating point numbers &amp; characters. These scalar types are subdivided into further types.
+]]></description><link>dependency-injection.html</link><guid isPermaLink="false">Dependency Injection.md</guid><pubDate>Sun, 22 Mar 2026 19:26:36 GMT</pubDate></item><item><title><![CDATA[Data Types in Rust]]></title><description><![CDATA[Data types in Rust are divided into 2 broad categories:These data types only hold 1 value. There are 4 scalar types- integers, Booleans, floating point numbers &amp; characters. These scalar types are subdivided into further types.
 isize &amp; usize are platform dependent for example for 32 bit architecture.
 There is no concept of truthy and falsy values in rust, there is only boolean which is either true or false
 int my_variable: u8 = 15;
@@ -295,55 +378,7 @@ let numbers8 = vec![10, 20, 30, 40, 50];
 let second_last_element: Option&lt;&amp;i32&gt; = numbers8.iter().nth_back(1); // second_last_element is Some(&amp;40), returns an Option because the iterator could be empty or index out of bounds // position
 let numbers9 = vec![1, 3, 5, 7, 8, 9];
 let position_of_eight: Option&lt;usize&gt; = numbers9.iter().position(|&amp;x| x == 8); // position_of_eight is Some(4), returns an Option because the element might not be found, this gives the index of the first occurrence
-]]></description><link>iterators.html</link><guid isPermaLink="false">Iterators.md</guid><pubDate>Sat, 17 Jan 2026 07:51:51 GMT</pubDate></item><item><title><![CDATA[Dates & Times]]></title><description><![CDATA[The standard library only provides basic elapsed time.use std::time::{Duration, Instant}; let now = Instant::now();
-// some code execution
-let elapsed = now.elapsed();
-println!("Elapsed time: {:.2?}", elapsed); left five_seconds = Duration::from_secs(5);
-The community standard for date and time handling is the chrono crate.Khronos
-In greek mythology, Chronos (or Khronos) aka Protogenos is the personification of time. In Orphic Lineage it is said that Khronos emerged that the very beginning of the universe, Khronos along with his consort Ananke (necessity) produced Chaos, Aether (light) and Erebus (darkness). Khronos created a "World Egg" within Aether, from this egg hatched Phanes who brought forth the universe as we know it. He is often depicted as a serpentine being with 3 heads (man, bull, and lion) representing the past, present, and future. To use chrono, add it to your Cargo.toml:[dependencies]
-chrono = "0.4" # Check https://crates.io/crates/chrono for the latest version
-The NaiveDate struct represents a calendar date without timezone information.use chrono::NaiveDate;
-let date = NaiveDate::from_ymd_opt(2023, 10, 5); // returns an option enum, because the values may be invalid // Parsing strings
-let parsed_date = NaiveDate::parse::&lt;NaiveDate&gt;("2023-10-05").unwrap();
-The TimeDelta struct represents a duration of time.use chrono::{NaiveDate, TimeDelta};
-// using the constructor
-let five_seconds = TimeDelta::seconds(5, 0); // secs, nanos let five_minutes = TimeDelta::minutes(5); // there are hours, days, weeks etc. as well // arithmetic operations
-let total_duration = five_seconds + five_minutes;
-let difference = five_minutes - five_seconds; // adding and subtracting
-use std::ops::{Add, Sub}; let birthday = NaiveDate::from_ymd_opt(1990, 1, 1).unwrap();
-let next_birthday = birthday.add(TimeDelta::days(365));
-The NaiveTime struct represents a time of day without timezone information, while NaiveDateTime combines both date and time.let four_thirty_three_pm = NaiveTime::from_hms_opt(16, 33, 0).unwrap(); // uses 24 hour format let meeting = NaiveDateTime::new( NaiveDate::from_ymd_opt(2025, 10, 5).unwrap(), NaiveTime::from_hms_opt(14, 0, 0).unwrap(),
-)
-The DateTime struct represents a date and time with timezone information. You can use the chrono-tz crate for timezone support.[dependencies]
-chrono-tz = "0.6" # Check https://crates.io/crates/chrono-tz for the latest version
-chrono = "0.4"
-use chrono::prelude::*; let system_time = Local::now(); // current date and time in local timezone
-let utc_time = Utc::now(); // current date and time in UTC // extracting time and date components
-println!("Year: {}", system_time.year()); // hour minute second etc. are also available
-println!("Naive Date: {}", system_time.date_naive());
-println!("Naive Time: {}", system_time.time()); // offset
-println!("Offset from UTC: {}", system_time.offset()); // this takes into account daylight savings as well // Converting timezones
-use chrono_tz::Tz;
-let new_york_time: DateTime&lt;Tz&gt; = system_time.with_timezone(&amp;chrono_tz::America::New_York); // passing &amp;Utc will convert to UTC // parse_from_str
-// there is the parse method which we already saw, but date time strings come in various formats, so we can use parse_from_str to specify the format
-let independence_date_str = "15-Aug-1947 00:00:00 +0530";
-let independence_date = DateTime::parse_from_str( independence_date_str, "%d-%b-%Y %H:%M:%S %z", // format string
-); // returns a Result enum // format method, essentially the reverse of parse
-let formatted_date = independence_date .unwrap() .format("%Y/%m/%d %H:%M:%S %:z") .to_string();
-Daylight Savings Time
-Daylight Savings Time (DST) is the practice of setting the clock forward by one hour during the warmer months to extend evening daylight and setting it back again in the fall. This practice can affect time calculations, especially when dealing with time zones that observe DST. It is used primarily in NA and Europe, most countries near the equator do not use it because their daylight hours do not vary much by season.
-]]></description><link>dates-&amp;-times.html</link><guid isPermaLink="false">Dates &amp; Times.md</guid><pubDate>Fri, 16 Jan 2026 11:12:35 GMT</pubDate></item><item><title><![CDATA[Rand Crate]]></title><description><![CDATA[rand is an external crate in Rust that provides functionality for generating random numbers and performing various randomization tasks.To use the rand crate in your Rust project, you need to add it as a dependency in your Cargo.toml file.[dependencies]
-rand = "0.8" # Check https://crates.io/crates/rand for the latest version
-use rand::Rng;
-// Generate a random number of basic types
-let random_number: u32 = rand::random(); println!("Random number: {}", random_number); // Generating multiple random numbers
-use rand::rng; let mut my_rng = rng(); // the random() method auto generates this ThreadRng instance, its efficient to generate it once and reuse for _ in 0..100 { let n = my_rng.random::&lt;u32&gt;(); // this by default generates numbers in the full range of u32, if you want to limit the range, use gen_range or multiply or divide by powers of 10 let m = my_rng.random_range(1..101); // generates a number between 1 and 100 inclusive let b = my_rng.random_bool(0.75); // generates a random boolean value, takes arg as probability of true, default is 0.5 let p = my_rng.random_ratio(1, 6); // generates a boolean like random_bool, but the change depends on the ratio of the two args, here it generates true with 1/6 probability println!("Random number: {}", n);
-} // Shuffle
-use rand::seq::SliceRandom;
-let mut arr = [1, 2, 3, 4, 5];
-my_rng.shuffle(&amp;mut arr);
-println!("Shuffled array: {:?}", arr);
-]]></description><link>rand-crate.html</link><guid isPermaLink="false">Rand Crate.md</guid><pubDate>Fri, 16 Jan 2026 09:00:36 GMT</pubDate></item><item><title><![CDATA[File Handling]]></title><description><![CDATA[File handling is achieved through the std::fs module in Rust's standard library.use std::fs::File; fn main() { let file = File::open("example.txt"); // returns Result&lt;File, Error&gt;ase do not close the settings page while loading the model.
+]]></description><link>iterators.html</link><guid isPermaLink="false">Iterators.md</guid><pubDate>Sat, 17 Jan 2026 07:51:51 GMT</pubDate></item><item><title><![CDATA[File Handling]]></title><description><![CDATA[File handling is achieved through the std::fs module in Rust's standard library.use std::fs::File; fn main() { let file = File::open("example.txt"); // returns Result&lt;File, Error&gt;ase do not close the settings page while loading the model.
 } use std::io::Read; // This trait is needed to use the read_to_string method
 let mut file_contents = String::new(); if let Err(e) = file.read_to_string(&amp;mut file_contents) { // This returns a Result enum println!("Error reading file: {}", e);
 } else { println!("File contents: {}", file_contents); } // There is a shorter way using the fs module's read_to_string associated function
@@ -359,29 +394,7 @@ use std::fs::DirEntry;
 use std::io;
 use std::io::Error; fn main() -&gt; io::Result&lt;()&gt; { for entry_result: Result&lt;DirEntry, Error&gt; in fs::read_dir(path: "./")? { match entry_result { Ok(entry: DirEntry) =&gt; println!("{:?}", entry.path()), Err(error: Error) =&gt; { eprintln!("Could not read entry: {error}"); } } } Ok(())
 }
-]]></description><link>file-handling.html</link><guid isPermaLink="false">File Handling.md</guid><pubDate>Sun, 11 Jan 2026 15:54:27 GMT</pubDate></item><item><title><![CDATA[Loops]]></title><description><![CDATA[⚠️ Another because I said so syntax ahead-loop { println!("Infinite loop");
-}
-In the loop keyword you have to manually break out of the loop using break statement when you are done. There is also a continue statement.fn main() { for i in 1..10 { if i == 3 { continue; } if i == 7 { break; } println!("{}", i); }
-} The loop loop can return a value as well, this is done using the break statement break value_to_return; This only works in the loop loop
-Standard while loop nothing special.let mut i = 0;
-while i &lt; 15 { i += 1; println!("{i}");
-} Break and continue work the same way but unlike loop loop, it cannot return via break.
-The good ol' for-loopfn main() { // 1. Basic for loop over a range (exclusive end) println!("Basic range (1..6):"); for i in 1..6 { println!(" {}", i); // Prints 1 to 5 } // 2. Inclusive range (includes the end) println!("\nInclusive range (1..=6):"); for i in 1..=6 { println!(" {}", i); // Prints 1 to 6 } // 3. Iterating over an array or a vector let fruits = ["Apple", "Orange", "Banana"]; println!("\nArray iteration:"); for fruit in fruits { println!(" {}", fruit); // Prints each fruit } // 4. Index-based iteration over an array let colors = ["red", "green", "blue"]; println!("\nIndex-based iteration:"); for i in 0..colors.len() { println!(" The color name is {}", colors[i]); // Uses index to access element } // 5. Using enumerate to get (index, value) pairs let items = ["x", "y", "z"]; println!("\nEnumerate for index and value:"); for (index, value) in items.iter().enumerate() { println!(" {}: {}", index, value); // Prints index and value } // 6. Reverse iteration (descending order) println!("\nRange reversed (1..6).rev():"); for i in (1..6).rev() { println!(" {}", i); // Prints 5 to 1 } // 7. Stepping by intervals (e.g., every 2nd number) println!("\nRange with step_by(2) (0..10).step_by(2):"); for i in (0..10).step_by(2) { println!(" {}", i); // Prints 0, 2, 4, 6, 8 }
-}
-Applies a consistent operation to every iterator element. It accepts a closure.let words = "This is a sententce.".split_whitespace();
-words.for_each(|word| println!("{},", word));
-Read More: <a data-href="Recursions" href=".html" class="internal-link" target="_self" rel="noopener nofollow">Recursions</a>, <a data-href="Closures" href="closures.html" class="internal-link" target="_self" rel="noopener nofollow">Closures</a>, <a data-href="Iterators" href="iterators.html" class="internal-link" target="_self" rel="noopener nofollow">Iterators</a>]]></description><link>loops.html</link><guid isPermaLink="false">Loops.md</guid><pubDate>Sat, 10 Jan 2026 05:25:51 GMT</pubDate></item><item><title><![CDATA[Associated Types]]></title><description><![CDATA[An associated types is a placeholder for a type that is required within a trait. struct Lunch { cost: f64
-} impl Add for Lunch { type Output = Lunch; // Output is an associated type, since Lunch + Lunch may not be a lunch as far as rust is concerned fn add(self, other: Lunch) -&gt; Lunch { Lunch { cost: self.cost + other.cost } }
-}
-Associated types can be constrained in trait bounds by specifying their concrete types directly in the angle brackets or using where clauses. This allows you to enforce specific type requirements on implementations.trait Calculator { type Input; type Output; fn calculate(&amp;self, input: Self::Input) -&gt; Self::Output;
-} // Implement for a simple struct
-struct DoubleCalculator; impl Calculator for DoubleCalculator { type Input = f64; type Output = f64; fn calculate(&amp;self, input: Self::Input) -&gt; Self::Output { input * 2.0 }
-} // A generic function that requires specific associated types, ofcourse you can do it without the where clause &lt;T: Calculator&lt;Input = 64, Output = f64&gt;
-fn process_with_specific_types&lt;T&gt;(calc: T, value: f64) -&gt; f64
-where T: Calculator&lt;Input = f64, Output = f64&gt;,
-{ calc.calculate(value)
-}
-]]></description><link>associated-types.html</link><guid isPermaLink="false">Associated Types.md</guid><pubDate>Sat, 10 Jan 2026 05:25:51 GMT</pubDate></item><item><title><![CDATA[Packages and Crates]]></title><description><![CDATA[Modules are subdivisions inside crates which are used to organize code. Below is an example folder structuremy_dual_crate ├── src │ ├── main.rs ← crate root (binary) │ ├── lib.rs ← crate root (library) │ └── math.rs ← module
+]]></description><link>file-handling.html</link><guid isPermaLink="false">File Handling.md</guid><pubDate>Sun, 11 Jan 2026 15:54:27 GMT</pubDate></item><item><title><![CDATA[Packages and Crates]]></title><description><![CDATA[Modules are subdivisions inside crates which are used to organize code. Below is an example folder structuremy_dual_crate ├── src │ ├── main.rs ← crate root (binary) │ ├── lib.rs ← crate root (library) │ └── math.rs ← module
 A crate is a unit of compilation in rust, simply put it can be called as a package of rust code. A crate is the smallest amount of code that the Rust compiler considers at a time.There are two types of crates in rust:
 Binary Crates: Crates that contain executable code. They contain a single main.rs with a main() method.
 Library Crates: Crates that don't contain executable code and are used to ship reusable code by linking them to other crates. Does not have a main method.
@@ -835,20 +848,7 @@ Borrowing means taking something without transferring ownership, a borrower must
 Borrowing involves creating a reference to a value. Generally Heap Data's reference are used, but stack data can also be referenced. let my_val: i32 = 2;
 let my_ref: &amp;i32 = &amp;my_val; // Type address leading to i32
 References must never outlive their referent.println!("{*my_ref}");
-Rust auto dereferences display trait implementing types]]></description><link>reference-&amp;-borrowing.html</link><guid isPermaLink="false">Reference &amp; Borrowing.md</guid><pubDate>Sat, 26 Jul 2025 18:09:20 GMT</pubDate></item><item><title><![CDATA[Stack and Heap]]></title><description><![CDATA[Yes these are the same ones you studied in Operating Systems class. Stack and Heap are 2 memory regions where data is stored during program execution. Good old stack, below is the diagram which tells you "where" this stack isProcessMemoryStaticHeapCodeThreadRegistersStackThreadRegistersStackThreadRegistersStackLike any other stack, this is also a LIFO structure. Very fast for allocation and deallocation.In Rust stack is used for storing:
-Scalar types (integers, booleans, characters)
-Fixed size arrays
-Structs and enums where all fields have known sizes
-Function parameters etc.
-The location of heap is also mentioned in the above drawing. This is used for data which is unknown or has variable type at compile time. Allocation is slower than the stack and pointers are required for data access.Rust stores the following in heap:
-Data types with dynamic or unknown size, such as Vec&lt;T&gt;
-Large data, only pointer to the data resides on the stack.
-If data needs to outlive the function or scope where it was created, heap allocation is often necessary.
-Box pointer 📦
-All values in Rust are stack allocated by default. Values can be&nbsp;boxed&nbsp;(allocated on the heap) by creating a&nbsp;Box&lt;T&gt;. A box is a smart pointer to a heap allocated value of type&nbsp;T. When a box goes out of scope, its destructor is called, the inner object is destroyed, and the memory on the heap is freed.
-Memory safety without a Garbage Collector?
-Rust claims to be memory safe, but it does not have a garbage collector. Well there are a lot of tricks in the crabs claws, one of them is automatically calling the destructor of an allocated value once it goes out of scope.
-See also: <a data-tooltip-position="top" aria-label="Traits > ^1a31c0" data-href="Traits#^1a31c0" href="advanced/traits.html#^1a31c0" class="internal-link" target="_self" rel="noopener nofollow">Copy trait</a>]]></description><link>stack-and-heap.html</link><guid isPermaLink="false">Stack and Heap.md</guid><pubDate>Tue, 22 Jul 2025 17:56:25 GMT</pubDate></item><item><title><![CDATA[Functions]]></title><description><![CDATA[I am not going to define functions, that would be absurd. Below is the syntax however if I ever get dementia. Rust is a functional programming language so you have pretty much all function functionalities with added extras.Parameters vs Arguments
+Rust auto dereferences display trait implementing types]]></description><link>reference-&amp;-borrowing.html</link><guid isPermaLink="false">Reference &amp; Borrowing.md</guid><pubDate>Sat, 26 Jul 2025 18:09:20 GMT</pubDate></item><item><title><![CDATA[Functions]]></title><description><![CDATA[I am not going to define functions, that would be absurd. Below is the syntax however if I ever get dementia. Rust is a functional programming language so you have pretty much all function functionalities with added extras.Parameters vs Arguments
 Functions&nbsp;may declare a set of input variables as&nbsp;parameters, through which the caller passes&nbsp;arguments&nbsp;into the&nbsp;function
 fn my_function(){ // Body here
 }
