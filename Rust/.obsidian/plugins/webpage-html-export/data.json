@@ -10,7 +10,7 @@
     "postProcess": true,
     "displayProgress": true,
     "inlineHTML": false,
-    "exportPath": "/mnt/c/Users/INSTRIVE/notes/server/public/Rust",
+    "exportPath": "C:\\Users\\samee\\Documents\\Projects\\notes\\server\\public\\Rust",
     "filesToExport": [],
     "useFallbackRenderer": false,
     "addBodyClasses": true,

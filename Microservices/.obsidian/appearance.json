@@ -1,7 +1,7 @@
 {
-  "cssTheme": "Encore",
+  "cssTheme": "Blue Topaz",
   "theme": "obsidian",
-  "accentColor": "#05738f",
+  "accentColor": "",
   "enabledCssSnippets": [
     "AdaptiveImageInversion"
   ]
