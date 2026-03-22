@@ -5,7 +5,7 @@
   "pluginSubListFrozenVersion": [
     {
       "repo": "KosmosisDire/obsidian-webpage-export",
-      "version": "1.9.0-3b"
+      "version": "1.9.2"
     }
   ],
   "themesList": [],
@@ -17,5 +17,8 @@
   "loggingVerboseEnabled": false,
   "debuggingMode": false,
   "notificationsEnabled": true,
-  "personalAccessToken": ""
+  "globalTokenName": "",
+  "personalAccessToken": "",
+  "selectLatestPluginVersionByDefault": false,
+  "allowIncompatiblePlugins": false
 }
