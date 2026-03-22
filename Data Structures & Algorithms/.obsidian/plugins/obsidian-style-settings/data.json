@@ -8,5 +8,6 @@
   "blue-topaz-theme@@background-settings-workplace-background-image": true,
   "blue-topaz-theme@@background-settings-workplace-theme-dark": "background-settings-workplace-waves2",
   "blue-topaz-theme@@bg-panel-page-opacity-cp": 1,
-  "blue-topaz-theme@@toggle-bg-panel-page": false
+  "blue-topaz-theme@@toggle-bg-panel-page": false,
+  "blue-topaz-theme@@background-settings-workplace-theme-light": "background-settings-workplace-waves2-light"
 }
