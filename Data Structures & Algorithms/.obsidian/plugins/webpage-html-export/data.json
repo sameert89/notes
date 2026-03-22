@@ -173,7 +173,7 @@
     },
     "customHeadOptions": {
       "featureId": "custom-head",
-      "enabled": true,
+      "enabled": false,
       "unavailable": false,
       "alwaysEnabled": false,
       "hideSettingsButton": false,
@@ -181,7 +181,7 @@
         "selector": "head",
         "type": "end"
       },
-      "sourcePath": "..\\common_obsidian_scripts\\WebpageHtmlExportFixes.html",
+      "sourcePath": "",
       "includePath": "site-lib/html/custom-head.html"
     },
     "documentOptions": {
@@ -237,10 +237,10 @@
     ],
     "includeStyleCssIds": [
       "highlightr-plugin",
-      "excalidraw-embedded-light",
-      "excalidraw-embedded-dark",
+      "obsidian-folder-index",
       "highlightr-styles",
-      "obsidian-folder-index"
+      "excalidraw-embedded-light",
+      "excalidraw-embedded-dark"
     ],
     "autoDisposeWebpages": true
   },
