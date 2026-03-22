@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Low Level Design]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Low Level Design</title><link></link></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Sun, 22 Mar 2026 18:46:15 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Sun, 22 Mar 2026 18:46:08 GMT</pubDate><ttl>60</ttl><dc:creator></dc:creator><item><title><![CDATA[index]]></title><description><![CDATA[Welcome to Low Level Design, your home for OOPs, Design Principles &amp; Design Patterns!]]></description><link>index.html</link><guid isPermaLink="false">index.md</guid><pubDate>Sun, 22 Mar 2026 18:45:35 GMT</pubDate></item><item><title><![CDATA[Builder]]></title><description><![CDATA[
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Low Level Design]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Low Level Design</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Sun, 22 Mar 2026 19:58:04 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Sun, 22 Mar 2026 19:58:04 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[index]]></title><description><![CDATA[Welcome to Low Level Design, your home for OOPs, Design Principles &amp; Design Patterns!]]></description><link>index.html</link><guid isPermaLink="false">index.md</guid><pubDate>Sun, 22 Mar 2026 18:45:35 GMT</pubDate></item><item><title><![CDATA[Builder]]></title><description><![CDATA[
 Builder is an assembly line, which lets you construct objects step by step.
 Why do I need a builder?]]></description><link>builder.html</link><guid isPermaLink="false">Builder.md</guid><pubDate>Sat, 21 Mar 2026 18:54:33 GMT</pubDate></item><item><title><![CDATA[Prototype]]></title><description><![CDATA[
 An object that supports cloning is called a prototype.
@@ -100,105 +100,7 @@ public sealed class EagerLogger { private static readonly EagerLogger _instance 
 Creational: Focus on Mechanisms for creating objects
 Structural: Deals with how to structure classes
 Behavioral: Deals with behavior of classes with each other.
-]]></description><link>design-patterns/design-patterns.html</link><guid isPermaLink="false">Design Patterns/Design Patterns.md</guid><pubDate>Mon, 16 Mar 2026 18:34:07 GMT</pubDate></item><item><title><![CDATA[Object Oriented Programming]]></title><description><![CDATA[What is a Class
-A class is a blueprint/template/recipe for creating objects.
-It groups related data (fields) &amp; behaviors (functions) together.struct Color { uint8_t R; uint8_t G; uint8_t B;
-};
-class Car {
-private: string model_; string year_; Color color_; public: Car(string &amp;model, string &amp;year, Color &amp;color) : model_(model), year_(year), color_(color) { }
-};
-What is an Object
-An object is an instance of a class.
-It is the actual thing which you interact with i.e. store data, call methods on etc.EnumsA special data type which defines a fixed set of named constants.InterfacesAt its core, an interface is a contract. This contract must be fulfilled by an implementing class. Interfaces enable <a data-href="Types of Polymorphism" href="types-of-polymorphism.html" class="internal-link" target="_self" rel="noopener nofollow">Types of Polymorphism</a>.class PaymentGateway {
-public: virtual ~PaymentGateway() {} virtual void initiatePayment(double amount) = 0;
-}; class PaypalPayment : public PaymentGateway { void initiatePayment(double amount) override { std::cout &lt;&lt; "Processing payment thorugh Paypal"; }
-}; class RazorpayPayment : public PaymentGateway { void initiatePayment(double amount) override { std::cout &lt;&lt; "Processing payment thorugh Razorpay"; }
-};
-4 Pillars of OOPsPillars Of OopsClass RelationshipsIn this type of relationship, two objects use or know about each other. They can exist independently of each other.Example: A student has a teacher, both can exist independently of each other.class PaymentGateway {
-public: void processPayment(double value){ std::cout&lt;&lt; std::format("Processing payment for value: {}", value); }
-}; // Order has-a payment gateway
-class Order {
-private: std::string orderId_;
-public: PaymentGateway* gateway; Order(PaymentGateway* gateway) : gateway(gateway) {}; void checkout(double value){ this-&gt;gateway-&gt;processPayment(value); }
-};
-The above example is for unidirectional association, there also can be bidirectional association (both classes are aware of each other).class Developer {
-private: Team* team;
-public: void setTeam(Team* team) { this-&gt;team = team; }
-}; class Team {
-private: vector&lt;Developer*&gt; developers;
-public: void addDeveloper(Developer* dev) { developers.push_back(dev); dev-&gt;setTeam(this); }
-};
-There is 1-1, 1-many, many-1, many-many associations possible.<br>This is subset of <a data-tooltip-position="top" aria-label="Association (&quot;has-a&quot;)" data-href="#Association (&quot;has-a&quot;)" href="object-oriented-programming.html#Association_(&quot;has-a&quot;)_1" class="internal-link" target="_self" rel="noopener nofollow">Association</a> , which implies a stronger whole-part relationship. The parts can exist without the whole and the parts can be shuffled/shared.For example: A team contains football players, players can exist independently as well. Or professors in department.This is tight coupling and the two entities are connected through a container-contained hierarchy.This is the strongest form of has-a relationship. Where toe whole owns the parts and controls their lifecycles. The part cannot exist without the whole.Example: Roads and speed breakers, House and Rooms, Car and its components.class SpeedBreaker {
-public: SpeedBreaker() { std::cout &lt;&lt; " [Part] Speed breaker created.\n"; } ~SpeedBreaker() { std::cout &lt;&lt; " [Part] Speed breaker destroyed.\n"; }
-}; class Road {
-private: std::vector&lt;SpeedBreaker&gt; breakers; public: Road(int count) { std::cout &lt;&lt; "[Whole] Building Road...\n"; breakers.resize(count); }
-};
-A dependency exists when one class relies on another to do something, but does so without retaining a permanent reference to it.This can be done via the following ways:
-Accept/Return another class in/from a method
-Instantiate a class in a method.
-Depend on an interface instead of concrete types.
-Example: A chef and a knife, chef's cut method can cut things with the knife but then he doesn't need to keep the knife with him forever.// Accept/Return another class in/from a method
-class EventPublisher {};
-class EventPublisherFactory {
-public: EventPublisher createEventPublisher(const std::string &amp;topic_name) { return EventPublisher(); };
-}; class Canvas {
-public: void drawSprite(std::string name, int x, int y) { std::cout &lt;&lt; "Drawing " &lt;&lt; name &lt;&lt; " at (" &lt;&lt; x &lt;&lt; "," &lt;&lt; y &lt;&lt; ")\n"; }
-}; class Player {
-private: std::string name = "Hero"; int x = 10, y = 20; public: void render(Canvas&amp; currentScreen) { // Does not make sense to store hard reference to canvas since it might be recreated in the next scene currentScreen.drawSprite(name, x, y); }
-}; // Instantiate class in a method
-class JsonFormatter {
-public: std::string format(const std::string &amp;message){ return "{\"message\":\"" + message + "\"}"; }
-};
-void printAsJson(const std::string &amp;message){ JsonFormatter formatter; std::cout &lt;&lt; formatter.format(message);
-}
-When dependencies are provided from outside, it is known as dependency injection.
-You can let the objects create the objects of dependencies but that introduces tight coupling and reduces reusability.This is usually done through a constructor.class StorageService {
-private: BlobContainerClient* blobContainerClient;
-public: StorageService(BlobContainerClient &amp;containerClient) : blobContainerClient(containerClient) {}
-}
-Class RelationshipsIn this type of relationship, two objects use or know about each other. They can exist independently of each other.Example: A student has a teacher, both can exist independently of each other.class PaymentGateway {
-public: void processPayment(double value){ std::cout&lt;&lt; std::format("Processing payment for value: {}", value); }
-}; // Order has-a payment gateway
-class Order {
-private: std::string orderId_;
-public: PaymentGateway* gateway; Order(PaymentGateway* gateway) : gateway(gateway) {}; void checkout(double value){ this-&gt;gateway-&gt;processPayment(value); }
-};
-The above example is for unidirectional association, there also can be bidirectional association (both classes are aware of each other).class Developer {
-private: Team* team;
-public: void setTeam(Team* team) { this-&gt;team = team; }
-}; class Team {
-private: vector&lt;Developer*&gt; developers;
-public: void addDeveloper(Developer* dev) { developers.push_back(dev); dev-&gt;setTeam(this); }
-};
-There is 1-1, 1-many, many-1, many-many associations possible.<br>This is subset of <a data-tooltip-position="top" aria-label="Association (&quot;has-a&quot;)" data-href="#Association (&quot;has-a&quot;)" href="object-oriented-programming.html#Association_(&quot;has-a&quot;)_1" class="internal-link" target="_self" rel="noopener nofollow">Association</a> , which implies a stronger whole-part relationship. The parts can exist without the whole and the parts can be shuffled/shared.For example: A team contains football players, players can exist independently as well. Or professors in department.This is tight coupling and the two entities are connected through a container-contained hierarchy.This is the strongest form of has-a relationship. Where toe whole owns the parts and controls their lifecycles. The part cannot exist without the whole.Example: Roads and speed breakers, House and Rooms, Car and its components.class SpeedBreaker {
-public: SpeedBreaker() { std::cout &lt;&lt; " [Part] Speed breaker created.\n"; } ~SpeedBreaker() { std::cout &lt;&lt; " [Part] Speed breaker destroyed.\n"; }
-}; class Road {
-private: std::vector&lt;SpeedBreaker&gt; breakers; public: Road(int count) { std::cout &lt;&lt; "[Whole] Building Road...\n"; breakers.resize(count); }
-};
-A dependency exists when one class relies on another to do something, but does so without retaining a permanent reference to it.This can be done via the following ways:
-Accept/Return another class in/from a method
-Instantiate a class in a method.
-Depend on an interface instead of concrete types.
-Example: A chef and a knife, chef's cut method can cut things with the knife but then he doesn't need to keep the knife with him forever.// Accept/Return another class in/from a method
-class EventPublisher {};
-class EventPublisherFactory {
-public: EventPublisher createEventPublisher(const std::string &amp;topic_name) { return EventPublisher(); };
-}; class Canvas {
-public: void drawSprite(std::string name, int x, int y) { std::cout &lt;&lt; "Drawing " &lt;&lt; name &lt;&lt; " at (" &lt;&lt; x &lt;&lt; "," &lt;&lt; y &lt;&lt; ")\n"; }
-}; class Player {
-private: std::string name = "Hero"; int x = 10, y = 20; public: void render(Canvas&amp; currentScreen) { // Does not make sense to store hard reference to canvas since it might be recreated in the next scene currentScreen.drawSprite(name, x, y); }
-}; // Instantiate class in a method
-class JsonFormatter {
-public: std::string format(const std::string &amp;message){ return "{\"message\":\"" + message + "\"}"; }
-};
-void printAsJson(const std::string &amp;message){ JsonFormatter formatter; std::cout &lt;&lt; formatter.format(message);
-}
-When dependencies are provided from outside, it is known as dependency injection.
-You can let the objects create the objects of dependencies but that introduces tight coupling and reduces reusability.This is usually done through a constructor.class StorageService {
-private: BlobContainerClient* blobContainerClient;
-public: StorageService(BlobContainerClient &amp;containerClient) : blobContainerClient(containerClient) {}
-}
-<br><a data-href="Design Principles" href="design-principles/design-principles.html" class="internal-link" target="_self" rel="noopener nofollow">Design Principles</a>]]></description><link>object-oriented-programming.html</link><guid isPermaLink="false">Object Oriented Programming.md</guid><pubDate>Mon, 16 Mar 2026 18:31:11 GMT</pubDate></item><item><title><![CDATA[YAGNI]]></title><description><![CDATA[You ain't gonna need it!Don't implement stuff just because you foresee a requirement, only do it when you actually need it.]]></description><link>design-principles/yagni.html</link><guid isPermaLink="false">Design Principles/YAGNI.md</guid><pubDate>Mon, 16 Mar 2026 18:03:38 GMT</pubDate></item><item><title><![CDATA[KISS]]></title><description><![CDATA[Keep it simple stupid.Try to avoid complexity whenever possible, these include overengineering, anticipating requirements and un-necessary requirements.]]></description><link>design-principles/kiss.html</link><guid isPermaLink="false">Design Principles/KISS.md</guid><pubDate>Mon, 16 Mar 2026 17:53:39 GMT</pubDate></item><item><title><![CDATA[LOD]]></title><description><![CDATA[Law of Demeter : Only talk to your immediate friends.The rule is straightforward. A method&nbsp;M&nbsp;on an object&nbsp;O&nbsp;should only call methods on:
+]]></description><link>design-patterns/design-patterns.html</link><guid isPermaLink="false">Design Patterns/Design Patterns.md</guid><pubDate>Mon, 16 Mar 2026 18:34:07 GMT</pubDate></item><item><title><![CDATA[Object Oriented Programming]]></title><description><![CDATA[<a data-href="Design Principles" href="design-principles/design-principles.html" class="internal-link" target="_self" rel="noopener nofollow">Design Principles</a>]]></description><link>object-oriented-programming.html</link><guid isPermaLink="false">Object Oriented Programming.md</guid><pubDate>Mon, 16 Mar 2026 18:31:11 GMT</pubDate></item><item><title><![CDATA[YAGNI]]></title><description><![CDATA[You ain't gonna need it!Don't implement stuff just because you foresee a requirement, only do it when you actually need it.]]></description><link>design-principles/yagni.html</link><guid isPermaLink="false">Design Principles/YAGNI.md</guid><pubDate>Mon, 16 Mar 2026 18:03:38 GMT</pubDate></item><item><title><![CDATA[KISS]]></title><description><![CDATA[Keep it simple stupid.Try to avoid complexity whenever possible, these include overengineering, anticipating requirements and un-necessary requirements.]]></description><link>design-principles/kiss.html</link><guid isPermaLink="false">Design Principles/KISS.md</guid><pubDate>Mon, 16 Mar 2026 17:53:39 GMT</pubDate></item><item><title><![CDATA[LOD]]></title><description><![CDATA[Law of Demeter : Only talk to your immediate friends.The rule is straightforward. A method&nbsp;M&nbsp;on an object&nbsp;O&nbsp;should only call methods on:
 Itself&nbsp;(the object&nbsp;O)
 Its own fields&nbsp;(objects that&nbsp;O&nbsp;holds as instance variables like DI)
 Its method parameters&nbsp;(objects passed into&nbsp;M)
@@ -428,7 +330,7 @@ You can let the objects create the objects of dependencies but that introduces t
 private: BlobContainerClient* blobContainerClient;
 public: StorageService(BlobContainerClient &amp;containerClient) : blobContainerClient(containerClient) {}
 }
-]]></description><link>class-relationships.html</link><guid isPermaLink="false">Class Relationships.md</guid><pubDate>Fri, 13 Mar 2026 18:10:37 GMT</pubDate></item><item><title><![CDATA[4 Pillars of OOPs]]></title><description><![CDATA[<img style="max-width:400px; " class="excalidraw-svg excalidraw-embedded-img excalidraw-canvas-immersive is-unresolved" src="blob:/60f286c0-e7b2-4ad7-82ef-7e14ae1e3eda" filesource="Excalidraw/Pillars Of Oops.md" w="400" draggable="false" oncanvas="false" target="_self">Class RelationshipsIn this type of relationship, two objects use or know about each other. They can exist independently of each other.Example: A student has a teacher, both can exist independently of each other.class PaymentGateway {
+]]></description><link>class-relationships.html</link><guid isPermaLink="false">Class Relationships.md</guid><pubDate>Fri, 13 Mar 2026 18:10:37 GMT</pubDate></item><item><title><![CDATA[4 Pillars of OOPs]]></title><description><![CDATA[<img style="max-width:100%; width:400px; " class="excalidraw-svg excalidraw-embedded-img excalidraw-canvas-immersive is-unresolved" src="blob:/e65c6105-81a5-4bff-ba13-da7d80b90af1" filesource="Excalidraw/Pillars Of Oops.md" w="400" draggable="false" oncanvas="false" target="_self">Class RelationshipsIn this type of relationship, two objects use or know about each other. They can exist independently of each other.Example: A student has a teacher, both can exist independently of each other.class PaymentGateway {
 public: void processPayment(double value){ std::cout&lt;&lt; std::format("Processing payment for value: {}", value); }
 }; // Order has-a payment gateway
 class Order {
@@ -470,7 +372,7 @@ You can let the objects create the objects of dependencies but that introduces t
 private: BlobContainerClient* blobContainerClient;
 public: StorageService(BlobContainerClient &amp;containerClient) : blobContainerClient(containerClient) {}
 }
-]]></description><link>4-pillars-of-oops.html</link><guid isPermaLink="false">4 Pillars of OOPs.md</guid><pubDate>Thu, 12 Mar 2026 18:22:19 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;.&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[How is Abstraction Achieved]]></title><description><![CDATA[You don't need a silver bullet concept to achieve abstraction. A simple class with private methods is enough.There is interfaces and abstract classes, in this case the abstraction is being able to swap implementations without having to modify the upstream.]]></description><link>how-is-abstraction-achieved.html</link><guid isPermaLink="false">How is Abstraction Achieved.md</guid><pubDate>Wed, 11 Mar 2026 18:51:00 GMT</pubDate></item><item><title><![CDATA[Types of Polymorphism]]></title><description><![CDATA[There are 2 types of polymorphism: Compile time polymorphism (Overloading/Static Dispatch)
+]]></description><link>4-pillars-of-oops.html</link><guid isPermaLink="false">4 Pillars of OOPs.md</guid><pubDate>Thu, 12 Mar 2026 18:22:19 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[How is Abstraction Achieved]]></title><description><![CDATA[You don't need a silver bullet concept to achieve abstraction. A simple class with private methods is enough.There is interfaces and abstract classes, in this case the abstraction is being able to swap implementations without having to modify the upstream.]]></description><link>how-is-abstraction-achieved.html</link><guid isPermaLink="false">How is Abstraction Achieved.md</guid><pubDate>Wed, 11 Mar 2026 18:51:00 GMT</pubDate></item><item><title><![CDATA[Types of Polymorphism]]></title><description><![CDATA[There are 2 types of polymorphism: Compile time polymorphism (Overloading/Static Dispatch)
 Runtime polymorphism (Overriding/Dynamic Dispatch)
 Overloading is pretty simple, but to achieve dynamic dispatch you need virtual methods and pointers.#include &lt;iostream&gt;
 #include &lt;string&gt;
@@ -488,7 +390,7 @@ public: virtual ~PaymentGateway() {} virtual void initiatePayment(double amount)
 }; class PaypalPayment : public PaymentGateway { void initiatePayment(double amount) override { std::cout &lt;&lt; "Processing payment thorugh Paypal"; }
 }; class RazorpayPayment : public PaymentGateway { void initiatePayment(double amount) override { std::cout &lt;&lt; "Processing payment thorugh Razorpay"; }
 };
-]]></description><link>interfaces.html</link><guid isPermaLink="false">Interfaces.md</guid><pubDate>Wed, 11 Mar 2026 18:00:28 GMT</pubDate></item><item><title><![CDATA[Pillars Of Oops]]></title><description><![CDATA[4 Pillars of OOPSPolymorphismInheritanceAbstractionEncapsulationPIAe VPN]]></description><link>excalidraw/pillars-of-oops.html</link><guid isPermaLink="false">Excalidraw/Pillars Of Oops.md</guid><pubDate>Tue, 10 Mar 2026 17:20:18 GMT</pubDate></item><item><title><![CDATA[Enums]]></title><description><![CDATA[A special data type which defines a fixed set of named constants.]]></description><link>enums.html</link><guid isPermaLink="false">Enums.md</guid><pubDate>Tue, 10 Mar 2026 17:03:40 GMT</pubDate></item><item><title><![CDATA[What is a Class]]></title><description><![CDATA[
+]]></description><link>interfaces.html</link><guid isPermaLink="false">Interfaces.md</guid><pubDate>Wed, 11 Mar 2026 18:00:28 GMT</pubDate></item><item><title><![CDATA[Enums]]></title><description><![CDATA[A special data type which defines a fixed set of named constants.]]></description><link>enums.html</link><guid isPermaLink="false">Enums.md</guid><pubDate>Tue, 10 Mar 2026 17:03:40 GMT</pubDate></item><item><title><![CDATA[What is a Class]]></title><description><![CDATA[
 A class is a blueprint/template/recipe for creating objects.
 It groups related data (fields) &amp; behaviors (functions) together.struct Color { uint8_t R; uint8_t G; uint8_t B;
 };
@@ -497,4 +399,4 @@ private: string model_; string year_; Color color_; public: Car(string &amp;mode
 };
 ]]></description><link>what-is-a-class.html</link><guid isPermaLink="false">What is a Class.md</guid><pubDate>Tue, 10 Mar 2026 17:00:58 GMT</pubDate></item><item><title><![CDATA[What is an Object]]></title><description><![CDATA[
 An object is an instance of a class.
-It is the actual thing which you interact with i.e. store data, call methods on etc.]]></description><link>what-is-an-object.html</link><guid isPermaLink="false">What is an Object.md</guid><pubDate>Tue, 10 Mar 2026 17:00:35 GMT</pubDate></item></channel></rss>
+It is the actual thing which you interact with i.e. store data, call methods on etc.]]></description><link>what-is-an-object.html</link><guid isPermaLink="false">What is an Object.md</guid><pubDate>Tue, 10 Mar 2026 17:00:35 GMT</pubDate></item><item><title><![CDATA[Pillars Of Oops]]></title><description><![CDATA[4 Pillars of OOPSPolymorphismInheritanceAbstractionEncapsulationPIAe VPN]]></description><link>excalidraw/pillars-of-oops.html</link><guid isPermaLink="false">Excalidraw/Pillars Of Oops.md</guid><pubDate>Tue, 10 Mar 2026 17:20:18 GMT</pubDate></item></channel></rss>
