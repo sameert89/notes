@@ -196,7 +196,7 @@
     },
     "rssOptions": {
       "featureId": "rss",
-      "enabled": true,
+      "enabled": false,
       "unavailable": false,
       "alwaysEnabled": false,
       "hideSettingsButton": false,
@@ -228,8 +228,18 @@
     "siteName": "Data Structures & Algorithms",
     "iconEmojiStyle": "Native",
     "exportRoot": "",
-    "includePluginCss": [],
-    "includeStyleCssIds": [],
+    "includePluginCss": [
+      "highlightr-styles",
+      "excalidraw-embedded-light",
+      "excalidraw-embedded-dark",
+      "highlightr-plugin"
+    ],
+    "includeStyleCssIds": [
+      "highlightr-styles",
+      "excalidraw-embedded-light",
+      "excalidraw-embedded-dark",
+      "highlightr-plugin"
+    ],
     "autoDisposeWebpages": true
   },
   "logLevel": "warning",
