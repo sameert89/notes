@@ -1,7 +1,10 @@
 {
-  "Blue-Topaz-Codebox-Highlight@@code-theme-selection": "code-theme-sublime",
+  "Blue-Topaz-Codebox-Highlight@@code-theme-selection": "code-theme-material-palenight",
   "Blue-Topaz-Codebox-Highlight@@code-box-style-option": "codebox-default-style",
   "Blue-Topaz-Codebox-Highlight@@blur-codebox-frosted-glass": 5,
   "Blue-Topaz-Codebox-Highlight@@whole-code-wrap": false,
-  "Blue-Topaz-Codebox-Highlight@@code-line-number": true
+  "Blue-Topaz-Codebox-Highlight@@code-line-number": true,
+  "blue-topaz-theme@@color-scheme-options": "null",
+  "blue-topaz-theme@@background-settings-workplace-background-image": true,
+  "blue-topaz-theme@@background-settings-workplace-theme-dark": "background-settings-workplace-waves2"
 }
