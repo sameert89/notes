@@ -1,8 +1,6 @@
 {
   "blue-topaz-theme@@background-settings-workplace-background-image": true,
   "blue-topaz-theme@@background-image-settings-switch": false,
-  "blue-topaz-theme@@background-image-settings-markdown-page-random": false,
-  "blue-topaz-theme@@background-image-settings-markdown-page-random-options": "background-image-settings-markdown-page-random-default",
   "blue-topaz-theme@@background-image-settings-command-palette-switch": true,
   "blue-topaz-theme@@toggle-bg-panel-page": false,
   "blue-topaz-theme@@font-family-vault": "'Coolvetica Rg', 'Segoe UI Emoji'",
