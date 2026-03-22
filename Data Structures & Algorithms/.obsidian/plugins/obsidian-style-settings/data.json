@@ -6,5 +6,7 @@
   "Blue-Topaz-Codebox-Highlight@@code-line-number": true,
   "blue-topaz-theme@@color-scheme-options": "null",
   "blue-topaz-theme@@background-settings-workplace-background-image": true,
-  "blue-topaz-theme@@background-settings-workplace-theme-dark": "background-settings-workplace-waves2"
+  "blue-topaz-theme@@background-settings-workplace-theme-dark": "background-settings-workplace-waves2",
+  "blue-topaz-theme@@bg-panel-page-opacity-cp": 1,
+  "blue-topaz-theme@@toggle-bg-panel-page": false
 }
