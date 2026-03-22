@@ -9,5 +9,6 @@
   "encore-settings@@encore-fancy-headers": true,
   "encore-settings@@encore-coloured-tooltip": true,
   "encore-settings@@encore-highlight-border": true,
-  "encore-settings@@encore-bright-accent": false
+  "encore-settings@@encore-bright-accent": false,
+  "Blue-Topaz-Codebox-Highlight@@code-theme-selection": "code-theme-monokai"
 }
