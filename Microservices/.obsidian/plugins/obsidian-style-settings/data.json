@@ -12,7 +12,7 @@
   "encore-settings@@encore-bright-accent": false,
   "blue-topaz-theme@@color-scheme-options": "color-scheme-options-simplicity-topaz",
   "blue-topaz-theme@@background-settings-workplace-background-image": false,
-  "blue-topaz-theme@@background-image-settings-switch": true,
+  "blue-topaz-theme@@background-image-settings-switch": false,
   "Blue-Topaz-Codebox-Highlight@@code-theme-selection": "code-theme-monokai",
   "blue-topaz-theme@@background-notebook-liked-switch": false,
   "blue-topaz-theme@@background-image-settings-markdown-page-options": "background-image-settings-markdown-page-transparent"
