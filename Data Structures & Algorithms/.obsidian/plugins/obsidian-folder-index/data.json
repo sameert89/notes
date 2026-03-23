@@ -19,7 +19,9 @@
     "_excalidraw",
     "Problems"
   ],
-  "excludePatterns": [],
+  "excludePatterns": [
+    "Problems"
+  ],
   "recursionLimit": -1,
   "headlineLimit": 6,
   "indexFileUserSpecified": false,
