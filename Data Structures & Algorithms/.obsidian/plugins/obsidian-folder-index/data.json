@@ -16,7 +16,8 @@
   "useBulletPoints": true,
   "excludeFolders": [
     "_assets",
-    "_excalidraw"
+    "_excalidraw",
+    "Problems"
   ],
   "excludePatterns": [],
   "recursionLimit": -1,
