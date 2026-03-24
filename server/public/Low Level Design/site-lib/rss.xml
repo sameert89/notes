@@ -1,4 +1,98 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Low Level Design]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Low Level Design</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Mon, 23 Mar 2026 18:44:24 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Mon, 23 Mar 2026 18:44:12 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[Builder]]></title><description><![CDATA[
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Low Level Design]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Low Level Design</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Tue, 24 Mar 2026 18:58:43 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Tue, 24 Mar 2026 18:58:42 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[Design Principles]]></title><description><![CDATA[<a data-href="DRY" href="design-principles/dry.html" class="internal-link" target="_self" rel="noopener nofollow">DRY</a><br>
+<a data-href="KISS" href="design-principles/kiss.html" class="internal-link" target="_self" rel="noopener nofollow">KISS</a><br>
+<a data-href="YAGNI" href="design-principles/yagni.html" class="internal-link" target="_self" rel="noopener nofollow">YAGNI</a><br>
+<a data-href="LOD" href="design-principles/lod.html" class="internal-link" target="_self" rel="noopener nofollow">LOD</a><br><a data-href="SRP" href="design-principles/srp.html" class="internal-link" target="_self" rel="noopener nofollow">SRP</a><br>
+<a data-href="OCP" href="design-principles/ocp.html" class="internal-link" target="_self" rel="noopener nofollow">OCP</a><br>
+<a data-href="LSP" href="design-principles/lsp.html" class="internal-link" target="_self" rel="noopener nofollow">LSP</a><br>
+<a data-href="ISP" href="design-principles/isp.html" class="internal-link" target="_self" rel="noopener nofollow">ISP</a><br>
+<a data-href="DIP" href="design-principles/dip.html" class="internal-link" target="_self" rel="noopener nofollow">DIP</a>]]></description><link>design-principles/design-principles.html</link><guid isPermaLink="false">Design Principles/Design Principles.md</guid><pubDate>Tue, 24 Mar 2026 18:58:22 GMT</pubDate></item><item><title><![CDATA[Facade]]></title><description><![CDATA[
+A facade provides a simplified interface to a complex set of classes.
+Modern systems are complex, there are hundreds of different components, external libraries, duct tape and hope holding things together, when a client actually wants to use this system it should not have to know the internals of how things work! A Facade helps with exactly this, by only showing what clients need.Here is an example straight from ChernobylIn our nuclear reactor we have 3 critical components:
+The Coolant Pump: This is used to run water and cool down the reactor core.
+The Rod Actuator: This component controls the graphite rods which absorb excess neutrons and help prevent a reactor meltdown.
+The Flux Monitor: This monitors the flux (flow) of neutrons in a reactor.
+If something goes wrong during the Fission reaction all 3 must act to do something called as a SCRAM, it is an emergency procedure used to control the reactor and prevent a meltdown!Now you the operator want to trigger this via the giant red button!<img alt="Pasted image 20260324235526.png" src="assets/pasted-image-20260324235526.png" target="_self" style="width: 200px; max-width: 100%;">Would you want to be this guy and press 3 different buttons, not sure which to push first? You the client should not have to rely on these low level details in order to do your job.Facade to save the day!#include &lt;iostream&gt;
+#include &lt;format&gt; class CoolantPump {
+private: double _flowRate {0.0};
+public: double getFlowRate() { return _flowRate; }; void setFlowRate(double desiredRate) { _flowRate = desiredRate; };
+}; class FluxMonitor {
+private: double _fluxRate;
+public: double getNeutronFlux() { return _fluxRate; }
+}; class RodActuator {
+public: void setRodPosition(double desiredPosition) { } double getCurrentPosition() { return 450.2; }
+}; class ReactorFacade {
+private: CoolantPump _mainPump; RodActuator _actuator; FluxMonitor _fluxMonitor;
+public: void emergencyScram(){ _mainPump.setFlowRate(1500.0); // set it high to cooldown the reactor _actuator.setRodPosition(1000.0); // dip the rods in auto finalFlux = _fluxMonitor.getNeutronFlux(); std::cout &lt;&lt; std::format("Post SCRAM flux rate: {}", finalFlux); }
+};
+Its 2026 everyone is trying to steal data from the websites to train the next State-Of-The-Art AI model. The websites know this and they don't want to become the next stack overflow with nobody every clicking the websites and use AI to get what they want.That's why they take a tonne of countermeasures to prevent scraping:
+robots.txt Silicon Valley tech bros laughing on this point
+Captchas: This prevents humans more than AI bots I figure
+Rate Limiting
+IP Blacklisting
+Geo Restrictions
+Let's be honest its a war you cannot win and let's join the Darkside! and try to see how a Facade can help us scrape the entire web.<br><img alt="Pasted image 20260325001651.png" src="assets/pasted-image-20260325001651.png" target="_self">class ProxyPool
+{ public GetResidentialIp() { return "49.153.14.28"; }
+} class CaptchaBuster { public string SolveCaptcha() { // solve using OCR return "https://solved.site.com"; }
+} class BrowserRenderer { async Task RenderJs(string url) { // render complex js return Task.CompletedTask; }
+} class ScrapingFacade(BrowserRenderer browserRenderer, CaptchaBuster captchaBuster, ProxyPool proxyPool) { public async Task&lt;string&gt; GetSiteContent(string url) { var ip = proxyPool.GetResidentialIp(); await browserRenderer.RenderJs(url); var result = captchaBuster.SolveCaptcha(); return result; }
+}
+]]></description><link>design-patterns/structural/facade.html</link><guid isPermaLink="false">Design Patterns/Structural/Facade.md</guid><pubDate>Tue, 24 Mar 2026 18:56:58 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Object Oriented Programming]]></title><description><![CDATA[<a data-href="Design Principles" href="design-principles/design-principles.html" class="internal-link" target="_self" rel="noopener nofollow">Design Principles</a>]]></description><link>object-oriented-programming.html</link><guid isPermaLink="false">Object Oriented Programming.md</guid><pubDate>Tue, 24 Mar 2026 18:48:35 GMT</pubDate></item><item><title><![CDATA[Pillars of OOPs]]></title><description><![CDATA[4 Pillars of OOPSPolymorphismInheritanceAbstractionEncapsulationPIAe VPNClass RelationshipsIn this type of relationship, two objects use or know about each other. They can exist independently of each other.Example: A student has a teacher, both can exist independently of each other.class PaymentGateway {
+public: void processPayment(double value){ std::cout&lt;&lt; std::format("Processing payment for value: {}", value); }
+}; // Order has-a payment gateway
+class Order {
+private: std::string orderId_;
+public: PaymentGateway* gateway; Order(PaymentGateway* gateway) : gateway(gateway) {}; void checkout(double value){ this-&gt;gateway-&gt;processPayment(value); }
+};
+The above example is for unidirectional association, there also can be bidirectional association (both classes are aware of each other).class Developer {
+private: Team* team;
+public: void setTeam(Team* team) { this-&gt;team = team; }
+}; class Team {
+private: vector&lt;Developer*&gt; developers;
+public: void addDeveloper(Developer* dev) { developers.push_back(dev); dev-&gt;setTeam(this); }
+};
+There is 1-1, 1-many, many-1, many-many associations possible.This is subset of <a data-tooltip-position="top" aria-label="Association (&quot;has-a&quot;)" data-href="#Association (&quot;has-a&quot;)" href="pillars-of-oops.html#Association_(&quot;has-a&quot;)_0" class="internal-link" target="_self" rel="noopener nofollow">Association</a> , which implies a stronger whole-part relationship. The parts can exist without the whole and the parts can be shuffled/shared.For example: A team contains football players, players can exist independently as well. Or professors in department.This is tight coupling and the two entities are connected through a container-contained hierarchy.This is the strongest form of has-a relationship. Where toe whole owns the parts and controls their lifecycles. The part cannot exist without the whole.Example: Roads and speed breakers, House and Rooms, Car and its components.class SpeedBreaker {
+public: SpeedBreaker() { std::cout &lt;&lt; " [Part] Speed breaker created.\n"; } ~SpeedBreaker() { std::cout &lt;&lt; " [Part] Speed breaker destroyed.\n"; }
+}; class Road {
+private: std::vector&lt;SpeedBreaker&gt; breakers; public: Road(int count) { std::cout &lt;&lt; "[Whole] Building Road...\n"; breakers.resize(count); }
+};
+A dependency exists when one class relies on another to do something, but does so without retaining a permanent reference to it.This can be done via the following ways:
+Accept/Return another class in/from a method
+Instantiate a class in a method.
+Depend on an interface instead of concrete types.
+Example: A chef and a knife, chef's cut method can cut things with the knife but then he doesn't need to keep the knife with him forever.// Accept/Return another class in/from a method
+class EventPublisher {};
+class EventPublisherFactory {
+public: EventPublisher createEventPublisher(const std::string &amp;topic_name) { return EventPublisher(); };
+}; class Canvas {
+public: void drawSprite(std::string name, int x, int y) { std::cout &lt;&lt; "Drawing " &lt;&lt; name &lt;&lt; " at (" &lt;&lt; x &lt;&lt; "," &lt;&lt; y &lt;&lt; ")\n"; }
+}; class Player {
+private: std::string name = "Hero"; int x = 10, y = 20; public: void render(Canvas&amp; currentScreen) { // Does not make sense to store hard reference to canvas since it might be recreated in the next scene currentScreen.drawSprite(name, x, y); }
+}; // Instantiate class in a method
+class JsonFormatter {
+public: std::string format(const std::string &amp;message){ return "{\"message\":\"" + message + "\"}"; }
+};
+void printAsJson(const std::string &amp;message){ JsonFormatter formatter; std::cout &lt;&lt; formatter.format(message);
+}
+When dependencies are provided from outside, it is known as dependency injection.
+You can let the objects create the objects of dependencies but that introduces tight coupling and reduces reusability.This is usually done through a constructor.class StorageService {
+private: BlobContainerClient* blobContainerClient;
+public: StorageService(BlobContainerClient &amp;containerClient) : blobContainerClient(containerClient) {}
+}
+]]></description><link>pillars-of-oops.html</link><guid isPermaLink="false">Pillars of OOPs.md</guid><pubDate>Tue, 24 Mar 2026 18:48:35 GMT</pubDate></item><item><title><![CDATA[_index]]></title><description><![CDATA[
+<a data-href="Facade" href="design-patterns/structural/facade.html" class="internal-link" target="_self" rel="noopener nofollow">Facade</a> : (Universal) - Providing simplified entry points to complex microservices and backend API controllers.
+<br><a data-href="Adapter" href=".html" class="internal-link" target="_self" rel="noopener nofollow">Adapter</a> : (Very High) - Normalizing third-party SDKs and AI model responses into a single internal interface.
+<br><a data-href="Decorator" href=".html" class="internal-link" target="_self" rel="noopener nofollow">Decorator</a> : (High) - Adding cross-cutting concerns like Auth, Logging, and Middleware via modern language annotations.
+<br><a data-href="Proxy" href=".html" class="internal-link" target="_self" rel="noopener nofollow">Proxy</a> : (High) - Controlling resource access through Lazy Loading in ORMs or traffic routing in API Gateways.
+<br><a data-href="Composite" href=".html" class="internal-link" target="_self" rel="noopener nofollow">Composite</a> : (Medium) - Building hierarchical UI component trees in frameworks like React, Vue, and Flutter.
+<br><a data-href="Bridge" href=".html" class="internal-link" target="_self" rel="noopener nofollow">Bridge</a> : (Low) - Decoupling platform-independent abstractions from OS-specific implementations in cross-platform drivers.
+<br><a data-href="Flyweight" href=".html" class="internal-link" target="_self" rel="noopener nofollow">Flyweight</a> : (Very Low) - Minimizing memory footprint by sharing granular state in high-performance text editors or game engines.
+]]></description><link>design-patterns/structural/_index.html</link><guid isPermaLink="false">Design Patterns/Structural/_index.md</guid><pubDate>Tue, 24 Mar 2026 17:50:40 GMT</pubDate></item><item><title><![CDATA[_index]]></title><description><![CDATA[These patterns provide various object creation mechanisms, which increase flexibility and reuse of existing code.Ranking based on most used to least used.
+<a data-href="Singleton" href="design-patterns/creational/singleton.html" class="internal-link" target="_self" rel="noopener nofollow">Singleton</a> : (Universal) - Managed by DI frameworks (Spring/NestJS) for shared services like Database Pools or Loggers.
+<br><a data-href="Factory" href="design-patterns/creational/factory.html" class="internal-link" target="_self" rel="noopener nofollow">Factory</a> : (Very High) - Decoupling object creation in logging libraries, API clients, and collections (e.g., List.of()).
+<br><a data-href="Builder" href="design-patterns/creational/builder.html" class="internal-link" target="_self" rel="noopener nofollow">Builder</a> : (High) - Creating complex, immutable configuration objects and data records in modern "State-is-Evil" architectures.
+<br><a data-href="Abstract Factory" href="design-patterns/creational/abstract-factory.html" class="internal-link" target="_self" rel="noopener nofollow">Abstract Factory</a> : (Medium) - Providing families of related objects for multi-cloud SDKs (AWS vs Azure) or cross-platform UI themes.
+<br><a data-href="Prototype" href="design-patterns/creational/prototype.html" class="internal-link" target="_self" rel="noopener nofollow">Prototype</a> : (Very Low) - Efficiently cloning objects in performance-critical systems like game engines or through JS spread operators.
+]]></description><link>design-patterns/creational/_index.html</link><guid isPermaLink="false">Design Patterns/Creational/_index.md</guid><pubDate>Tue, 24 Mar 2026 17:49:11 GMT</pubDate></item><item><title><![CDATA[Builder]]></title><description><![CDATA[
 Builder is an assembly line, which lets you construct complex objects step by step!
 Why do I need a builder?
 If you ever run into Constructors/Factories with a large number of parameters, then you need a builder!enum Class Crust { CLASSIC_TOSSED, NEW_PAN_TOSSED, THIN, STUFFED
@@ -8,7 +102,138 @@ public: Pizza(int size, Crust crust, bool cheese, bool chicken, bool olives); //
 private: int _size = 7; Crust _crust; bool cheese = false; bool chicken = false; bool olives = false;
 public: Pizza(int size, Crust crust) : _size(size), _crust(crust) {}; Pizza&amp; AddCheese() { _cheese = true; }; Pizza&amp; AddChicken() { _chicken = true; }; Pizza&amp; AddOlives() { _olives = true; };
 }
-]]></description><link>design-patterns/creational/builder.html</link><guid isPermaLink="false">Design Patterns/Creational/Builder.md</guid><pubDate>Mon, 23 Mar 2026 18:43:56 GMT</pubDate></item><item><title><![CDATA[Class Relationships]]></title><description><![CDATA[In this type of relationship, two objects use or know about each other. They can exist independently of each other.Example: A student has a teacher, both can exist independently of each other.class PaymentGateway {
+class AiAgentBuilder{ private string _name; private string _model = "gpt-5-turbo"; private double _temperature = 0.5; private int _maxTokens = 2048; private string _region = "us-central-1"; private readonly List&lt;string&gt; _tools = []; public AiAgent(string name, string model, double temperature, int maxTokens, string region, List&lt;string&gt; tools) { // cognitive complexity too high }
+} class AiAgentBuilder(string name){ private string _model = "gpt-5-turbo"; private double _temperature = 0.5; private int _maxTokens = 2048; private string _region = "us-central-1"; private readonly List&lt;string&gt; _tools = []; public AiAgentBuilder SetCreativity(double temperature) { _temperature = temperature; return this; } public AiAgentBuilder WithModel(string model) { _model = model; return this; } public AiAgentBuilder SetMaxTokens(int tokens) { _maxTokens = tokens; return this; } public AiAgentBuilder InRegion(string region) { _region = region; return this; } public AiAgentBuilder AddTool(string tool) { _tools.Add(tool); return this; } } ]]></description><link>design-patterns/creational/builder.html</link><guid isPermaLink="false">Design Patterns/Creational/Builder.md</guid><pubDate>Tue, 24 Mar 2026 17:42:33 GMT</pubDate></item><item><title><![CDATA[Abstract Factory]]></title><description><![CDATA[
+Abstract factory is a system of factories, it allows creation of creating families of related objects without having to specify their concrete classes.
+Why do I need Abstract Factory?
+Similar to <a data-href="Factory" href="design-patterns/creational/factory.html" class="internal-link" target="_self" rel="noopener nofollow">Factory</a> to avoid code duplication and having an easy way to create nested families of objects.How do I implement an Abstract Factory?Follow the 3 steps:
+Group your classes into kinds of products, for example Buttons and Textboxes
+Create the abstract factory, this has methods for returning the kinds of products identified in 1.
+Now if something wants to provide both buttons and textboxes (say a theme) then it is a concrete implementation for the abstract factory.
+// 1. Abstract Products
+public interface ILlm { void Chat(); }
+public interface IDiffusionModel { void GenerateImage(); } // 2. The Abstract Factory
+// It defines a "Kit" or "Suite" of related objects.
+public interface IAiSuiteFactory
+{ ILlm CreateLlm(); IDiffusionModel CreateImageGenerator();
+} // 3. Concrete Factory A: OpenAI Suite
+public class OpenAiSuite : IAiSuiteFactory
+{ public ILlm CreateLlm() =&gt; new ChatGptLlm(); public IDiffusionModel CreateImageGenerator() =&gt; new DallEImageGenerator();
+} // 4. Concrete Factory B: OpenSource/Anthropic Suite
+public class AlternativeSuite : IAiSuiteFactory
+{ public ILlm CreateLlm() =&gt; new ClaudeLlm(); // this can be a simple factory depending on the number of members in this family public IDiffusionModel CreateImageGenerator() =&gt; new SdxlImageGenerator();
+}
+#include &lt;iostream&gt;
+#include &lt;memory&gt;
+#include &lt;string&gt; // --- 1. Abstract Products ---
+// These define what a "Storage" and "Queue" look like, regardless of provider. class IStorage {
+public: virtual ~IStorage() = default; virtual void UploadFile(std::string name) = 0;
+}; class IQueue {
+public: virtual ~IQueue() = default; virtual void SendMessage(std::string msg) = 0;
+}; // --- 2. Concrete Products (AWS) --- class S3Storage : public IStorage {
+public: void UploadFile(std::string name) override { std::cout &lt;&lt; "AWS: Uploading " &lt;&lt; name &lt;&lt; " to S3 Bucket.\n"; }
+}; class SqsQueue : public IQueue {
+public: void SendMessage(std::string msg) override { std::cout &lt;&lt; "AWS: Sending '" &lt;&lt; msg &lt;&lt; "' to SQS Queue.\n"; }
+}; // --- 3. Concrete Products (Azure) --- class BlobStorage : public IStorage {
+public: void UploadFile(std::string name) override { std::cout &lt;&lt; "Azure: Uploading " &lt;&lt; name &lt;&lt; " to Blob Storage.\n"; }
+}; class ServiceBusQueue : public IQueue {
+public: void SendMessage(std::string msg) override { std::cout &lt;&lt; "Azure: Sending '" &lt;&lt; msg &lt;&lt; "' to Service Bus.\n"; }
+}; // --- 4. The Abstract Factory ---
+// This is the "Contract" that every provider must fulfill. class ICloudProviderFactory {
+public: virtual ~ICloudProviderFactory() = default; virtual std::unique_ptr&lt;IStorage&gt; CreateStorage() = 0; virtual std::unique_ptr&lt;IQueue&gt; CreateQueue() = 0;
+}; // --- 5. Concrete Factories --- class AwsFactory : public ICloudProviderFactory {
+public: std::unique_ptr&lt;IStorage&gt; CreateStorage() override { return std::make_unique&lt;S3Storage&gt;(); } std::unique_ptr&lt;IQueue&gt; CreateQueue() override { return std::make_unique&lt;SqsQueue&gt;(); }
+}; class AzureFactory : public ICloudProviderFactory {
+public: std::unique_ptr&lt;IStorage&gt; CreateStorage() override { return std::make_unique&lt;BlobStorage&gt;(); } std::unique_ptr&lt;IQueue&gt; CreateQueue() override { return std::make_unique&lt;ServiceBusQueue&gt;(); }
+};
+]]></description><link>design-patterns/creational/abstract-factory.html</link><guid isPermaLink="false">Design Patterns/Creational/Abstract Factory.md</guid><pubDate>Mon, 23 Mar 2026 18:44:23 GMT</pubDate></item><item><title><![CDATA[Factory]]></title><description><![CDATA[aka virtual constructor or simple factory
+Factory is a pattern used to create objects of a superclass with the option to pick which subclass object should be created.
+Why do I need a factory?
+If you have one contract and multiple implementations, and you need to use different implementations based on parameters at runtime, a factory is for you.Could I just use a switch or if-else ? yes, you could, but if you need that in more than one place you will repeat this code over and over, with possibility of introducing bugs. And adding more implementations will be a pain.Who creates the objects?Factories often rely on implementations to do this, because its not necessary that each subclass has the same instantiation pattern, if they need additional details then those are also provided by the factory.How do I implement a factory?public interface INotifier { Task Notify();
+} // Example Implementation
+public class EmailNotifier(Dictionary&lt;string, string&gt; attributes) : INotifier { public async Task Notify() =&gt; await Task.CompletedTask;
+} public class NotifierFactory { private readonly Dictionary&lt;string, Func&lt;Dictionary&lt;string, string&gt;, INotifier&gt;&gt; _notifierRegistry = new(); public NotifierFactory() { RegisterNotifier("email", attrs =&gt; new EmailNotifier(attrs)); RegisterNotifier("sms", attrs =&gt; new SmsNotifier(attrs)); } public void RegisterNotifier(string identifier, Func&lt;Dictionary&lt;string, string&gt;, INotifier&gt; creator) { _notifierRegistry[identifier] = creator; } public INotifier CreateNotifier(string identifier, Dictionary&lt;string, string&gt; attributes) { if (_notifierRegistry.TryGetValue(identifier, out var creator)) { return creator(attributes); } throw new Exception($"Notifier '{identifier}' is not registered."); }
+}
+#include &lt;format&gt;
+#include &lt;functional&gt;
+#include &lt;iostream&gt;
+#include &lt;memory&gt;
+#include &lt;string&gt;
+#include &lt;unordered_map&gt;
+class Notifier {
+public: virtual ~Notifier() = default; virtual void Notify() = 0;
+}; class EmailNotifier : public Notifier {
+private: std::unordered_map&lt;std::string, std::string&gt; _attrs; public: EmailNotifier(std::unordered_map&lt;std::string, std::string&gt; attrs) : _attrs(attrs) { std::cout &lt;&lt; "Email Notifier Initialized"; } void Notify() override { std::cout &lt;&lt; "Sending Email Notification"; }
+}; class SmsNotifier : public Notifier {
+private: std::unordered_map&lt;std::string, std::string&gt; _attrs; public: SmsNotifier(std::unordered_map&lt;std::string, std::string&gt; attrs) : _attrs(attrs) { std::cout &lt;&lt; "Sms Notifier Initialized"; } void Notify() override { std::cout &lt;&lt; "Sending Sms Notification"; }
+}; using Creator = std::function&lt;std::unique_ptr&lt;Notifier&gt;( std::unordered_map&lt;std::string, std::string&gt;)&gt;;
+class NotificationFactory {
+private: std::unordered_map&lt;std::string, Creator&gt; _registry; public: std::unique_ptr&lt;Notifier&gt; CreateNotifier(std::string identifier, std::unordered_map&lt;std::string, std::string&gt; attributes) { if (_registry.contains(identifier)) return _registry[identifier](attributes); std::cerr &lt;&lt; std::format("identifier {} not registered", identifier); return nullptr; } void RegisterNotifier(std::string identifier, Creator creator) { _registry[identifier] = creator; }
+}; int main(int argc, char **argv) { NotificationFactory notificationFactory; notificationFactory.RegisterNotifier("email", [](auto attrs) { return std::make_unique&lt;EmailNotifier&gt;(attrs); }); notificationFactory.RegisterNotifier( "sms", [](auto attrs) { return std::make_unique&lt;SmsNotifier&gt;(attrs); }); auto notifier = notificationFactory.CreateNotifier( "sms", std::unordered_map&lt;std::string, std::string&gt;({ {"to", "test@gmail.com"}, })); notifier-&gt;Notify(); return 0;
+}
+]]></description><link>design-patterns/creational/factory.html</link><guid isPermaLink="false">Design Patterns/Creational/Factory.md</guid><pubDate>Mon, 23 Mar 2026 18:44:23 GMT</pubDate></item><item><title><![CDATA[Prototype]]></title><description><![CDATA[
+An object that supports cloning is called a prototype.
+Why do I need a prototype?
+To clone objects, cloning from outside is tough, if you clone from outside you cannot clone the private fields and then whoever makes this clone has the dependency on that class which its cloning you need to know the anatomy of that class.
+Prototype pattern delegates the cloning process to the objects themselves.How do I implement a prototype?Minecraft slime, splits every time its hit into two smaller halves.public class Slime(int size, int hp) { public Slime? Hit() { if(size == 1){ hp = 0; return null; // can't split further } size /= 2; hp /= 2; return new Slime(size, hp); }
+}
+Copy a folder#include &lt;memory&gt;
+#include &lt;string&gt; #include &lt;vector&gt; using string = std::string; class FsItem {
+public: virtual ~FsItem() = default; virtual std::unique_ptr&lt;FsItem&gt; Clone(bool rename = false) = 0;
+}; class Folder : public FsItem {
+private: string _path; std::vector&lt;std::unique_ptr&lt;FsItem&gt;&gt; _children;
+public: Folder(string path) : _path(path) {} std::unique_ptr&lt;FsItem&gt; Clone(bool rename = false) { auto duplicate = std::make_unique&lt;Folder&gt;(_path); if(rename) duplicate-&gt;_path = _path + " (1)"; // just to demonstrate, not handling extensions for(auto &amp;child: _children) { duplicate-&gt;_children.push_back(child-&gt;Clone()); } return duplicate; }
+}; class File : public FsItem { };
+]]></description><link>design-patterns/creational/prototype.html</link><guid isPermaLink="false">Design Patterns/Creational/Prototype.md</guid><pubDate>Mon, 23 Mar 2026 18:44:23 GMT</pubDate></item><item><title><![CDATA[Singleton]]></title><description><![CDATA[
+A design pattern that guarantees a class has only one interface and provides a global access point to it.
+Why do I need singleton? Controlled access to a shared resource. (Db Connection, logger, file handles, print spooler)
+Share a global state across the application (Authentication status, dark mode)
+How to implement a singleton?// Meyer's singleton (thread safe)
+class Logger {
+private: Logger() {} // make the default constructor private Logger(const Logger&amp;) = delete; // delete the copy constructor Logger&amp; operator=(const Logger&amp;) = delete; // delete the assignment operator public: static Logger&amp; getInstance() { static Logger instance; return instance; }
+}
+public sealed class Logger { private static readonly Lazy&lt;Logger&gt; _instance =&gt; Lazy&lt;Instance&gt;(() =&gt; new Logger()); public static Logger Instance =&gt; _instance.Value; private Logger() { } // make the constructor private
+}
+Eager initialization: Instead of Lazy initialization (instance created when getInstance is called first time)class EagerLogger {
+private: EagerLogger() {} // make the default constructor private EagerLogger(const EagerLogger&amp;) = delete; // delete the copy constructor EagerLogger&amp; operator=(const EagerLogger&amp;) = delete; // delete the assignment operator static EagerLogger instance; public: static EagerLogger&amp; getInstance() { return instance; }
+};
+public sealed class EagerLogger { private static readonly EagerLogger _instance = new(); private EagerLogger() {} public static Instance =&gt; _instance;
+}
+]]></description><link>design-patterns/creational/singleton.html</link><guid isPermaLink="false">Design Patterns/Creational/Singleton.md</guid><pubDate>Mon, 23 Mar 2026 18:44:23 GMT</pubDate></item><item><title><![CDATA[Design Patterns]]></title><description><![CDATA[Design patterns in software engineering are reusable, proven solutions to common, recurring problems in software design.There are 3 types of design patterns:
+Creational: Focus on Mechanisms for creating objects
+Structural: Deals with how to structure classes
+Behavioral: Deals with behavior of classes with each other.
+]]></description><link>design-patterns/design-patterns.html</link><guid isPermaLink="false">Design Patterns/Design Patterns.md</guid><pubDate>Mon, 23 Mar 2026 18:44:22 GMT</pubDate></item><item><title><![CDATA[DIP]]></title><description><![CDATA[Dependency Inversion Principle
+High-level modules should not depend on low-level modules. Both should depend on abstractions (e.g., interfaces).
+Abstractions should not depend on details. Details (concrete implementations) should depend on abstractions.
+// ❌ VIOLATION: High-level depends directly on Low-level
+public class WarehouseManager { // Hard-coded to a specific 2024-era drone model private SkyeDroneV2 _drone = new SkyeDroneV2(); public void ProcessDelivery(string packageId) { Console.WriteLine($"Processing {packageId}..."); _drone.LiftOff(); // If we switch to a ground bot, this class breaks. _drone.FlyToCoordinates(10.5, 20.2); }
+}
+The solution: Depend on interfacespublic interface IDeliveryVehicle { void Deploy(double x, double y);
+}
+public class WarehouseManager { private readonly IDeliveryVehicle _vehicle; // Inject any vehicle that follows the contract public WarehouseManager(IDeliveryVehicle vehicle) { _vehicle = vehicle; } public void ProcessDelivery(string packageId) { _vehicle.Deploy(10.5, 20.2); }
+} public class SkyeDroneV5 : IDeliveryVehicle { public void Deploy(double x, double y) =&gt; Console.WriteLine("Flying to coordinates...");
+} public class StarshipGroundBot : IDeliveryVehicle { public void Deploy(double x, double y) =&gt; Console.WriteLine("Driving through warehouse floor...");
+}
+]]></description><link>design-principles/dip.html</link><guid isPermaLink="false">Design Principles/DIP.md</guid><pubDate>Mon, 23 Mar 2026 18:44:22 GMT</pubDate></item><item><title><![CDATA[DRY]]></title><description><![CDATA[Don't repeat yourself as simple as that.“Duplication is far cheaper than the wrong abstraction.” — Sandi MetzTry to extract the common logic into utility methods.]]></description><link>design-principles/dry.html</link><guid isPermaLink="false">Design Principles/DRY.md</guid><pubDate>Mon, 23 Mar 2026 18:44:22 GMT</pubDate></item><item><title><![CDATA[How is Abstraction Achieved]]></title><description><![CDATA[You don't need a silver bullet concept to achieve abstraction. A simple class with private methods is enough.There is interfaces and abstract classes, in this case the abstraction is being able to swap implementations without having to modify the upstream.]]></description><link>how-is-abstraction-achieved.html</link><guid isPermaLink="false">How is Abstraction Achieved.md</guid><pubDate>Mon, 23 Mar 2026 18:44:19 GMT</pubDate></item><item><title><![CDATA[Interfaces]]></title><description><![CDATA[At its core, an interface is a contract. This contract must be fulfilled by an implementing class. Interfaces enable <a data-href="Types of Polymorphism" href="types-of-polymorphism.html" class="internal-link" target="_self" rel="noopener nofollow">Types of Polymorphism</a>.class PaymentGateway {
+public: virtual ~PaymentGateway() {} virtual void initiatePayment(double amount) = 0;
+}; class PaypalPayment : public PaymentGateway { void initiatePayment(double amount) override { std::cout &lt;&lt; "Processing payment thorugh Paypal"; }
+}; class RazorpayPayment : public PaymentGateway { void initiatePayment(double amount) override { std::cout &lt;&lt; "Processing payment thorugh Razorpay"; }
+};
+]]></description><link>interfaces.html</link><guid isPermaLink="false">Interfaces.md</guid><pubDate>Mon, 23 Mar 2026 18:44:19 GMT</pubDate></item><item><title><![CDATA[Types of Polymorphism]]></title><description><![CDATA[There are 2 types of polymorphism: Compile time polymorphism (Overloading/Static Dispatch)
+Runtime polymorphism (Overriding/Dynamic Dispatch)
+Overloading is pretty simple, but to achieve dynamic dispatch you need virtual methods and pointers.#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;memory&gt;
+using namespace std; class Notification {
+protected: string recipient; string message; public: Notification(const string&amp; recipient, const string&amp; message) : recipient(recipient), message(message) {} virtual ~Notification() {} virtual void send() { cout &lt;&lt; "Sending generic notification to " &lt;&lt; recipient &lt;&lt; endl; }
+}; class EmailNotification : public Notification { string subject; public: EmailNotification(const string&amp; recipient, const string&amp; message, const string&amp; subject) : Notification(recipient, message), subject(subject) {} void send() override { cout &lt;&lt; "Sending EMAIL to " &lt;&lt; recipient &lt;&lt; " | Subject: " &lt;&lt; subject &lt;&lt; endl; }
+}; class SMSNotification : public Notification { string phoneNumber; public: SMSNotification(const string&amp; recipient, const string&amp; message, const string&amp; phoneNumber) : Notification(recipient, message), phoneNumber(phoneNumber) {} void send() override { cout &lt;&lt; "Sending SMS to " &lt;&lt; phoneNumber &lt;&lt; " | Message: " &lt;&lt; message &lt;&lt; endl; }
+}; class PushNotification : public Notification { string deviceToken; public: PushNotification(const string&amp; recipient, const string&amp; message, const string&amp; deviceToken) : Notification(recipient, message), deviceToken(deviceToken) {} void send() override { cout &lt;&lt; "Sending PUSH to device " &lt;&lt; deviceToken.substr(0, 8) &lt;&lt; "... | Alert: " &lt;&lt; message &lt;&lt; endl; }
+}; int main() { vector&lt;unique_ptr&lt;Notification&gt;&gt; notifications; notifications.push_back(make_unique&lt;EmailNotification&gt;( "alice@example.com", "Your order shipped!", "Order Update")); notifications.push_back(make_unique&lt;SMSNotification&gt;( "Bob", "Code: 482910", "+1-555-0123")); notifications.push_back(make_unique&lt;PushNotification&gt;( "Charlie", "New message", "d8a3f4b2c1e5a9b7")); for (auto&amp; n : notifications) { n-&gt;send(); } return 0;
+}
+]]></description><link>types-of-polymorphism.html</link><guid isPermaLink="false">Types of Polymorphism.md</guid><pubDate>Mon, 23 Mar 2026 18:44:14 GMT</pubDate></item><item><title><![CDATA[Class Relationships]]></title><description><![CDATA[In this type of relationship, two objects use or know about each other. They can exist independently of each other.Example: A student has a teacher, both can exist independently of each other.class PaymentGateway {
 public: void processPayment(double value){ std::cout&lt;&lt; std::format("Processing payment for value: {}", value); }
 }; // Order has-a payment gateway
 class Order {
@@ -59,25 +284,7 @@ It groups related data (fields) &amp; behaviors (functions) together.struct Colo
 class Car {
 private: string model_; string year_; Color color_; public: Car(string &amp;model, string &amp;year, Color &amp;color) : model_(model), year_(year), color_(color) { }
 };
-]]></description><link>what-is-a-class.html</link><guid isPermaLink="false">What is a Class.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[Types of Polymorphism]]></title><description><![CDATA[There are 2 types of polymorphism: Compile time polymorphism (Overloading/Static Dispatch)
-Runtime polymorphism (Overriding/Dynamic Dispatch)
-Overloading is pretty simple, but to achieve dynamic dispatch you need virtual methods and pointers.#include &lt;iostream&gt;
-#include &lt;string&gt;
-#include &lt;vector&gt;
-#include &lt;memory&gt;
-using namespace std; class Notification {
-protected: string recipient; string message; public: Notification(const string&amp; recipient, const string&amp; message) : recipient(recipient), message(message) {} virtual ~Notification() {} virtual void send() { cout &lt;&lt; "Sending generic notification to " &lt;&lt; recipient &lt;&lt; endl; }
-}; class EmailNotification : public Notification { string subject; public: EmailNotification(const string&amp; recipient, const string&amp; message, const string&amp; subject) : Notification(recipient, message), subject(subject) {} void send() override { cout &lt;&lt; "Sending EMAIL to " &lt;&lt; recipient &lt;&lt; " | Subject: " &lt;&lt; subject &lt;&lt; endl; }
-}; class SMSNotification : public Notification { string phoneNumber; public: SMSNotification(const string&amp; recipient, const string&amp; message, const string&amp; phoneNumber) : Notification(recipient, message), phoneNumber(phoneNumber) {} void send() override { cout &lt;&lt; "Sending SMS to " &lt;&lt; phoneNumber &lt;&lt; " | Message: " &lt;&lt; message &lt;&lt; endl; }
-}; class PushNotification : public Notification { string deviceToken; public: PushNotification(const string&amp; recipient, const string&amp; message, const string&amp; deviceToken) : Notification(recipient, message), deviceToken(deviceToken) {} void send() override { cout &lt;&lt; "Sending PUSH to device " &lt;&lt; deviceToken.substr(0, 8) &lt;&lt; "... | Alert: " &lt;&lt; message &lt;&lt; endl; }
-}; int main() { vector&lt;unique_ptr&lt;Notification&gt;&gt; notifications; notifications.push_back(make_unique&lt;EmailNotification&gt;( "alice@example.com", "Your order shipped!", "Order Update")); notifications.push_back(make_unique&lt;SMSNotification&gt;( "Bob", "Code: 482910", "+1-555-0123")); notifications.push_back(make_unique&lt;PushNotification&gt;( "Charlie", "New message", "d8a3f4b2c1e5a9b7")); for (auto&amp; n : notifications) { n-&gt;send(); } return 0;
-}
-]]></description><link>types-of-polymorphism.html</link><guid isPermaLink="false">Types of Polymorphism.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[Object Oriented Programming]]></title><description><![CDATA[<a data-href="Design Principles" href="design-principles/design-principles.html" class="internal-link" target="_self" rel="noopener nofollow">Design Principles</a>]]></description><link>object-oriented-programming.html</link><guid isPermaLink="false">Object Oriented Programming.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[Interfaces]]></title><description><![CDATA[At its core, an interface is a contract. This contract must be fulfilled by an implementing class. Interfaces enable <a data-href="Types of Polymorphism" href="types-of-polymorphism.html" class="internal-link" target="_self" rel="noopener nofollow">Types of Polymorphism</a>.class PaymentGateway {
-public: virtual ~PaymentGateway() {} virtual void initiatePayment(double amount) = 0;
-}; class PaypalPayment : public PaymentGateway { void initiatePayment(double amount) override { std::cout &lt;&lt; "Processing payment thorugh Paypal"; }
-}; class RazorpayPayment : public PaymentGateway { void initiatePayment(double amount) override { std::cout &lt;&lt; "Processing payment thorugh Razorpay"; }
-};
-]]></description><link>interfaces.html</link><guid isPermaLink="false">Interfaces.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[How is Abstraction Achieved]]></title><description><![CDATA[You don't need a silver bullet concept to achieve abstraction. A simple class with private methods is enough.There is interfaces and abstract classes, in this case the abstraction is being able to swap implementations without having to modify the upstream.]]></description><link>how-is-abstraction-achieved.html</link><guid isPermaLink="false">How is Abstraction Achieved.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[Enums]]></title><description><![CDATA[A special data type which defines a fixed set of named constants.]]></description><link>enums.html</link><guid isPermaLink="false">Enums.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[YAGNI]]></title><description><![CDATA[You ain't gonna need it!Don't implement stuff just because you foresee a requirement, only do it when you actually need it.]]></description><link>design-principles/yagni.html</link><guid isPermaLink="false">Design Principles/YAGNI.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[SRP]]></title><description><![CDATA[<a href=".?query=tag:solid_princliples" class="tag is-unresolved" target="_self" rel="noopener nofollow" data-href="#solid_princliples">#solid_princliples</a>
+]]></description><link>what-is-a-class.html</link><guid isPermaLink="false">What is a Class.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[Enums]]></title><description><![CDATA[A special data type which defines a fixed set of named constants.]]></description><link>enums.html</link><guid isPermaLink="false">Enums.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[YAGNI]]></title><description><![CDATA[You ain't gonna need it!Don't implement stuff just because you foresee a requirement, only do it when you actually need it.]]></description><link>design-principles/yagni.html</link><guid isPermaLink="false">Design Principles/YAGNI.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[SRP]]></title><description><![CDATA[<a href=".?query=tag:solid_princliples" class="tag is-unresolved" target="_self" rel="noopener nofollow" data-href="#solid_princliples">#solid_princliples</a>
 "A class should have one, and only one reason to change."
 "A class should have only one stakeholder".
 "A module should do one job."
@@ -158,214 +365,7 @@ The solutionpublic interface IPowerable { void TogglePower();
 } public interface IThermalControl { void AdjustTemperature(double celsius);
 } public interface IMotionSensor { void DetectMotion();
 }
-The smart_bulb only needs to implement IPowerable &amp; ILightable .]]></description><link>design-principles/isp.html</link><guid isPermaLink="false">Design Principles/ISP.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[Design Principles]]></title><description><![CDATA[DRYDon't repeat yourself as simple as that.“Duplication is far cheaper than the wrong abstraction.” — Sandi MetzTry to extract the common logic into utility methods.
-KISSKeep it simple stupid.Try to avoid complexity whenever possible, these include overengineering, anticipating requirements and un-necessary requirements.
-YAGNIYou ain't gonna need it!Don't implement stuff just because you foresee a requirement, only do it when you actually need it.
-LODLaw of Demeter : Only talk to your immediate friends.The rule is straightforward. A method&nbsp;M&nbsp;on an object&nbsp;O&nbsp;should only call methods on:
-Itself&nbsp;(the object&nbsp;O)
-Its own fields&nbsp;(objects that&nbsp;O&nbsp;holds as instance variables like DI)
-Its method parameters&nbsp;(objects passed into&nbsp;M)
-Objects it creates&nbsp;(objects instantiated within&nbsp;M)
-&nbsp;don't reach through one object to get to another.If you inject IMyService into your class:
-Allowed: _myService.DoWork() (Talking to a direct friend).
-Violation: _myService.Configuration.DatabaseSettings.ConnectionString SRP<a href=".?query=tag:solid_princliples" class="tag is-unresolved" target="_self" rel="noopener nofollow" data-href="#solid_princliples">#solid_princliples</a>
-"A class should have one, and only one reason to change."
-"A class should have only one stakeholder".
-"A module should do one job."
-The change can be requested by only one stakeholder. The God Class
-A class that tries to do everything. Things that try to do everything do nothing well.
-Focus on&nbsp;cohesion, not fragmentation. Group logic that changes together or belongs to the same business concern.
-OCPOpen Closed Principle
-"A class should be open for extension but closed for modification."
-A system will always need new features, but existing features should not have to be changed for adding new features.Interfaces and abstractions are your friend :) but you need to not over do it.enum class ExportFormat { Json, Csv }; class ReportGenerator {
-public: void exportReport(const std::string&amp; data, ExportFormat format) { // High-level business logic (the "Closed" part) std::string processedData = "Report Header\n" + data; // The "Open" part that is currently CLOSED to extension if (format == ExportFormat::Json) { std::cout &lt;&lt; "{\"data\": \"" &lt;&lt; processedData &lt;&lt; "\"}\n"; } else if (format == ExportFormat::Csv) { std::cout &lt;&lt; "Data_CSV," &lt;&lt; processedData &lt;&lt; "\n"; } // To add XML, you have to modify this specific function. }
-};
-#include &lt;iostream&gt;
-#include &lt;string&gt;
-#include &lt;memory&gt; // 1. Define the Interface (The extension point)
-class IFormatter {
-public: virtual ~IFormatter() = default; virtual void format(const std::string&amp; data) const = 0;
-}; // 2. Concrete implementations (In separate files if needed)
-class JsonFormatter : public IFormatter {
-public: void format(const std::string&amp; data) const override { std::cout &lt;&lt; "{\"data\": \"" &lt;&lt; data &lt;&lt; "\"}\n"; }
-}; class CsvFormatter : public IFormatter {
-public: void format(const std::string&amp; data) const override { std::cout &lt;&lt; "CSV," &lt;&lt; data &lt;&lt; "\n"; }
-}; // 3. The Core Logic (Closed for Modification)
-class ReportEngine {
-public: // This function never changes, no matter how many formats you add void generate(const std::string&amp; rawData, const IFormatter&amp; formatter) { std::string processed = "--- Proccessed Data ---\n" + rawData; formatter.format(processed); }
-}; // 4. Extension: Adding XML without touching existing classes
-class XmlFormatter : public IFormatter {
-public: void format(const std::string&amp; data) const override { std::cout &lt;&lt; "&lt;data&gt;" &lt;&lt; data &lt;&lt; "&lt;/data&gt;\n"; }
-}; int main() { ReportEngine engine; JsonFormatter json; XmlFormatter xml; // Added later without modifying ReportEngine engine.generate("User Login Logs", json); engine.generate("Financial Records", xml); return 0;
-} LSPLiskov Substitution Principle
-"You should be able to substitute child classes in place of parent classes without affecting functionality"
-Example: An ostrich is a bird, but it cannot fly, if the bird interface has a fly() method and ostrich implements bird just to do nothing or throws in the fly function, you have violated LSP.A better way of modelling this problem would be using the Flyer class, A pigeon implements both Flyer and Bird but the ostrich only implements Bird.<br>to support LSP we just used <a data-href="ISP" href="design-principles/isp.html" class="internal-link" target="_self" rel="noopener nofollow">ISP</a>Assume you have a model runner, a model runner has access to global model registry. It can sync data from model registry to update the model context.#include &lt;format&gt;
-#include &lt;stdexcept&gt;
-#include &lt;string&gt;
-#include &lt;vector&gt; class ModelRunner {
-protected: std::vector&lt;std::string&gt; modelContext;
-public: ~ModelRunner() = default; virtual void syncModelContextFromRegistry() = 0; virtual std::string runInference(std::string &amp;userMessage) = 0;
-}; class CloudRunner : private ModelRunner {
-public: void syncModelContextFromRegistry() override { std::string receivedData = "new_data"; int dataPoints = 500; // Received from the sync call this-&gt;modelContext.resize(dataPoints); this-&gt;modelContext.push_back(receivedData); }; std::string runInference(std::string &amp;userMessage) override { return "I cannot assist with that!"; }
-};
-A new requirement came from US govt. to deploy the AI models for military use, these processors must be air gapped and the hardware must be deployed in their facility.class NetworkException : std::runtime_error {
-public: explicit NetworkException(const std::string &amp;message) : std::runtime_error(format("A network error occured with the following message: {}", message)) {}
-}; class SecureEdgeRunner : private ModelRunner {
-public: void syncModelContextFromRegistry() override { // cannot make a network call throw NetworkException("Destination Unreachable"); } std::string runInference(std::string &amp;userMessage) override { // do something on local hardware return "I cannot assist with that!"; }
-};
-Now you try to run this and you have to account for the exception at runtime. This child does not obey the contract, likely because contract is too binding.Instead of this we could make 2 different base classes, ISyncable and IModelRunner#include &lt;format&gt;
-#include &lt;stdexcept&gt;
-#include &lt;string&gt;
-#include &lt;vector&gt;
-#include &lt;memory&gt; // The base "Concept" - represents any object that can run inference
-class ModelRunner {
-public: virtual ~ModelRunner() = default; virtual std::string runInference(const std::string &amp;userMessage) = 0;
-}; // A specialized capability for runners that can talk to a registry
-class Syncable {
-public: virtual ~Syncable() = default; virtual void syncFromRegistry() = 0;
-}; // Shared logic for runners that need to store state
-class BaseRunner : public ModelRunner {
-protected: std::vector&lt;std::string&gt; modelContext;
-}; // Cloud implementation: It "is-a" Runner and "is" Syncable
-class CloudRunner : public BaseRunner, public Syncable {
-public: void syncFromRegistry() override { std::string receivedData = "new_data"; // .assign() replaces the contents, avoiding the resize + push_back bug this-&gt;modelContext.assign(500, receivedData); } std::string runInference(const std::string &amp;userMessage) override { return std::format("Cloud processing: {}", userMessage); }
-}; // SecureEdge implementation: It "is-a" Runner only
-class SecureEdgeRunner : public BaseRunner {
-public: std::string runInference(const std::string &amp;userMessage) override { return std::format("Local edge processing: {}", userMessage); }
-}; ISPInterface segregation principleClients should not be forced to depend on methods they do not use.Means DO NOT MAKE FAT INTERFACES If an interface expects too much of the clients then they will be implementing un-necessary functionality for no reason.public interface ISmartDevice { void TogglePower(); void SetBrightness(int level); void AdjustTemperature(double celsius); // Irrelevant for bulbs void DetectMotion(); // Irrelevant for thermostats void StreamVideo(); // Irrelevant for most devices
-} public class BasicSmartBulb : ISmartDevice { public void TogglePower() =&gt; Console.WriteLine("Light toggled."); public void SetBrightness(int level) =&gt; Console.WriteLine($"Brightness at {level}%."); // Forced to implement methods it can't use public void AdjustTemperature(double c) =&gt; throw new NotImplementedException(); public void DetectMotion() =&gt; throw new NotImplementedException(); public void StreamVideo() =&gt; throw new NotImplementedException();
-}
-The solutionpublic interface IPowerable { void TogglePower();
-} public interface ILightable { void SetBrightness(int level);
-} public interface IThermalControl { void AdjustTemperature(double celsius);
-} public interface IMotionSensor { void DetectMotion();
-}
-The smart_bulb only needs to implement IPowerable &amp; ILightable .
-DIPDependency Inversion Principle
-High-level modules should not depend on low-level modules. Both should depend on abstractions (e.g., interfaces).
-Abstractions should not depend on details. Details (concrete implementations) should depend on abstractions.
-// ❌ VIOLATION: High-level depends directly on Low-level
-public class WarehouseManager { // Hard-coded to a specific 2024-era drone model private SkyeDroneV2 _drone = new SkyeDroneV2(); public void ProcessDelivery(string packageId) { Console.WriteLine($"Processing {packageId}..."); _drone.LiftOff(); // If we switch to a ground bot, this class breaks. _drone.FlyToCoordinates(10.5, 20.2); }
-}
-The solution: Depend on interfacespublic interface IDeliveryVehicle { void Deploy(double x, double y);
-}
-public class WarehouseManager { private readonly IDeliveryVehicle _vehicle; // Inject any vehicle that follows the contract public WarehouseManager(IDeliveryVehicle vehicle) { _vehicle = vehicle; } public void ProcessDelivery(string packageId) { _vehicle.Deploy(10.5, 20.2); }
-} public class SkyeDroneV5 : IDeliveryVehicle { public void Deploy(double x, double y) =&gt; Console.WriteLine("Flying to coordinates...");
-} public class StarshipGroundBot : IDeliveryVehicle { public void Deploy(double x, double y) =&gt; Console.WriteLine("Driving through warehouse floor...");
-}
-]]></description><link>design-principles/design-principles.html</link><guid isPermaLink="false">Design Principles/Design Principles.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[DRY]]></title><description><![CDATA[Don't repeat yourself as simple as that.“Duplication is far cheaper than the wrong abstraction.” — Sandi MetzTry to extract the common logic into utility methods.]]></description><link>design-principles/dry.html</link><guid isPermaLink="false">Design Principles/DRY.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[DIP]]></title><description><![CDATA[Dependency Inversion Principle
-High-level modules should not depend on low-level modules. Both should depend on abstractions (e.g., interfaces).
-Abstractions should not depend on details. Details (concrete implementations) should depend on abstractions.
-// ❌ VIOLATION: High-level depends directly on Low-level
-public class WarehouseManager { // Hard-coded to a specific 2024-era drone model private SkyeDroneV2 _drone = new SkyeDroneV2(); public void ProcessDelivery(string packageId) { Console.WriteLine($"Processing {packageId}..."); _drone.LiftOff(); // If we switch to a ground bot, this class breaks. _drone.FlyToCoordinates(10.5, 20.2); }
-}
-The solution: Depend on interfacespublic interface IDeliveryVehicle { void Deploy(double x, double y);
-}
-public class WarehouseManager { private readonly IDeliveryVehicle _vehicle; // Inject any vehicle that follows the contract public WarehouseManager(IDeliveryVehicle vehicle) { _vehicle = vehicle; } public void ProcessDelivery(string packageId) { _vehicle.Deploy(10.5, 20.2); }
-} public class SkyeDroneV5 : IDeliveryVehicle { public void Deploy(double x, double y) =&gt; Console.WriteLine("Flying to coordinates...");
-} public class StarshipGroundBot : IDeliveryVehicle { public void Deploy(double x, double y) =&gt; Console.WriteLine("Driving through warehouse floor...");
-}
-]]></description><link>design-principles/dip.html</link><guid isPermaLink="false">Design Principles/DIP.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[Design Patterns]]></title><description><![CDATA[Design patterns in software engineering are reusable, proven solutions to common, recurring problems in software design.There are 3 types of design patterns:
-Creational: Focus on Mechanisms for creating objects
-Structural: Deals with how to structure classes
-Behavioral: Deals with behavior of classes with each other.
-]]></description><link>design-patterns/design-patterns.html</link><guid isPermaLink="false">Design Patterns/Design Patterns.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[Singleton]]></title><description><![CDATA[
-A design pattern that guarantees a class has only one interface and provides a global access point to it.
-Why do I need singleton? Controlled access to a shared resource. (Db Connection, logger, file handles, print spooler)
-Share a global state across the application (Authentication status, dark mode)
-How to implement a singleton?// Meyer's singleton (thread safe)
-class Logger {
-private: Logger() {} // make the default constructor private Logger(const Logger&amp;) = delete; // delete the copy constructor Logger&amp; operator=(const Logger&amp;) = delete; // delete the assignment operator public: static Logger&amp; getInstance() { static Logger instance; return instance; }
-}
-public sealed class Logger { private static readonly Lazy&lt;Logger&gt; _instance =&gt; Lazy&lt;Instance&gt;(() =&gt; new Logger()); public static Logger Instance =&gt; _instance.Value; private Logger() { } // make the constructor private
-}
-Eager initialization: Instead of Lazy initialization (instance created when getInstance is called first time)class EagerLogger {
-private: EagerLogger() {} // make the default constructor private EagerLogger(const EagerLogger&amp;) = delete; // delete the copy constructor EagerLogger&amp; operator=(const EagerLogger&amp;) = delete; // delete the assignment operator static EagerLogger instance; public: static EagerLogger&amp; getInstance() { return instance; }
-};
-public sealed class EagerLogger { private static readonly EagerLogger _instance = new(); private EagerLogger() {} public static Instance =&gt; _instance;
-}
-]]></description><link>design-patterns/creational/singleton.html</link><guid isPermaLink="false">Design Patterns/Creational/Singleton.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[Prototype]]></title><description><![CDATA[
-An object that supports cloning is called a prototype.
-Why do I need a prototype?
-To clone objects, cloning from outside is tough, if you clone from outside you cannot clone the private fields and then whoever makes this clone has the dependency on that class which its cloning you need to know the anatomy of that class.
-Prototype pattern delegates the cloning process to the objects themselves.How do I implement a prototype?Minecraft slime, splits every time its hit into two smaller halves.public class Slime(int size, int hp) { public Slime? Hit() { if(size == 1){ hp = 0; return null; // can't split further } size /= 2; hp /= 2; return new Slime(size, hp); }
-}
-Copy a folder#include &lt;memory&gt;
-#include &lt;string&gt; #include &lt;vector&gt; using string = std::string; class FsItem {
-public: virtual ~FsItem() = default; virtual std::unique_ptr&lt;FsItem&gt; Clone(bool rename = false) = 0;
-}; class Folder : public FsItem {
-private: string _path; std::vector&lt;std::unique_ptr&lt;FsItem&gt;&gt; _children;
-public: Folder(string path) : _path(path) {} std::unique_ptr&lt;FsItem&gt; Clone(bool rename = false) { auto duplicate = std::make_unique&lt;Folder&gt;(_path); if(rename) duplicate-&gt;_path = _path + " (1)"; // just to demonstrate, not handling extensions for(auto &amp;child: _children) { duplicate-&gt;_children.push_back(child-&gt;Clone()); } return duplicate; }
-}; class File : public FsItem { };
-]]></description><link>design-patterns/creational/prototype.html</link><guid isPermaLink="false">Design Patterns/Creational/Prototype.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[Factory]]></title><description><![CDATA[aka virtual constructor or simple factory
-Factory is a pattern used to create objects of a superclass with the option to pick which subclass object should be created.
-Why do I need a factory?
-If you have one contract and multiple implementations, and you need to use different implementations based on parameters at runtime, a factory is for you.Could I just use a switch or if-else ? yes, you could, but if you need that in more than one place you will repeat this code over and over, with possibility of introducing bugs. And adding more implementations will be a pain.Who creates the objects?Factories often rely on implementations to do this, because its not necessary that each subclass has the same instantiation pattern, if they need additional details then those are also provided by the factory.How do I implement a factory?public interface INotifier { Task Notify();
-} // Example Implementation
-public class EmailNotifier(Dictionary&lt;string, string&gt; attributes) : INotifier { public async Task Notify() =&gt; await Task.CompletedTask;
-} public class NotifierFactory { private readonly Dictionary&lt;string, Func&lt;Dictionary&lt;string, string&gt;, INotifier&gt;&gt; _notifierRegistry = new(); public NotifierFactory() { RegisterNotifier("email", attrs =&gt; new EmailNotifier(attrs)); RegisterNotifier("sms", attrs =&gt; new SmsNotifier(attrs)); } public void RegisterNotifier(string identifier, Func&lt;Dictionary&lt;string, string&gt;, INotifier&gt; creator) { _notifierRegistry[identifier] = creator; } public INotifier CreateNotifier(string identifier, Dictionary&lt;string, string&gt; attributes) { if (_notifierRegistry.TryGetValue(identifier, out var creator)) { return creator(attributes); } throw new Exception($"Notifier '{identifier}' is not registered."); }
-}
-#include &lt;format&gt;
-#include &lt;functional&gt;
-#include &lt;iostream&gt;
-#include &lt;memory&gt;
-#include &lt;string&gt;
-#include &lt;unordered_map&gt;
-class Notifier {
-public: virtual ~Notifier() = default; virtual void Notify() = 0;
-}; class EmailNotifier : public Notifier {
-private: std::unordered_map&lt;std::string, std::string&gt; _attrs; public: EmailNotifier(std::unordered_map&lt;std::string, std::string&gt; attrs) : _attrs(attrs) { std::cout &lt;&lt; "Email Notifier Initialized"; } void Notify() override { std::cout &lt;&lt; "Sending Email Notification"; }
-}; class SmsNotifier : public Notifier {
-private: std::unordered_map&lt;std::string, std::string&gt; _attrs; public: SmsNotifier(std::unordered_map&lt;std::string, std::string&gt; attrs) : _attrs(attrs) { std::cout &lt;&lt; "Sms Notifier Initialized"; } void Notify() override { std::cout &lt;&lt; "Sending Sms Notification"; }
-}; using Creator = std::function&lt;std::unique_ptr&lt;Notifier&gt;( std::unordered_map&lt;std::string, std::string&gt;)&gt;;
-class NotificationFactory {
-private: std::unordered_map&lt;std::string, Creator&gt; _registry; public: std::unique_ptr&lt;Notifier&gt; CreateNotifier(std::string identifier, std::unordered_map&lt;std::string, std::string&gt; attributes) { if (_registry.contains(identifier)) return _registry[identifier](attributes); std::cerr &lt;&lt; std::format("identifier {} not registered", identifier); return nullptr; } void RegisterNotifier(std::string identifier, Creator creator) { _registry[identifier] = creator; }
-}; int main(int argc, char **argv) { NotificationFactory notificationFactory; notificationFactory.RegisterNotifier("email", [](auto attrs) { return std::make_unique&lt;EmailNotifier&gt;(attrs); }); notificationFactory.RegisterNotifier( "sms", [](auto attrs) { return std::make_unique&lt;SmsNotifier&gt;(attrs); }); auto notifier = notificationFactory.CreateNotifier( "sms", std::unordered_map&lt;std::string, std::string&gt;({ {"to", "test@gmail.com"}, })); notifier-&gt;Notify(); return 0;
-}
-]]></description><link>design-patterns/creational/factory.html</link><guid isPermaLink="false">Design Patterns/Creational/Factory.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[Abstract Factory]]></title><description><![CDATA[
-Abstract factory is a system of factories, it allows creation of creating families of related objects without having to specify their concrete classes.
-Why do I need Abstract Factory?
-Similar to <a data-href="Factory" href="design-patterns/creational/factory.html" class="internal-link" target="_self" rel="noopener nofollow">Factory</a> to avoid code duplication and having an easy way to create nested families of objects.How do I implement an Abstract Factory?Follow the 3 steps:
-Group your classes into kinds of products, for example Buttons and Textboxes
-Create the abstract factory, this has methods for returning the kinds of products identified in 1.
-Now if something wants to provide both buttons and textboxes (say a theme) then it is a concrete implementation for the abstract factory.
-// 1. Abstract Products
-public interface ILlm { void Chat(); }
-public interface IDiffusionModel { void GenerateImage(); } // 2. The Abstract Factory
-// It defines a "Kit" or "Suite" of related objects.
-public interface IAiSuiteFactory
-{ ILlm CreateLlm(); IDiffusionModel CreateImageGenerator();
-} // 3. Concrete Factory A: OpenAI Suite
-public class OpenAiSuite : IAiSuiteFactory
-{ public ILlm CreateLlm() =&gt; new ChatGptLlm(); public IDiffusionModel CreateImageGenerator() =&gt; new DallEImageGenerator();
-} // 4. Concrete Factory B: OpenSource/Anthropic Suite
-public class AlternativeSuite : IAiSuiteFactory
-{ public ILlm CreateLlm() =&gt; new ClaudeLlm(); // this can be a simple factory depending on the number of members in this family public IDiffusionModel CreateImageGenerator() =&gt; new SdxlImageGenerator();
-}
-#include &lt;iostream&gt;
-#include &lt;memory&gt;
-#include &lt;string&gt; // --- 1. Abstract Products ---
-// These define what a "Storage" and "Queue" look like, regardless of provider. class IStorage {
-public: virtual ~IStorage() = default; virtual void UploadFile(std::string name) = 0;
-}; class IQueue {
-public: virtual ~IQueue() = default; virtual void SendMessage(std::string msg) = 0;
-}; // --- 2. Concrete Products (AWS) --- class S3Storage : public IStorage {
-public: void UploadFile(std::string name) override { std::cout &lt;&lt; "AWS: Uploading " &lt;&lt; name &lt;&lt; " to S3 Bucket.\n"; }
-}; class SqsQueue : public IQueue {
-public: void SendMessage(std::string msg) override { std::cout &lt;&lt; "AWS: Sending '" &lt;&lt; msg &lt;&lt; "' to SQS Queue.\n"; }
-}; // --- 3. Concrete Products (Azure) --- class BlobStorage : public IStorage {
-public: void UploadFile(std::string name) override { std::cout &lt;&lt; "Azure: Uploading " &lt;&lt; name &lt;&lt; " to Blob Storage.\n"; }
-}; class ServiceBusQueue : public IQueue {
-public: void SendMessage(std::string msg) override { std::cout &lt;&lt; "Azure: Sending '" &lt;&lt; msg &lt;&lt; "' to Service Bus.\n"; }
-}; // --- 4. The Abstract Factory ---
-// This is the "Contract" that every provider must fulfill. class ICloudProviderFactory {
-public: virtual ~ICloudProviderFactory() = default; virtual std::unique_ptr&lt;IStorage&gt; CreateStorage() = 0; virtual std::unique_ptr&lt;IQueue&gt; CreateQueue() = 0;
-}; // --- 5. Concrete Factories --- class AwsFactory : public ICloudProviderFactory {
-public: std::unique_ptr&lt;IStorage&gt; CreateStorage() override { return std::make_unique&lt;S3Storage&gt;(); } std::unique_ptr&lt;IQueue&gt; CreateQueue() override { return std::make_unique&lt;SqsQueue&gt;(); }
-}; class AzureFactory : public ICloudProviderFactory {
-public: std::unique_ptr&lt;IStorage&gt; CreateStorage() override { return std::make_unique&lt;BlobStorage&gt;(); } std::unique_ptr&lt;IQueue&gt; CreateQueue() override { return std::make_unique&lt;ServiceBusQueue&gt;(); }
-};
-]]></description><link>design-patterns/creational/abstract-factory.html</link><guid isPermaLink="false">Design Patterns/Creational/Abstract Factory.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[4 Pillars of OOPs]]></title><description><![CDATA[4 Pillars of OOPSPolymorphismInheritanceAbstractionEncapsulationPIAe VPNClass RelationshipsIn this type of relationship, two objects use or know about each other. They can exist independently of each other.Example: A student has a teacher, both can exist independently of each other.class PaymentGateway {
+The smart_bulb only needs to implement IPowerable &amp; ILightable .]]></description><link>design-principles/isp.html</link><guid isPermaLink="false">Design Principles/ISP.md</guid><pubDate>Sun, 22 Mar 2026 22:23:15 GMT</pubDate></item><item><title><![CDATA[4 Pillars of OOPs]]></title><description><![CDATA[4 Pillars of OOPSPolymorphismInheritanceAbstractionEncapsulationPIAe VPNClass RelationshipsIn this type of relationship, two objects use or know about each other. They can exist independently of each other.Example: A student has a teacher, both can exist independently of each other.class PaymentGateway {
 public: void processPayment(double value){ std::cout&lt;&lt; std::format("Processing payment for value: {}", value); }
 }; // Order has-a payment gateway
 class Order {
