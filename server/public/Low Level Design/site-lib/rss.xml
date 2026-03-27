@@ -1,4 +1,108 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Low Level Design]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Low Level Design</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Tue, 24 Mar 2026 18:58:43 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Tue, 24 Mar 2026 18:58:42 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[Design Principles]]></title><description><![CDATA[<a data-href="DRY" href="design-principles/dry.html" class="internal-link" target="_self" rel="noopener nofollow">DRY</a><br>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Low Level Design]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Low Level Design</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Fri, 27 Mar 2026 19:27:58 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Fri, 27 Mar 2026 19:27:52 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[Decorator]]></title><description><![CDATA[
+A decorator is a pattern that allows you to add behaviors to objects dynamically.
+The subclass explosion is the main reason for having this pattern, sometimes you have a base functionality in a class and need to add a functionality to this class, the easiest thing to do is inheritance. But this is where the problem lies in. Imagine having the following set of classes:class Building {
+public public void openDoor() { }
+}; class BuildingWithSecurityGuard : public class Building { public void securityCheck() { // security Check this.openDoor(); }
+}; class BuildingWithSecurityGuardAndIdScanner : public class BuildingWithSecurityGuard { public void idScan() { // id scan this.securityCheck(); this.openDoor(); }
+}
+See the problem? We need to add functionality but we are having a multitude of classes. How is Decorator different from Builder?
+On the first glace it seems like Decorator is just like <a data-href="Builder" href="design-patterns/creational/builder.html" class="internal-link" target="_self" rel="noopener nofollow">Builder</a>, since its adding functionality to an object. That is true but the main difference here is that decorator is meant to be dynamic i.e. it adds functionality to existing object, whereas builder is supposed to only work during the object creation. Take the pizza for example, once the pizza is baked there is no way for adding functionality to it, hence builder sits right in that case, but if you want to do it at any time, a decorator is best suited. Moreover Decorator is somewhat like an onion 🧅, once a layer is wrapped there is no easy way to unwrap, the object identity is considered lost. If you need to keep adding and removing things dynamically <a data-href="Strategy" href=".html" class="internal-link" target="_self" rel="noopener nofollow">Strategy</a> maybe a better choice. Aspect Oriented Programming (AOP) is a programming paradigm which allows you to separate cross cutting concerns into pluggable, reusable modules. Metaprogramming The ability of a program to treat another program as input data, do modifications on it.
+AOP is generally implemented using metaprogramming! Let's take the cliché example of a cross cutting concern of logging.// csharp lacks native support for AOP unlike AspectJ for Java, but similar thing can be achieved using reflection + attributes, there are commercial libraries like PostSharp available for this.
+// The contract
+public interface IOrderService { void ProcessOrder(int orderId);
+} // The real business logic (clean, no logging)
+public class OrderService : IOrderService { public void ProcessOrder(int orderId) { // Pure business logic Console.WriteLine($"Processing order {orderId}"); }
+} // The Aspect - wraps the real service
+public class LoggingDecorator : IOrderService { private readonly IOrderService _inner; private readonly ILogger _logger; public LoggingDecorator(IOrderService inner, ILogger logger) { _inner = inner; _logger = logger; } public void ProcessOrder(int orderId) { _logger.LogInfo($"[ASPECT] Starting ProcessOrder with id={orderId}"); try { _inner.ProcessOrder(orderId); _logger.LogInfo("[ASPECT] Completed successfully"); } catch (Exception ex) { _logger.LogError($"[ASPECT] Failed: {ex.Message}"); throw; } }
+} // Wire-up (usually in Startup.cs or DI container)
+IOrderService realService = new OrderService();
+IOrderService loggedService = new LoggingDecorator(realService, logger);
+loggedService.ProcessOrder(123); // Logs automatically
+rclone is a robust Linux tool which is used to sync files locally to virtually any cloud provider! If we look closely at the architecture of rclone layers it is a decorator.S3:my-bucket🔐cryptcache
+Adding each layer creates a wrapper and fundamentally changes the read and write procedures.#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt; using namespace std; class Base {
+private: string _target;
+public: Base(string target) : _target(target) {} string readFile(string path) { return "Content from " + path; }
+}; class Crypt {
+private: Base _inner; string _key;
+public: Crypt(Base inner, string key) : _inner(inner), _key(key) {} string readFile(string path) { // decrypt return _inner.readFile(path); }
+}; class Cache {
+private: Crypt _inner; vector&lt;string&gt; _filePaths;
+public: Cache(Crypt inner) : _inner(inner) {} string readFile(string path) { // check cache to reduce network calls return _inner.readFile(path); }
+};
+]]></description><link>design-patterns/structural/decorator.html</link><guid isPermaLink="false">Design Patterns/Structural/Decorator.md</guid><pubDate>Fri, 27 Mar 2026 19:27:03 GMT</pubDate></item><item><title><![CDATA[Builder]]></title><description><![CDATA[
+Builder is an assembly line, which lets you construct complex objects step by step!
+If you ever run into Constructors/Factories with a large number of parameters, then you need a builder!enum Class Crust { CLASSIC_TOSSED, NEW_PAN_TOSSED, THIN, STUFFED
+}; class Pizza {
+public: Pizza(int size, Crust crust, bool cheese, bool chicken, bool olives); // and so on
+} // builder helps with this exact problem class Pizza {
+private: int _size = 7; Crust _crust; bool cheese = false; bool chicken = false; bool olives = false;
+public: Pizza(int size, Crust crust) : _size(size), _crust(crust) {}; Pizza&amp; AddCheese() { _cheese = true; }; Pizza&amp; AddChicken() { _chicken = true; }; Pizza&amp; AddOlives() { _olives = true; };
+}
+Builder doesn't just add
+The only restriction about builder is that its supposed to be used during object creation, but one important distinction is that its absolutely fine to have a removeTopping in your Pizza class, a Pizza is considered built when the order is confirmed!
+class AiAgentBuilder{ private string _name; private string _model = "gpt-5-turbo"; private double _temperature = 0.5; private int _maxTokens = 2048; private string _region = "us-central-1"; private readonly List&lt;string&gt; _tools = []; public AiAgent(string name, string model, double temperature, int maxTokens, string region, List&lt;string&gt; tools) { // cognitive complexity too high }
+} class AiAgentBuilder(string name){ private string _model = "gpt-5-turbo"; private double _temperature = 0.5; private int _maxTokens = 2048; private string _region = "us-central-1"; private readonly List&lt;string&gt; _tools = []; public AiAgentBuilder SetCreativity(double temperature) { _temperature = temperature; return this; } public AiAgentBuilder WithModel(string model) { _model = model; return this; } public AiAgentBuilder SetMaxTokens(int tokens) { _maxTokens = tokens; return this; } public AiAgentBuilder InRegion(string region) { _region = region; return this; } public AiAgentBuilder AddTool(string tool) { _tools.Add(tool); return this; }
+}
+]]></description><link>design-patterns/creational/builder.html</link><guid isPermaLink="false">Design Patterns/Creational/Builder.md</guid><pubDate>Fri, 27 Mar 2026 18:38:48 GMT</pubDate></item><item><title><![CDATA[Factory]]></title><description><![CDATA[aka virtual constructor or simple factory
+Factory is a pattern used to create objects of a superclass with the option to pick which subclass object should be created.
+Why do I need a factory?
+If you have one contract and multiple implementations, and you need to use different implementations based on parameters at runtime, a factory is for you.Could I just use a switch or if-else ? yes, you could, but if you need that in more than one place you will repeat this code over and over, with possibility of introducing bugs. And adding more implementations will be a pain.Who creates the objects?Factories often rely on implementations to do this, because its not necessary that each subclass has the same instantiation pattern, if they need additional details then those are also provided by the factory.How do I implement a factory?public interface INotifier { Task Notify();
+} // Example Implementation
+public class EmailNotifier(Dictionary&lt;string, string&gt; attributes) : INotifier { public async Task Notify() =&gt; await Task.CompletedTask;
+} public class NotifierFactory { private readonly Dictionary&lt;string, Func&lt;Dictionary&lt;string, string&gt;, INotifier&gt;&gt; _notifierRegistry = new(); public NotifierFactory() { RegisterNotifier("email", attrs =&gt; new EmailNotifier(attrs)); RegisterNotifier("sms", attrs =&gt; new SmsNotifier(attrs)); } public void RegisterNotifier(string identifier, Func&lt;Dictionary&lt;string, string&gt;, INotifier&gt; creator) { _notifierRegistry[identifier] = creator; } public INotifier CreateNotifier(string identifier, Dictionary&lt;string, string&gt; attributes) { if (_notifierRegistry.TryGetValue(identifier, out var creator)) { return creator(attributes); } throw new Exception($"Notifier '{identifier}' is not registered."); }
+}
+#include &lt;format&gt;
+#include &lt;functional&gt;
+#include &lt;iostream&gt;
+#include &lt;memory&gt;
+#include &lt;string&gt;
+#include &lt;unordered_map&gt;
+class Notifier {
+public: virtual ~Notifier() = default; virtual void Notify() = 0;
+}; class EmailNotifier : public Notifier {
+private: std::unordered_map&lt;std::string, std::string&gt; _attrs; public: EmailNotifier(std::unordered_map&lt;std::string, std::string&gt; attrs) : _attrs(attrs) { std::cout &lt;&lt; "Email Notifier Initialized"; } void Notify() override { std::cout &lt;&lt; "Sending Email Notification"; }
+}; class SmsNotifier : public Notifier {
+private: std::unordered_map&lt;std::string, std::string&gt; _attrs; public: SmsNotifier(std::unordered_map&lt;std::string, std::string&gt; attrs) : _attrs(attrs) { std::cout &lt;&lt; "Sms Notifier Initialized"; } void Notify() override { std::cout &lt;&lt; "Sending Sms Notification"; }
+}; using Creator = std::function&lt;std::unique_ptr&lt;Notifier&gt;( std::unordered_map&lt;std::string, std::string&gt;)&gt;;
+class NotificationFactory {
+private: std::unordered_map&lt;std::string, Creator&gt; _registry; public: std::unique_ptr&lt;Notifier&gt; CreateNotifier(std::string identifier, std::unordered_map&lt;std::string, std::string&gt; attributes) { if (_registry.contains(identifier)) return _registry[identifier](attributes); std::cerr &lt;&lt; std::format("identifier {} not registered", identifier); return nullptr; } void RegisterNotifier(std::string identifier, Creator creator) { _registry[identifier] = creator; }
+}; int main(int argc, char **argv) { NotificationFactory notificationFactory; notificationFactory.RegisterNotifier("email", [](auto attrs) { return std::make_unique&lt;EmailNotifier&gt;(attrs); }); notificationFactory.RegisterNotifier( "sms", [](auto attrs) { return std::make_unique&lt;SmsNotifier&gt;(attrs); }); auto notifier = notificationFactory.CreateNotifier( "sms", std::unordered_map&lt;std::string, std::string&gt;({ {"to", "test@gmail.com"}, })); notifier-&gt;Notify(); return 0;
+}
+Related: <a data-href="Types of Polymorphism" href="types-of-polymorphism.html" class="internal-link" target="_self" rel="noopener nofollow">Types of Polymorphism</a>]]></description><link>design-patterns/creational/factory.html</link><guid isPermaLink="false">Design Patterns/Creational/Factory.md</guid><pubDate>Fri, 27 Mar 2026 18:05:18 GMT</pubDate></item><item><title><![CDATA[Adapter]]></title><description><![CDATA[
+Adapter is a pattern that bridges two incompatible systems.
+Ever saw one of these?
+<img alt="Pasted image 20260325234313.png" src="assets/pasted-image-20260325234313.png" target="_self" style="width: 200px; max-width: 100%;">These are universal power plug adapters, they allow you to use different kind of sockets available around the world with your devices!Adapter is just like that, if you got two systems that cannot understand each other, an adapter is for you!Imagine you have an app and you charge a monthly subscription for your app (I don't love you for that, but hey maybe its a good app 😁)One day you decide to add Indian Credit Cards as a payment option, you were living in Zen mode till now with the following interface:interface IPaymentProcessor { Task ProcessPayment(double amount);
+}
+This is almost never the case, but let's assume that all the existing payment provider classes can easily implement this.<br>You put our your Nerd specs and fire up Claude Code to do this on a fine afternoon, but turns out RBI has dug your <a data-tooltip-position="top" aria-label="https://www.linkedin.com/posts/eximpe_fintech-crossborderpayments-rbi-activity-7361773667225141249-cXgd" rel="noopener nofollow" class="external-link is-unresolved" href="https://www.linkedin.com/posts/eximpe_fintech-crossborderpayments-rbi-activity-7361773667225141249-cXgd" target="_self">grave</a> Requiring notoriously difficult 3D Secure &amp; 3FA Requirements. You like money (Who doesn't) so you must implement this. Right now the blueprint looks nothing like what you wantinterface IIndianCreditCardPaymentProcessor { Task&lt;bool&gt; IsCountrySupported(); Task Initiate2Fa(); Task Withdraw(double amount);
+}
+This is where you remember System Design 101 and think that hey I've got a pattern for this!class IndianCcPaymentAdapter(IIndianCreditCardPaymentProcessor indianCcPaymentProcessor) : IPaymentProcessor { public async Task ProcessPayment(double amount) { if(!IsCountrySupported()){ // cannot deduct money using this credit card } await Initiate2Fa(); await WithDraw(amount); }
+}
+Of course, it’s 2026, and no set of examples is complete without AI in it. In this episode of "I am tired of AI," we bring you MCP Adapters.Back in 2024, Silicon Valley tech bros hit a wall. They kept pondering one specific question: "How do I give my AI more hands?"For those who don't know, AI models are still largely "black boxes" with inputs and outputs—and nothing else. It is incredibly difficult to get a model to actually do things if all it can do is ingest and spit out text. OpenAI was the first to address this with a solution called Tools (Function Calling), which has since been universally adopted.However, a "tool" is often basic: open a file, read text, or search the web. As AI evolved, developers craved integrations with more complex upstream systems.At this point, you might wonder: "Aren't APIs a thing?" Well, buster, APIs come in all shapes, sizes, and forms. If I sat around integrating individual APIs all day, I’d be 63 million years old before I was finished. Anthropic realized this and introduced MCP (Model Context Protocol). It’s a standardized set of rules that the AI already knows how to navigate. If you want your app to be "touched" by the billion-dollar sentient robot, you must implement this protocol.Naturally, everyone jumped the tracks to implement it, and it has become the norm. Some of the most popular MCP servers in 2026 include:
+GitHub MCP Server
+Firecrawl
+Browserbase
+Notion
+If you look closely, you’ll see that these are all adapters under the hood—taking a specific implementation and making it "AI-agent ready."#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;memory&gt;
+#include &lt;vector&gt; class McpServer {
+public: virtual ~McpServer() = default; virtual std::string execute_tool(const std::string&amp; name, const std::string&amp; args) = 0;
+}; class FigmaApi {
+public: std::string fetch_node_json(const std::string&amp; file_key, const std::string&amp; node_id) { return "{\"id\": \"" + node_id + "\", \"type\": \"RECTANGLE\", \"color\": \"#FF0000\"}"; }
+}; class FigmaMcpAdapter : public McpServer {
+public: explicit FigmaMcpAdapter(std::unique_ptr&lt;FigmaApi&gt; api) : figma_api_(std::move(api)) {} std::string execute_tool(const std::string&amp; name, const std::string&amp; args) override { if (name == "get_component") { return figma_api_-&gt;fetch_node_json("file_123", args); } return "Error: Tool not found"; } private: std::unique_ptr&lt;FigmaApi&gt; figma_api_;
+}; int main() { auto api = std::make_unique&lt;FigmaApi&gt;(); std::unique_ptr&lt;McpServer&gt; server = std::make_unique&lt;FigmaMcpAdapter&gt;(std::move(api)); std::cout &lt;&lt; server-&gt;execute_tool("get_component", "layer_01") &lt;&lt; std::endl; return 0;
+}
+]]></description><link>design-patterns/structural/adapter.html</link><guid isPermaLink="false">Design Patterns/Structural/Adapter.md</guid><pubDate>Wed, 25 Mar 2026 18:59:02 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Object Oriented Programming]]></title><description><![CDATA[<a data-href="Design Principles/_index" href="design-principles/_index.html" class="internal-link" target="_self" rel="noopener nofollow">Design Principles/_index</a>]]></description><link>object-oriented-programming.html</link><guid isPermaLink="false">Object Oriented Programming.md</guid><pubDate>Wed, 25 Mar 2026 18:16:28 GMT</pubDate></item><item><title><![CDATA[_index]]></title><description><![CDATA[<a data-href="DRY" href="design-principles/dry.html" class="internal-link" target="_self" rel="noopener nofollow">DRY</a><br>
+<a data-href="KISS" href="design-principles/kiss.html" class="internal-link" target="_self" rel="noopener nofollow">KISS</a><br>
+<a data-href="YAGNI" href="design-principles/yagni.html" class="internal-link" target="_self" rel="noopener nofollow">YAGNI</a><br>
+<a data-href="LOD" href="design-principles/lod.html" class="internal-link" target="_self" rel="noopener nofollow">LOD</a><br><a data-href="SRP" href="design-principles/srp.html" class="internal-link" target="_self" rel="noopener nofollow">SRP</a><br>
+<a data-href="OCP" href="design-principles/ocp.html" class="internal-link" target="_self" rel="noopener nofollow">OCP</a><br>
+<a data-href="LSP" href="design-principles/lsp.html" class="internal-link" target="_self" rel="noopener nofollow">LSP</a><br>
+<a data-href="ISP" href="design-principles/isp.html" class="internal-link" target="_self" rel="noopener nofollow">ISP</a><br>
+<a data-href="DIP" href="design-principles/dip.html" class="internal-link" target="_self" rel="noopener nofollow">DIP</a>]]></description><link>design-principles/_index.html</link><guid isPermaLink="false">Design Principles/_index.md</guid><pubDate>Tue, 24 Mar 2026 18:58:22 GMT</pubDate></item><item><title><![CDATA[Design Principles]]></title><description><![CDATA[<a data-href="DRY" href="design-principles/dry.html" class="internal-link" target="_self" rel="noopener nofollow">DRY</a><br>
 <a data-href="KISS" href="design-principles/kiss.html" class="internal-link" target="_self" rel="noopener nofollow">KISS</a><br>
 <a data-href="YAGNI" href="design-principles/yagni.html" class="internal-link" target="_self" rel="noopener nofollow">YAGNI</a><br>
 <a data-href="LOD" href="design-principles/lod.html" class="internal-link" target="_self" rel="noopener nofollow">LOD</a><br><a data-href="SRP" href="design-principles/srp.html" class="internal-link" target="_self" rel="noopener nofollow">SRP</a><br>
@@ -36,7 +140,7 @@ Let's be honest its a war you cannot win and let's join the Darkside! and try to
 } class BrowserRenderer { async Task RenderJs(string url) { // render complex js return Task.CompletedTask; }
 } class ScrapingFacade(BrowserRenderer browserRenderer, CaptchaBuster captchaBuster, ProxyPool proxyPool) { public async Task&lt;string&gt; GetSiteContent(string url) { var ip = proxyPool.GetResidentialIp(); await browserRenderer.RenderJs(url); var result = captchaBuster.SolveCaptcha(); return result; }
 }
-]]></description><link>design-patterns/structural/facade.html</link><guid isPermaLink="false">Design Patterns/Structural/Facade.md</guid><pubDate>Tue, 24 Mar 2026 18:56:58 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Object Oriented Programming]]></title><description><![CDATA[<a data-href="Design Principles" href="design-principles/design-principles.html" class="internal-link" target="_self" rel="noopener nofollow">Design Principles</a>]]></description><link>object-oriented-programming.html</link><guid isPermaLink="false">Object Oriented Programming.md</guid><pubDate>Tue, 24 Mar 2026 18:48:35 GMT</pubDate></item><item><title><![CDATA[Pillars of OOPs]]></title><description><![CDATA[4 Pillars of OOPSPolymorphismInheritanceAbstractionEncapsulationPIAe VPNClass RelationshipsIn this type of relationship, two objects use or know about each other. They can exist independently of each other.Example: A student has a teacher, both can exist independently of each other.class PaymentGateway {
+]]></description><link>design-patterns/structural/facade.html</link><guid isPermaLink="false">Design Patterns/Structural/Facade.md</guid><pubDate>Tue, 24 Mar 2026 18:56:58 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Pillars of OOPs]]></title><description><![CDATA[4 Pillars of OOPSPolymorphismInheritanceAbstractionEncapsulationPIAe VPNClass RelationshipsIn this type of relationship, two objects use or know about each other. They can exist independently of each other.Example: A student has a teacher, both can exist independently of each other.class PaymentGateway {
 public: void processPayment(double value){ std::cout&lt;&lt; std::format("Processing payment for value: {}", value); }
 }; // Order has-a payment gateway
 class Order {
@@ -92,18 +196,7 @@ public: StorageService(BlobContainerClient &amp;containerClient) : blobContainer
 <br><a data-href="Builder" href="design-patterns/creational/builder.html" class="internal-link" target="_self" rel="noopener nofollow">Builder</a> : (High) - Creating complex, immutable configuration objects and data records in modern "State-is-Evil" architectures.
 <br><a data-href="Abstract Factory" href="design-patterns/creational/abstract-factory.html" class="internal-link" target="_self" rel="noopener nofollow">Abstract Factory</a> : (Medium) - Providing families of related objects for multi-cloud SDKs (AWS vs Azure) or cross-platform UI themes.
 <br><a data-href="Prototype" href="design-patterns/creational/prototype.html" class="internal-link" target="_self" rel="noopener nofollow">Prototype</a> : (Very Low) - Efficiently cloning objects in performance-critical systems like game engines or through JS spread operators.
-]]></description><link>design-patterns/creational/_index.html</link><guid isPermaLink="false">Design Patterns/Creational/_index.md</guid><pubDate>Tue, 24 Mar 2026 17:49:11 GMT</pubDate></item><item><title><![CDATA[Builder]]></title><description><![CDATA[
-Builder is an assembly line, which lets you construct complex objects step by step!
-Why do I need a builder?
-If you ever run into Constructors/Factories with a large number of parameters, then you need a builder!enum Class Crust { CLASSIC_TOSSED, NEW_PAN_TOSSED, THIN, STUFFED
-}; class Pizza {
-public: Pizza(int size, Crust crust, bool cheese, bool chicken, bool olives); // and so on
-} // builder helps with this exact problem class Pizza {
-private: int _size = 7; Crust _crust; bool cheese = false; bool chicken = false; bool olives = false;
-public: Pizza(int size, Crust crust) : _size(size), _crust(crust) {}; Pizza&amp; AddCheese() { _cheese = true; }; Pizza&amp; AddChicken() { _chicken = true; }; Pizza&amp; AddOlives() { _olives = true; };
-}
-class AiAgentBuilder{ private string _name; private string _model = "gpt-5-turbo"; private double _temperature = 0.5; private int _maxTokens = 2048; private string _region = "us-central-1"; private readonly List&lt;string&gt; _tools = []; public AiAgent(string name, string model, double temperature, int maxTokens, string region, List&lt;string&gt; tools) { // cognitive complexity too high }
-} class AiAgentBuilder(string name){ private string _model = "gpt-5-turbo"; private double _temperature = 0.5; private int _maxTokens = 2048; private string _region = "us-central-1"; private readonly List&lt;string&gt; _tools = []; public AiAgentBuilder SetCreativity(double temperature) { _temperature = temperature; return this; } public AiAgentBuilder WithModel(string model) { _model = model; return this; } public AiAgentBuilder SetMaxTokens(int tokens) { _maxTokens = tokens; return this; } public AiAgentBuilder InRegion(string region) { _region = region; return this; } public AiAgentBuilder AddTool(string tool) { _tools.Add(tool); return this; } } ]]></description><link>design-patterns/creational/builder.html</link><guid isPermaLink="false">Design Patterns/Creational/Builder.md</guid><pubDate>Tue, 24 Mar 2026 17:42:33 GMT</pubDate></item><item><title><![CDATA[Abstract Factory]]></title><description><![CDATA[
+]]></description><link>design-patterns/creational/_index.html</link><guid isPermaLink="false">Design Patterns/Creational/_index.md</guid><pubDate>Tue, 24 Mar 2026 17:49:11 GMT</pubDate></item><item><title><![CDATA[Abstract Factory]]></title><description><![CDATA[
 Abstract factory is a system of factories, it allows creation of creating families of related objects without having to specify their concrete classes.
 Why do I need Abstract Factory?
 Similar to <a data-href="Factory" href="design-patterns/creational/factory.html" class="internal-link" target="_self" rel="noopener nofollow">Factory</a> to avoid code duplication and having an easy way to create nested families of objects.How do I implement an Abstract Factory?Follow the 3 steps:
@@ -146,32 +239,7 @@ public: std::unique_ptr&lt;IStorage&gt; CreateStorage() override { return std::m
 }; class AzureFactory : public ICloudProviderFactory {
 public: std::unique_ptr&lt;IStorage&gt; CreateStorage() override { return std::make_unique&lt;BlobStorage&gt;(); } std::unique_ptr&lt;IQueue&gt; CreateQueue() override { return std::make_unique&lt;ServiceBusQueue&gt;(); }
 };
-]]></description><link>design-patterns/creational/abstract-factory.html</link><guid isPermaLink="false">Design Patterns/Creational/Abstract Factory.md</guid><pubDate>Mon, 23 Mar 2026 18:44:23 GMT</pubDate></item><item><title><![CDATA[Factory]]></title><description><![CDATA[aka virtual constructor or simple factory
-Factory is a pattern used to create objects of a superclass with the option to pick which subclass object should be created.
-Why do I need a factory?
-If you have one contract and multiple implementations, and you need to use different implementations based on parameters at runtime, a factory is for you.Could I just use a switch or if-else ? yes, you could, but if you need that in more than one place you will repeat this code over and over, with possibility of introducing bugs. And adding more implementations will be a pain.Who creates the objects?Factories often rely on implementations to do this, because its not necessary that each subclass has the same instantiation pattern, if they need additional details then those are also provided by the factory.How do I implement a factory?public interface INotifier { Task Notify();
-} // Example Implementation
-public class EmailNotifier(Dictionary&lt;string, string&gt; attributes) : INotifier { public async Task Notify() =&gt; await Task.CompletedTask;
-} public class NotifierFactory { private readonly Dictionary&lt;string, Func&lt;Dictionary&lt;string, string&gt;, INotifier&gt;&gt; _notifierRegistry = new(); public NotifierFactory() { RegisterNotifier("email", attrs =&gt; new EmailNotifier(attrs)); RegisterNotifier("sms", attrs =&gt; new SmsNotifier(attrs)); } public void RegisterNotifier(string identifier, Func&lt;Dictionary&lt;string, string&gt;, INotifier&gt; creator) { _notifierRegistry[identifier] = creator; } public INotifier CreateNotifier(string identifier, Dictionary&lt;string, string&gt; attributes) { if (_notifierRegistry.TryGetValue(identifier, out var creator)) { return creator(attributes); } throw new Exception($"Notifier '{identifier}' is not registered."); }
-}
-#include &lt;format&gt;
-#include &lt;functional&gt;
-#include &lt;iostream&gt;
-#include &lt;memory&gt;
-#include &lt;string&gt;
-#include &lt;unordered_map&gt;
-class Notifier {
-public: virtual ~Notifier() = default; virtual void Notify() = 0;
-}; class EmailNotifier : public Notifier {
-private: std::unordered_map&lt;std::string, std::string&gt; _attrs; public: EmailNotifier(std::unordered_map&lt;std::string, std::string&gt; attrs) : _attrs(attrs) { std::cout &lt;&lt; "Email Notifier Initialized"; } void Notify() override { std::cout &lt;&lt; "Sending Email Notification"; }
-}; class SmsNotifier : public Notifier {
-private: std::unordered_map&lt;std::string, std::string&gt; _attrs; public: SmsNotifier(std::unordered_map&lt;std::string, std::string&gt; attrs) : _attrs(attrs) { std::cout &lt;&lt; "Sms Notifier Initialized"; } void Notify() override { std::cout &lt;&lt; "Sending Sms Notification"; }
-}; using Creator = std::function&lt;std::unique_ptr&lt;Notifier&gt;( std::unordered_map&lt;std::string, std::string&gt;)&gt;;
-class NotificationFactory {
-private: std::unordered_map&lt;std::string, Creator&gt; _registry; public: std::unique_ptr&lt;Notifier&gt; CreateNotifier(std::string identifier, std::unordered_map&lt;std::string, std::string&gt; attributes) { if (_registry.contains(identifier)) return _registry[identifier](attributes); std::cerr &lt;&lt; std::format("identifier {} not registered", identifier); return nullptr; } void RegisterNotifier(std::string identifier, Creator creator) { _registry[identifier] = creator; }
-}; int main(int argc, char **argv) { NotificationFactory notificationFactory; notificationFactory.RegisterNotifier("email", [](auto attrs) { return std::make_unique&lt;EmailNotifier&gt;(attrs); }); notificationFactory.RegisterNotifier( "sms", [](auto attrs) { return std::make_unique&lt;SmsNotifier&gt;(attrs); }); auto notifier = notificationFactory.CreateNotifier( "sms", std::unordered_map&lt;std::string, std::string&gt;({ {"to", "test@gmail.com"}, })); notifier-&gt;Notify(); return 0;
-}
-]]></description><link>design-patterns/creational/factory.html</link><guid isPermaLink="false">Design Patterns/Creational/Factory.md</guid><pubDate>Mon, 23 Mar 2026 18:44:23 GMT</pubDate></item><item><title><![CDATA[Prototype]]></title><description><![CDATA[
+]]></description><link>design-patterns/creational/abstract-factory.html</link><guid isPermaLink="false">Design Patterns/Creational/Abstract Factory.md</guid><pubDate>Mon, 23 Mar 2026 18:44:23 GMT</pubDate></item><item><title><![CDATA[Prototype]]></title><description><![CDATA[
 An object that supports cloning is called a prototype.
 Why do I need a prototype?
 To clone objects, cloning from outside is tough, if you clone from outside you cannot clone the private fields and then whoever makes this clone has the dependency on that class which its cloning you need to know the anatomy of that class.
