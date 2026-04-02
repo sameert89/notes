@@ -41841,8 +41841,8 @@ var MIN_DELAY = 0;
 var MAX_DELAY = 2e3;
 var MIN_MAX_CHAR_LIMIT = 100;
 var MAX_MAX_CHAR_LIMIT = 1e4;
-var MIN_MAX_TOKENS = 128;
-var MAX_MAX_TOKENS = 8192;
+var MIN_max_completion_tokens = 128;
+var MAX_max_completion_tokens = 8192;
 var MIN_TEMPERATURE = 0;
 var MAX_TEMPERATURE = 1;
 var MIN_TOP_P = 0;
@@ -41869,7 +41869,7 @@ var modelOptionsSchema = z.object({
   top_p: z.number().min(0, { message: `top_p must be greater than ${MIN_TOP_P}` }).max(1, { message: `top_p must be at most ${MAX_TOP_P}` }),
   frequency_penalty: z.number().min(0, { message: `Frequency penalty must be at least ${MIN_FREQUENCY_PENALTY}` }).max(2, { message: `Frequency penalty must be at most ${MAX_FREQUENCY_PENALTY}` }),
   presence_penalty: z.number().min(MIN_PRESENCE_PENALTY, { message: `Presence penalty must be at least ${MIN_PRESENCE_PENALTY}` }).max(MAX_PRESENCE_PENALTY, { message: `Presence penalty must be at most ${MAX_PRESENCE_PENALTY}` }),
-  max_completion_tokens: z.number().int().min(MIN_MAX_TOKENS, { message: `max_tokens must be at least than ${MIN_MAX_TOKENS}` }).max(MAX_MAX_TOKENS, { message: `max_tokens must be at most ${MAX_MAX_TOKENS}` })
+  max_completion_tokens: z.number().int().min(MIN_max_completion_tokens, { message: `max_completion_tokens must be at least than ${MIN_max_completion_tokens}` }).max(MAX_max_completion_tokens, { message: `max_completion_tokens must be at most ${MAX_max_completion_tokens}` })
 }).strict();
 var fewShotExampleSchema = z.object({
   // TODO: figure out how to make this compatible with the context enum and its namespace.
@@ -41992,7 +41992,7 @@ var DEFAULT_SETTINGS = {
     top_p: 0.1,
     frequency_penalty: 0.25,
     presence_penalty: 0,
-    max_tokens: 800
+    max_completion_tokens: 800
   },
   // Prompt settings
   systemMessage: `Your job is to predict the most logical text that should be written at the location of the <mask/>.
@@ -42336,7 +42336,7 @@ var DEFAULT_SETTINGS2 = {
     top_p: 0.1,
     frequency_penalty: 0.25,
     presence_penalty: 0,
-    max_tokens: 800
+    max_completion_tokens: 800
   },
   // Prompt settings
   systemMessage: `Your job is to predict the most logical text that should be written at the location of the <mask/>.
@@ -43838,16 +43838,16 @@ function SettingsView(props) {
     {
       name: "Max Tokens",
       description: "This parameter changes the maximum number of tokens the model is allowed to generate. This includes the chain of thought tokens before the answer.",
-      value: settings.modelOptions.max_tokens,
-      errorMessage: errors.get("modelOptions.max_tokens"),
+      value: settings.modelOptions.max_completion_tokens,
+      errorMessage: errors.get("modelOptions.max_completion_tokens"),
       setValue: (value) => updateSettings({
         modelOptions: {
           ...settings.modelOptions,
-          max_tokens: value
+          max_completion_tokens: value
         }
       }),
-      min: MIN_MAX_TOKENS,
-      max: MAX_MAX_TOKENS,
+      min: MIN_max_completion_tokens,
+      max: MAX_max_completion_tokens,
       step: 10
     }
   )), /* @__PURE__ */ React9.createElement("h2", null, "Preprocessing"), /* @__PURE__ */ React9.createElement(
