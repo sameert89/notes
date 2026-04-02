@@ -41869,7 +41869,7 @@ var modelOptionsSchema = z.object({
   top_p: z.number().min(0, { message: `top_p must be greater than ${MIN_TOP_P}` }).max(1, { message: `top_p must be at most ${MAX_TOP_P}` }),
   frequency_penalty: z.number().min(0, { message: `Frequency penalty must be at least ${MIN_FREQUENCY_PENALTY}` }).max(2, { message: `Frequency penalty must be at most ${MAX_FREQUENCY_PENALTY}` }),
   presence_penalty: z.number().min(MIN_PRESENCE_PENALTY, { message: `Presence penalty must be at least ${MIN_PRESENCE_PENALTY}` }).max(MAX_PRESENCE_PENALTY, { message: `Presence penalty must be at most ${MAX_PRESENCE_PENALTY}` }),
-  max_tokens: z.number().int().min(MIN_MAX_TOKENS, { message: `max_tokens must be at least than ${MIN_MAX_TOKENS}` }).max(MAX_MAX_TOKENS, { message: `max_tokens must be at most ${MAX_MAX_TOKENS}` })
+  max_completion_tokens: z.number().int().min(MIN_MAX_TOKENS, { message: `max_tokens must be at least than ${MIN_MAX_TOKENS}` }).max(MAX_MAX_TOKENS, { message: `max_tokens must be at most ${MAX_MAX_TOKENS}` })
 }).strict();
 var fewShotExampleSchema = z.object({
   // TODO: figure out how to make this compatible with the context enum and its namespace.
