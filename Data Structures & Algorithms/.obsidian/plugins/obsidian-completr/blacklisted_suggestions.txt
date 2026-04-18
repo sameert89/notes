@@ -20,3 +20,5 @@ numen
 numba
 numsa
 nummi
+nummy
+numbi
