@@ -73389,7 +73389,6 @@ var _MarkdownRendererInternal;
       const rendered = await _MarkdownRendererInternal2.renderFile(targetFile, {
         ...options,
         container: void 0,
-        createDocumentContainer: false,
         createPusherElement: false,
         unifyTitleFormat: false
       });
