@@ -73369,9 +73369,14 @@ var _MarkdownRendererInternal;
     for (const embed of embeds) {
       if (checkCancelled())
         return;
-      if (embed.querySelector("svg, img, .excalidraw-plugin, .excalidraw-svg"))
+      if (embed.getAttribute("data-excalidraw-export-rendered") === "true")
         continue;
       const embedContent = embed.querySelector(".markdown-embed-content") || embed;
+      const existingRender = embedContent.querySelector(".excalidraw-plugin, .excalidraw-svg, svg.light, svg.dark, svg image");
+      if (existingRender) {
+        embed.setAttribute("data-excalidraw-export-rendered", "true");
+        continue;
+      }
       const rawSrc = embed.getAttribute("src") || "";
       const linkPath = rawSrc.split("#")[0].trim();
       if (!linkPath)
@@ -73393,6 +73398,7 @@ var _MarkdownRendererInternal;
         continue;
       embedContent.innerHTML = "";
       embedContent.appendChild(renderedContent);
+      embed.setAttribute("data-excalidraw-export-rendered", "true");
       await waitForRenderedImages(embedContent);
     }
   }
