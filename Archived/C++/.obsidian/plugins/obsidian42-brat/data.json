@@ -1,0 +1,24 @@
+{
+  "pluginList": [
+    "sameert89/obsidian-ghost-text"
+  ],
+  "pluginSubListFrozenVersion": [
+    {
+      "repo": "sameert89/obsidian-ghost-text",
+      "version": "v1.2.0.1-beta"
+    }
+  ],
+  "themesList": [],
+  "updateAtStartup": true,
+  "updateThemesAtStartup": true,
+  "enableAfterInstall": true,
+  "loggingEnabled": false,
+  "loggingPath": "BRAT-log",
+  "loggingVerboseEnabled": false,
+  "debuggingMode": false,
+  "notificationsEnabled": true,
+  "globalTokenName": "",
+  "personalAccessToken": "",
+  "selectLatestPluginVersionByDefault": false,
+  "allowIncompatiblePlugins": false
+}
