@@ -73306,6 +73306,101 @@ var _MarkdownRendererInternal;
       }, interval);
     });
   }
+  function waitForImageLoad(image, timeout = 4e3) {
+    if (!image)
+      return Promise.resolve(false);
+    if (image.complete)
+      return Promise.resolve(image.naturalWidth > 0);
+    return new Promise((resolve) => {
+      let settled = false;
+      const finish = (success) => {
+        if (settled)
+          return;
+        settled = true;
+        clearTimeout(timer);
+        image.removeEventListener("load", handleLoad);
+        image.removeEventListener("error", handleError);
+        resolve(success);
+      };
+      const handleLoad = () => finish(true);
+      const handleError = () => finish(false);
+      const timer = window.setTimeout(() => finish(false), timeout);
+      image.addEventListener("load", handleLoad, { once: true });
+      image.addEventListener("error", handleError, { once: true });
+      if (typeof image.decode === "function") {
+        image.decode().then(() => finish(true)).catch(() => {
+        });
+      }
+    });
+  }
+  function waitForSvgImageLoad(image, timeout = 4e3) {
+    var _a3, _b3;
+    const href = (_b3 = (_a3 = image.getAttribute("href")) != null ? _a3 : image.getAttributeNS("http://www.w3.org/1999/xlink", "href")) != null ? _b3 : "";
+    if (!href)
+      return Promise.resolve(false);
+    const probe = new Image();
+    probe.decoding = "sync";
+    probe.src = href;
+    return waitForImageLoad(probe, timeout);
+  }
+  async function waitForRenderedImages(container, timeout = 4e3) {
+    if (!container)
+      return true;
+    const htmlImages = Array.from(container.querySelectorAll("img")).filter((image) => {
+      var _a3, _b3;
+      return ((_b3 = (_a3 = image.currentSrc) != null ? _a3 : image.getAttribute("src")) != null ? _b3 : "") !== "";
+    });
+    const svgImages = Array.from(container.querySelectorAll("image"));
+    if (htmlImages.length === 0 && svgImages.length === 0)
+      return true;
+    await Promise.allSettled([
+      ...htmlImages.map((image) => waitForImageLoad(image, timeout)),
+      ...svgImages.map((image) => waitForSvgImageLoad(image, timeout))
+    ]);
+    if (checkCancelled())
+      return false;
+    await delay(32);
+    return true;
+  }
+  async function renderUnresolvedExcalidrawEmbeds(container, sourceFile, options) {
+    if (!container || !sourceFile)
+      return;
+    const embeds = Array.from(container.querySelectorAll(".internal-embed[src*='.excalidraw.md']"));
+    for (const embed of embeds) {
+      if (checkCancelled())
+        return;
+      if (embed.getAttribute("data-excalidraw-export-rendered") === "true")
+        continue;
+      const embedContent = embed.querySelector(".markdown-embed-content") || embed;
+      const existingRender = embedContent.querySelector(".excalidraw-plugin, .excalidraw-svg, svg.light, svg.dark, svg image");
+      if (existingRender) {
+        embed.setAttribute("data-excalidraw-export-rendered", "true");
+        continue;
+      }
+      const rawSrc = embed.getAttribute("src") || "";
+      const linkPath = rawSrc.split("#")[0].trim();
+      if (!linkPath)
+        continue;
+      const targetFile = app.metadataCache.getFirstLinkpathDest(linkPath, sourceFile.path);
+      if (!(targetFile instanceof import_obsidian5.TFile)) {
+        ExportLog.warning(`Failed to resolve Excalidraw embed ${rawSrc} in file ${sourceFile.path}`);
+        continue;
+      }
+      const rendered = await _MarkdownRendererInternal2.renderFile(targetFile, {
+        ...options,
+        container: void 0,
+        createPusherElement: false,
+        unifyTitleFormat: false
+      });
+      const renderedContent = rendered == null ? void 0 : rendered.contentEl;
+      if (!renderedContent)
+        continue;
+      embedContent.innerHTML = "";
+      embedContent.appendChild(renderedContent);
+      embed.setAttribute("data-excalidraw-export-rendered", "true");
+      await waitForRenderedImages(embedContent);
+    }
+  }
   function failRender(file, message) {
     var _a3;
     if (checkCancelled())
@@ -73470,6 +73565,7 @@ var _MarkdownRendererInternal;
       }
     }
     await Promise.all(promises);
+    await waitForRenderedImages(newSizerEl);
     for (const callout of foldedCallouts) {
       callout.style.display = "none";
     }
@@ -73480,6 +73576,7 @@ var _MarkdownRendererInternal;
     for (const section of sections) {
       newSizerEl.appendChild(section.el.cloneNode(true));
     }
+    await renderUnresolvedExcalidrawEmbeds(newMarkdownEl, preview.file, options);
     const banner = preview.containerEl.querySelector(".obsidian-banner-wrapper");
     if (banner) {
       newSizerEl.before(banner);
@@ -73600,6 +73697,7 @@ var _MarkdownRendererInternal;
       image.style.maxWidth = "100%";
       canvas.replaceWith(image);
     }
+    await waitForRenderedImages(preview.containerEl);
     for (const callout of foldedCallouts) {
       callout.style.display = "none";
     }
@@ -73613,6 +73711,7 @@ var _MarkdownRendererInternal;
       });
     }
     newSizerEl.innerHTML = sizerEl.innerHTML;
+    await renderUnresolvedExcalidrawEmbeds(newMarkdownEl, preview.file, options);
     const banner = preview.containerEl.querySelector(".obsidian-banner-wrapper");
     if (banner) {
       newSizerEl.before(banner);
@@ -73687,6 +73786,7 @@ var _MarkdownRendererInternal;
     const sizerEl = contentEl.createDiv();
     sizerEl.classList.add("excalidraw-plugin");
     sizerEl.appendChild(svg);
+    await waitForRenderedImages(contentEl);
     if (checkCancelled())
       return void 0;
     if (options.createDocumentContainer === false) {
