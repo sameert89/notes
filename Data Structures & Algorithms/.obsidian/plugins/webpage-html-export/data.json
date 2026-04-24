@@ -197,7 +197,7 @@
     },
     "rssOptions": {
       "featureId": "rss",
-      "enabled": true,
+      "enabled": false,
       "unavailable": false,
       "alwaysEnabled": false,
       "hideSettingsButton": false,
