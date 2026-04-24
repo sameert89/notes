@@ -73362,6 +73362,40 @@ var _MarkdownRendererInternal;
     await delay(32);
     return true;
   }
+  async function renderUnresolvedExcalidrawEmbeds(container, sourceFile, options) {
+    if (!container || !sourceFile)
+      return;
+    const embeds = Array.from(container.querySelectorAll(".internal-embed[src*='.excalidraw.md']"));
+    for (const embed of embeds) {
+      if (checkCancelled())
+        return;
+      if (embed.querySelector("svg, img, .excalidraw-plugin, .excalidraw-svg"))
+        continue;
+      const embedContent = embed.querySelector(".markdown-embed-content") || embed;
+      const rawSrc = embed.getAttribute("src") || "";
+      const linkPath = rawSrc.split("#")[0].trim();
+      if (!linkPath)
+        continue;
+      const targetFile = app.metadataCache.getFirstLinkpathDest(linkPath, sourceFile.path);
+      if (!(targetFile instanceof import_obsidian5.TFile)) {
+        ExportLog.warning(`Failed to resolve Excalidraw embed ${rawSrc} in file ${sourceFile.path}`);
+        continue;
+      }
+      const rendered = await _MarkdownRendererInternal2.renderFile(targetFile, {
+        ...options,
+        container: void 0,
+        createDocumentContainer: false,
+        createPusherElement: false,
+        unifyTitleFormat: false
+      });
+      const renderedContent = rendered == null ? void 0 : rendered.contentEl;
+      if (!renderedContent)
+        continue;
+      embedContent.innerHTML = "";
+      embedContent.appendChild(renderedContent);
+      await waitForRenderedImages(embedContent);
+    }
+  }
   function failRender(file, message) {
     var _a3;
     if (checkCancelled())
@@ -73537,6 +73571,7 @@ var _MarkdownRendererInternal;
     for (const section of sections) {
       newSizerEl.appendChild(section.el.cloneNode(true));
     }
+    await renderUnresolvedExcalidrawEmbeds(newMarkdownEl, preview.file, options);
     const banner = preview.containerEl.querySelector(".obsidian-banner-wrapper");
     if (banner) {
       newSizerEl.before(banner);
@@ -73671,6 +73706,7 @@ var _MarkdownRendererInternal;
       });
     }
     newSizerEl.innerHTML = sizerEl.innerHTML;
+    await renderUnresolvedExcalidrawEmbeds(newMarkdownEl, preview.file, options);
     const banner = preview.containerEl.querySelector(".obsidian-banner-wrapper");
     if (banner) {
       newSizerEl.before(banner);
