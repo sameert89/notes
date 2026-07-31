@@ -10,7 +10,7 @@
     "postProcess": true,
     "displayProgress": true,
     "inlineHTML": false,
-    "exportPath": "C:\\Users\\samee\\Documents\\Projects\\bit-binder\\server\\public\\Data Structures & Algorithms",
+    "exportPath": "/mnt/hgfs/Host Documents/Projects/bit-binder/server/public/Data Structures & Algorithms",
     "filesToExport": [
       "Arrays",
       "Backtracking",
